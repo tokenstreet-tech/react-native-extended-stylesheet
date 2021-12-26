@@ -9,20 +9,20 @@
     "main": "src/index.js",
     "types": "types/index.d.ts",
     "scripts": {
-        "code": "npm run lint",
-        "lint": "eslint src",
         "test": "jest --onlyChanged",
-        "tt": "jest --coverage",
+        "test:cov": "jest --coverage",
+        "test:cov:upload": "yarn run test:cov && yarn run coveralls",
         "tr": "BABEL_ENV=runtyper jest --no-cache",
-        "test:types": "tsc",
-        "ci": "run-s code tt tr test:types",
         "sync-yarn-lock": "rm yarn.lock && yarn import && git add -A yarn.lock && (git diff-index --quiet HEAD -- yarn.lock || git commit -m'sync yarn.lock' --no-verify)",
         "coveralls": "coveralls < coverage/lcov.info",
-        "prerelease": "run-s code tt tr test:types sync-yarn-lock",
+        "prerelease": "run-s lint test:cov tr ts:verify sync-yarn-lock",
         "postrelease": "git push --follow-tags --no-verify",
         "release": "npm version $VER && npm publish",
         "release-patch": "VER=patch npm run release",
         "release-minor": "VER=minor npm run release",
+        "ts:verify": "tsc --noEmit",
+        "lint": "eslint .",
+        "lint:fix": "npm run lint -- --fix",
         "prettier": "prettier --write . --ignore-path ./.prettierignore",
         "prettier:changed": "pretty-quick"
     },
@@ -33,7 +33,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "run-s code tt tr test:types"
+            "pre-push": "run-s lint test:cov tr ts:verify"
         }
     },
     "repository": {
@@ -64,6 +64,7 @@
         "metro-react-native-babel-preset": "^0.55.0",
         "npm-run-all": "^4.1.5",
         "prettier": "2.5.1",
+        "pretty-quick": "^3.1.3",
         "typescript": "^3.5.2"
     },
     "jest": {

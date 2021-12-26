@@ -1,0 +1,34 @@
+name: MAIN
+
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    yarn_script_validation:
+        name: yarn script validation
+        runs-on: [self-hosted, linux]
+        strategy:
+            matrix:
+                VALIDATION: [lint, 'test:cov', tr, 'ts:verify']
+                include:
+                    - VALIDATION: lint
+                      COMMAND: lint
+                    - VALIDATION: 'test:cov'
+                      COMMAND: test:cov
+                    - VALIDATION: tr
+                      COMMAND: tr
+                    - VALIDATION: 'ts:verify'
+                      COMMAND: ts:verify
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: 16
+            - run: yarn install
+            - run: yarn run ${{ matrix.COMMAND }}
