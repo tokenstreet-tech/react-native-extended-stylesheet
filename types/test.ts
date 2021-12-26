@@ -2,7 +2,7 @@
  * Type definition tests.
  */
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import EStyleSheet from '..';
 
 const eStyles = EStyleSheet.create({
@@ -10,29 +10,29 @@ const eStyles = EStyleSheet.create({
     button1: {
         width: () => '100%',
         '@media (min-width: 350)': {
-            width: '$var'
-        }
+            width: '$var',
+        },
     },
     '@media ios': {
         button2: {
             width: '100%',
-        }
-    }
+        },
+    },
 });
 
 const styles = StyleSheet.create({
     button1: {
         ...EStyleSheet.absoluteFillObject,
-        color: 'red'
+        color: 'red',
     },
     button2: {
         color: 'blue',
         borderBottomWidth: EStyleSheet.hairlineWidth,
-    }
+    },
 });
 
 EStyleSheet.build();
-EStyleSheet.build({$var: 'foo'});
+EStyleSheet.build({ $var: 'foo' });
 EStyleSheet.value('100%');
 EStyleSheet.value('100%', 'width');
 EStyleSheet.subscribe('build', () => {});

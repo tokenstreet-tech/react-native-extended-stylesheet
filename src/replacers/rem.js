@@ -6,8 +6,8 @@ const SUFFIX = 'rem';
 const DEFAULT_REM = 16;
 
 export default {
-  isRem,
-  calc,
+    isRem,
+    calc,
 };
 
 /**
@@ -16,7 +16,7 @@ export default {
  * @returns {Boolean}
  */
 function isRem(str) {
-  return str.substr(-SUFFIX.length) === SUFFIX;
+    return str.substr(-SUFFIX.length) === SUFFIX;
 }
 
 /**
@@ -26,10 +26,10 @@ function isRem(str) {
  * @returns {number}
  */
 function calc(str, rem = DEFAULT_REM) {
-  let koefStr = str.substr(0, str.length - SUFFIX.length);
-  let koef = koefStr === '' ? 1 : parseFloat(koefStr);
-  if (isNaN(koef)) {
-    throw new Error('Invalid rem value: ' + str);
-  }
-  return rem * koef;
+    let koefStr = str.substr(0, str.length - SUFFIX.length);
+    let koef = koefStr === '' ? 1 : parseFloat(koefStr);
+    if (isNaN(koef)) {
+        throw new Error('Invalid rem value: ' + str);
+    }
+    return rem * koef;
 }

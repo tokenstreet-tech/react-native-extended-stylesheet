@@ -8,15 +8,15 @@
  * - aspect-ratio
  */
 
-import {Dimensions, Platform, I18nManager} from 'react-native';
+import { Dimensions, Platform, I18nManager } from 'react-native';
 import mediaQuery from 'css-mediaquery';
 import utils from '../utils';
-      
+
 const PREFIX = '@media';
 
 export default {
-  isMediaQuery,
-  process
+    isMediaQuery,
+    process,
 };
 
 /**
@@ -24,7 +24,7 @@ export default {
  * @param {String} str
  */
 function isMediaQuery(str) {
-  return typeof str === 'string' && str.indexOf(PREFIX) === 0;
+    return typeof str === 'string' && str.indexOf(PREFIX) === 0;
 }
 
 /**
@@ -33,31 +33,31 @@ function isMediaQuery(str) {
  * @returns {null|Object}
  */
 function process(obj) {
-  const mqKeys = [];
+    const mqKeys = [];
 
-  // copy non-media-query stuff
-  const res = Object.keys(obj).reduce((res, key) => {
-    if (!isMediaQuery(key)) {
-      res[key] = obj[key];
-    } else {
-      mqKeys.push(key);
+    // copy non-media-query stuff
+    const res = Object.keys(obj).reduce((res, key) => {
+        if (!isMediaQuery(key)) {
+            res[key] = obj[key];
+        } else {
+            mqKeys.push(key);
+        }
+        return res;
+    }, {});
+
+    // apply media query stuff
+    if (mqKeys.length) {
+        const matchObject = getMatchObject();
+        mqKeys.forEach((key) => {
+            const mqStr = key.replace(PREFIX, '');
+            const isMatch = mediaQuery.match(mqStr, matchObject);
+            if (isMatch) {
+                merge(res, obj[key]);
+            }
+        });
     }
+
     return res;
-  }, {});
-
-  // apply media query stuff
-  if (mqKeys.length) {
-    const matchObject = getMatchObject();
-    mqKeys.forEach(key => {
-      const mqStr = key.replace(PREFIX, '');
-      const isMatch = mediaQuery.match(mqStr, matchObject);
-      if (isMatch) {
-        merge(res, obj[key]);
-      }
-    });
-  }
-
-  return res;
 }
 
 /**
@@ -65,16 +65,16 @@ function process(obj) {
  * @returns {Object}
  */
 function getMatchObject() {
-  const win = Dimensions.get('window');
-  const { isRTL } = I18nManager;
-  return {
-    width: win.width,
-    height: win.height,
-    orientation: win.width > win.height ? 'landscape' : 'portrait',
-    'aspect-ratio': win.width / win.height,
-    type: Platform.OS,
-    direction: isRTL ? 'rtl' : 'ltr'
-  };
+    const win = Dimensions.get('window');
+    const { isRTL } = I18nManager;
+    return {
+        width: win.width,
+        height: win.height,
+        orientation: win.width > win.height ? 'landscape' : 'portrait',
+        'aspect-ratio': win.width / win.height,
+        type: Platform.OS,
+        direction: isRTL ? 'rtl' : 'ltr',
+    };
 }
 
 /**
@@ -83,11 +83,11 @@ function getMatchObject() {
  * @param {Object} mqObj
  */
 function merge(obj, mqObj) {
-  Object.keys(mqObj).forEach(key => {
-    if (utils.isObject(obj[key]) && utils.isObject(mqObj[key])) {
-      Object.assign(obj[key], mqObj[key]);
-    } else {
-      obj[key] = mqObj[key];
-    }
-  });
+    Object.keys(mqObj).forEach((key) => {
+        if (utils.isObject(obj[key]) && utils.isObject(mqObj[key])) {
+            Object.assign(obj[key], mqObj[key]);
+        } else {
+            obj[key] = mqObj[key];
+        }
+    });
 }
