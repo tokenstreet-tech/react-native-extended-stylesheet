@@ -598,7 +598,8 @@ EStyleSheet supports HMR with the following options:
 1.  When you change style of component - the component is updated by HMR automatically without any effort from your side.
 2.  When you change global variable or theme - you should use [HMR API](https://facebook.github.io/react-native/releases/next/#hmr-api)
     to force style re-calculation:
-    ```js
+
+    ````js
     // app.js
     EStyleSheet.build({
     $fontColor: 'black'
@@ -610,8 +611,9 @@ EStyleSheet supports HMR with the following options:
           EStyleSheet.build(); // force style re-calculation
         });
         ```
-    See full example of HMR [here](examples/hmr).  
+    See full example of HMR [here](examples/hmr).
     \[[top](#react-native-extended-stylesheet)\]
+    ````
 
 ## EStyleSheet API
 
