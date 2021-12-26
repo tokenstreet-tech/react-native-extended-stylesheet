@@ -7,10 +7,10 @@ import resolvePath from 'object-resolve-path';
 const PREFIX = '$';
 
 export default {
-  isVar,
-  calc,
-  extract,
-  get,
+    isVar,
+    calc,
+    extract,
+    get,
 };
 
 /**
@@ -18,7 +18,7 @@ export default {
  * @param {String} str
  */
 function isVar(str) {
-  return typeof str === 'string' && str.charAt(0) === PREFIX;
+    return typeof str === 'string' && str.charAt(0) === PREFIX;
 }
 
 /**
@@ -27,11 +27,11 @@ function isVar(str) {
  * @param {Array<Object>} varsArr array of variable sets to search into.
  */
 function calc(str, varsArr) {
-  let realValue = get(str, varsArr);
-  if (realValue === undefined) {
-    throw new Error(`Unresolved variable: ${str}`);
-  }
-  return realValue;
+    let realValue = get(str, varsArr);
+    if (realValue === undefined) {
+        throw new Error(`Unresolved variable: ${str}`);
+    }
+    return realValue;
 }
 
 /**
@@ -40,13 +40,13 @@ function calc(str, varsArr) {
  * @returns {null|Object}
  */
 function extract(obj) {
-  return Object.keys(obj).reduce((res, key) => {
-    if (isVar(key)) {
-      res = res || {};
-      res[key] = obj[key];
-    }
-    return res;
-  }, null);
+    return Object.keys(obj).reduce((res, key) => {
+        if (isVar(key)) {
+            res = res || {};
+            res[key] = obj[key];
+        }
+        return res;
+    }, null);
 }
 
 /**
@@ -55,26 +55,26 @@ function extract(obj) {
  * @param {Array} varsArr array of variable sets
  */
 function get(name, varsArr) {
-  if (!Array.isArray(varsArr)) {
-    throw new Error('You should pass vars array to vars.get()');
-  }
+    if (!Array.isArray(varsArr)) {
+        throw new Error('You should pass vars array to vars.get()');
+    }
 
-  const rootVar = name.match(/[^.[]*/)[0];
-  const isSimpleVar = rootVar === name;
+    const rootVar = name.match(/[^.[]*/)[0];
+    const isSimpleVar = rootVar === name;
 
-  // todo: use for.. of after https://github.com/facebook/react-native/issues/4676
-  for (let i = 0; i < varsArr.length; i++) {
-    let vars = varsArr[i];
-    if (!vars || vars[rootVar] === undefined) {
-      continue;
+    // todo: use for.. of after https://github.com/facebook/react-native/issues/4676
+    for (let i = 0; i < varsArr.length; i++) {
+        let vars = varsArr[i];
+        if (!vars || vars[rootVar] === undefined) {
+            continue;
+        }
+        if (isSimpleVar) {
+            return vars[name];
+        }
+        try {
+            return resolvePath({ [rootVar]: vars[rootVar] }, name);
+        } catch (error) {
+            return undefined;
+        }
     }
-    if (isSimpleVar) {
-      return vars[name];
-    }
-    try {
-      return resolvePath({[rootVar]: vars[rootVar]}, name);
-    } catch (error) {
-      return undefined;
-    }
-  }
 }

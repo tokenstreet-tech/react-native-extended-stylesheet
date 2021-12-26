@@ -10,14 +10,13 @@
  * Adding key augmention is tracked here: https://github.com/Microsoft/TypeScript/issues/12754
  */
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export = EStyleSheet;
 
 declare namespace EStyleSheet {
-    type AnyObject<T = {}> = T & {[key: string]: any};
+    type AnyObject<T = {}> = T & { [key: string]: any };
     type Event = 'build';
-
 
     export function create<T>(styles: AnyObject<T>): AnyObject<T>;
     export function build<T>(rawGlobalVars?: T): void;
@@ -25,7 +24,7 @@ declare namespace EStyleSheet {
     export function child<T>(styles: T, styleName: string, index: number, count: number): T;
     export function subscribe(event: Event, listener: () => any): void;
     export function clearCache(): void;
-  
+
     // inherited from StyleSheet
     export const flatten: typeof StyleSheet.flatten;
     export const setStyleAttributePreprocessor: typeof StyleSheet.setStyleAttributePreprocessor;
@@ -33,5 +32,3 @@ declare namespace EStyleSheet {
     export const absoluteFillObject: typeof StyleSheet.absoluteFillObject;
     export const absoluteFill: typeof StyleSheet.absoluteFill;
 }
-
-
