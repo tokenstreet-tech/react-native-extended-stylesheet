@@ -15,12 +15,12 @@ jobs:
     runs-on: [self-hosted, linux]
     strategy:
       matrix:
-        VALIDATION: [lint, test:cov:upload, tr, ts:verify]
+        VALIDATION: [lint, test:cov, tr, ts:verify]
         include:
           - VALIDATION: lint
             COMMAND: lint
-          - VALIDATION: test:cov:upload
-            COMMAND: test:cov:upload
+          - VALIDATION: test:cov
+            COMMAND: test:cov
           - VALIDATION: tr
             COMMAND: tr
           - VALIDATION: ts:verify
