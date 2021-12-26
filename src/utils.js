@@ -3,8 +3,8 @@
  */
 
 export default {
-  excludeKeys,
-  isObject,
+    excludeKeys,
+    isObject,
 };
 
 /**
@@ -13,15 +13,13 @@ export default {
  * @param {Array|Object} keys
  */
 function excludeKeys(obj, keys) {
-  keys = Array.isArray(keys)
-    ? keys
-    : (keys ? Object.keys(keys) : []);
-  return Object.keys(obj).reduce((res, key) => {
-    if (keys.indexOf(key) === -1) {
-      res[key] = obj[key];
-    }
-    return res;
-  }, {});
+    keys = Array.isArray(keys) ? keys : keys ? Object.keys(keys) : [];
+    return Object.keys(obj).reduce((res, key) => {
+        if (keys.indexOf(key) === -1) {
+            res[key] = obj[key];
+        }
+        return res;
+    }, {});
 }
 
 /**
@@ -29,5 +27,5 @@ function excludeKeys(obj, keys) {
  * @param {*} obj
  */
 function isObject(obj) {
-  return typeof obj === 'object' && obj !== null;
+    return typeof obj === 'object' && obj !== null;
 }

@@ -11,18 +11,16 @@ import MyComponent from './component';
 */
 
 EStyleSheet.build({
-  $fontColor: 'black' // change this to another color
+    $fontColor: 'black', // change this to another color
 });
 
 export default class extends React.Component {
-  render() {
-    return (
-      <MyComponent/>
-    );
-  }
+    render() {
+        return <MyComponent />;
+    }
 }
 
 module.hot.accept(() => {
-  EStyleSheet.clearCache();
-  EStyleSheet.build();
+    EStyleSheet.clearCache();
+    EStyleSheet.build();
 });

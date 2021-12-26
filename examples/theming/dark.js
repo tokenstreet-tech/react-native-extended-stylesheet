@@ -1,5 +1,5 @@
 export default {
-  $theme: 'dark',
-  $textColor: 'white',
-  $bgColor: 'black',
-}
+    $theme: 'dark',
+    $textColor: 'white',
+    $bgColor: 'black',
+};
