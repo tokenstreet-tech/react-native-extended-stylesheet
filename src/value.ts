@@ -7,8 +7,16 @@ import vars from './replacers/vars';
 import percent from './replacers/percent';
 import operation from './replacers/operation';
 import scale from './replacers/scale';
+import { TValueExpr } from './types/common';
 
-export default class Value {
+export class Value {
+    value: TValueExpr;
+    outValue: any;
+    prop: string;
+    varsArr: any;
+    stack: any;
+    isOperation: boolean;
+
     /**
      * Constructor
      *
@@ -19,7 +27,12 @@ export default class Value {
      * @param {Array} [options.stack] stack of calls when resolving variable
      * @param {Boolean} [options.isOperation] is value calculated inside operation
      */
-    constructor(value, prop, varsArr = [], options = {}) {
+    constructor(
+        value: TValueExpr,
+        prop: string,
+        varsArr = [],
+        options: { stack?: Array<any>; isOperation?: boolean } = {}
+    ) {
         this.value = value;
         this.outValue = null;
         this.prop = prop;
@@ -56,13 +69,13 @@ export default class Value {
      * But keep calculating percent for operands when value defined as operation.
      */
     calcString() {
-        let actions = [
-            this.tryCalcOperation,
-            this.isOperation ? this.tryCalcPercent : null,
-            this.tryCalcVar,
-            this.tryCalcRem,
-        ].filter(Boolean);
-        let value = this.tryActions(actions, this.value);
+        const actions = [
+                this.tryCalcOperation,
+                this.isOperation ? this.tryCalcPercent : null,
+                this.tryCalcVar,
+                this.tryCalcRem,
+            ].filter(Boolean),
+            value = this.tryActions(actions, this.value);
         if (value !== null) {
             this.outValue = value;
         } else {
@@ -75,10 +88,10 @@ export default class Value {
      * @param {Array} actions
      * @param {String} str
      */
-    tryActions(actions, str) {
-        // todo: use for.. of after https://github.com/facebook/react-native/issues/4676
-        for (let i = 0; i < actions.length; i++) {
-            let val = actions[i].call(this, str);
+    tryActions(actions: any, str: any) {
+        // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
+        for (let i = 0; i < actions.length; i += 1) {
+            const val = actions[i].call(this, str);
             if (val !== null) {
                 return val;
             }
@@ -86,53 +99,52 @@ export default class Value {
         return null;
     }
 
-    tryCalcOperation(str) {
-        let opInfo = operation.isOperation(str);
+    tryCalcOperation(str: any) {
+        const opInfo = operation.isOperation(str);
         if (!opInfo) {
             return null;
         }
         this.isOperation = true;
-        // todo: use for.. of after https://github.com/facebook/react-native/issues/4676
+        // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
         const operands = ['v1', 'v2'];
-        for (let i = 0; i < operands.length; i++) {
-            const operand = operands[i];
-            const operandValue = this.calcOperandValue(opInfo[operand]);
+        for (let i = 0; i < operands.length; i += 1) {
+            const operand = operands[i],
+                operandValue = this.calcOperandValue(opInfo[operand]);
             if (operandValue !== null) {
                 opInfo[operand] = operandValue;
             } else {
-                // if we cant calculate operand - it is not operation, see #3
+                // If we cant calculate operand - it is not operation, see #3
                 return null;
             }
         }
         return operation.exec(opInfo);
     }
 
-    calcOperandValue(str) {
-        let actions = [this.tryCalcVar, this.tryCalcPercent, this.tryCalcRem, this.tryCalcFloat];
+    calcOperandValue(str: any) {
+        const actions = [this.tryCalcVar, this.tryCalcPercent, this.tryCalcRem, this.tryCalcFloat];
         return this.tryActions(actions, str);
     }
 
-    tryCalcVar(str) {
+    tryCalcVar(str: any) {
         if (vars.isVar(str)) {
-            let val = vars.calc(str, this.varsArr);
+            const val = vars.calc(str, this.varsArr);
             if (this.stack.indexOf(str) >= 0) {
-                throw new Error('Cyclic reference: ' + this.stack.concat([str]).join(' -> '));
+                throw new Error(`Cyclic reference: ${this.stack.concat([str]).join(' -> ')}`);
             }
             const options = {
                 stack: this.stack.concat([str]),
                 isOperation: this.isOperation,
             };
-            // recursive call because var can link to another var or percent/rem
+            // Recursive call because var can link to another var or percent/rem
             return new Value(val, str, this.varsArr, options).calc();
-        } else {
-            return null;
         }
+        return null;
     }
 
     /**
      * Tries calc percent
      */
-    tryCalcPercent(str) {
+    tryCalcPercent(str: any) {
         if (percent.isPercent(str)) {
             return percent.calc(str, this.prop);
         }
@@ -142,20 +154,19 @@ export default class Value {
     /**
      * Tries calc rem
      */
-    tryCalcRem(str) {
+    tryCalcRem(str: any) {
         if (rem.isRem(str)) {
-            let remValue = vars.get('$rem', this.varsArr);
+            const remValue = vars.get('$rem', this.varsArr);
             return rem.calc(str, remValue);
-        } else {
-            return null;
         }
+        return null;
     }
 
     /**
      * Tries calc float value from string
      */
-    tryCalcFloat(str) {
-        let val = parseFloat(str);
+    tryCalcFloat(str: any) {
+        const val = parseFloat(str);
         return !isNaN(val) ? val : null;
     }
 
@@ -174,12 +185,14 @@ export default class Value {
     }
 
     applyScale() {
-        // do not apply scale to variables, only for final numbers
-        // otherwise scale will be applied several times
+        /*
+         * Do not apply scale to variables, only for final numbers
+         * otherwise scale will be applied several times
+         */
         if (vars.isVar(this.prop)) {
             return;
         }
-        let scaleFactor = vars.get('$scale', this.varsArr) || 1;
+        const scaleFactor = vars.get('$scale', this.varsArr) || 1;
         if (scaleFactor === 1) {
             return;
         }

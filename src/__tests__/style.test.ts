@@ -1,17 +1,16 @@
 import Style from '../style';
 
-describe('style', function () {
-    it('should calc style', function () {
-        let source = {
-            $a: 1,
-            $b: '$d',
-            fontSize: '$a',
-            borderWidth: '$b',
-            color: '$e',
-        };
-        let varsArr = [{ $a: 3, $d: 3, $e: 'abc' }];
-
-        let res = new Style(source, varsArr).calc();
+describe('style', () => {
+    it('should calc style', () => {
+        const source = {
+                $a: 1,
+                $b: '$d',
+                fontSize: '$a',
+                borderWidth: '$b',
+                color: '$e',
+            },
+            varsArr = [{ $a: 3, $d: 3, $e: 'abc' }],
+            res = new Style(source, varsArr).calc();
 
         expect(res).toEqual({
             calculatedVars: {
@@ -26,13 +25,12 @@ describe('style', function () {
         });
     });
 
-    it('should calc array props (#130) instead of passthrough (#103)', function () {
+    it('should calc array props (#130) instead of passthrough (#103)', () => {
         const source = {
-            $a: 5,
-            transform: [{ rotate: '45deg' }, { translateX: '$a' }, { translateY: '10 + $a' }],
-        };
-
-        const res = new Style(source, []).calc();
+                $a: 5,
+                transform: [{ rotate: '45deg' }, { translateX: '$a' }, { translateY: '10 + $a' }],
+            },
+            res = new Style(source, []).calc();
 
         expect(res).toEqual({
             calculatedVars: {
@@ -44,26 +42,25 @@ describe('style', function () {
         });
     });
 
-    it('should throw error on cyclic refs', function () {
-        let source = {
+    it('should throw error on cyclic refs', () => {
+        const source = {
             $a: '$b',
             $b: '$a',
         };
         expect(() => new Style(source).calc()).toThrowError('Cyclic reference: $b -> $a -> $b');
     });
 
-    it('should apply scale inlined', function () {
-        let source = {
-            $scale: 2,
-            $b: '$d',
-            fontSize: '$a',
-            borderWidth: '$b',
-            prop: 1,
-            width: 2,
-        };
-        let varsArr = [{ $a: 2, $d: 3 }];
-
-        let res = new Style(source, varsArr).calc();
+    it('should apply scale inlined', () => {
+        const source = {
+                $scale: 2,
+                $b: '$d',
+                fontSize: '$a',
+                borderWidth: '$b',
+                prop: 1,
+                width: 2,
+            },
+            varsArr = [{ $a: 2, $d: 3 }],
+            res = new Style(source, varsArr).calc();
 
         expect(res).toEqual({
             calculatedVars: {
@@ -79,18 +76,17 @@ describe('style', function () {
         });
     });
 
-    it('should apply scale from vars', function () {
-        let source = {
-            $b: '$d',
-            $width: 1,
-            fontSize: '$a',
-            borderWidth: '$b',
-            prop: '$width',
-            width: '$width',
-        };
-        let varsArr = [{ $a: 2, $d: 3 }, { $scale: 2 }];
-
-        let res = new Style(source, varsArr).calc();
+    it('should apply scale from vars', () => {
+        const source = {
+                $b: '$d',
+                $width: 1,
+                fontSize: '$a',
+                borderWidth: '$b',
+                prop: '$width',
+                width: '$width',
+            },
+            varsArr = [{ $a: 2, $d: 3 }, { $scale: 2 }],
+            res = new Style(source, varsArr).calc();
 
         expect(res).toEqual({
             calculatedVars: {
@@ -106,14 +102,14 @@ describe('style', function () {
         });
     });
 
-    it('should outline', function () {
-        let source = {
-            prop: 10,
-        };
-        let varsArr = [{ $outline: true }, {}];
+    it('should outline', () => {
+        const source = {
+                prop: 10,
+            },
+            varsArr = [{ $outline: true }, {}];
         Math.random = jest.fn().mockReturnValue(0);
 
-        let res = new Style(source, varsArr).calc();
+        const res = new Style(source, varsArr).calc();
 
         expect(res).toEqual({
             calculatedVars: null,
@@ -126,16 +122,16 @@ describe('style', function () {
         expect(Math.random.mock.calls.length).toBe(1);
     });
 
-    it('should support media queries', function () {
+    it('should support media queries', () => {
         const source = {
-            $b: 2,
-            c: 1,
-            '@media ios': {
-                $b: 3,
-                c: '$b',
+                $b: 2,
+                c: 1,
+                '@media ios': {
+                    $b: 3,
+                    c: '$b',
+                },
             },
-        };
-        const result = new Style(source).calc();
+            result = new Style(source).calc();
         expect(result).toEqual({
             calculatedVars: {
                 $b: 3,
@@ -146,18 +142,16 @@ describe('style', function () {
         });
     });
 
-    describe('nested props (#99)', function () {
-        it('should calc nested style props (#99)', function () {
+    describe('nested props (#99)', () => {
+        it('should calc nested style props (#99)', () => {
             const source = {
-                shadowOffset: {
-                    width: '$width',
-                    foo: 'bar',
+                    shadowOffset: {
+                        width: '$width',
+                        foo: 'bar',
+                    },
                 },
-            };
-
-            const varsArr = [{ $width: 100, $height: 200 }];
-
-            const styles = new Style(source, varsArr).calc();
+                varsArr = [{ $width: 100, $height: 200 }],
+                styles = new Style(source, varsArr).calc();
 
             expect(styles).toEqual({
                 calculatedVars: null,
@@ -170,23 +164,21 @@ describe('style', function () {
             });
         });
 
-        it('should support media queries', function () {
+        it('should support media queries', () => {
             const source = {
-                shadowOffset: {
-                    width: '$width',
-                    foo: 'bar',
-                },
-                '@media ios': {
                     shadowOffset: {
-                        width: 1,
-                        height: '$height',
+                        width: '$width',
+                        foo: 'bar',
+                    },
+                    '@media ios': {
+                        shadowOffset: {
+                            width: 1,
+                            height: '$height',
+                        },
                     },
                 },
-            };
-
-            const varsArr = [{ $width: 100, $height: 200 }];
-
-            const styles = new Style(source, varsArr).calc();
+                varsArr = [{ $width: 100, $height: 200 }],
+                styles = new Style(source, varsArr).calc();
 
             expect(styles).toEqual({
                 calculatedVars: null,

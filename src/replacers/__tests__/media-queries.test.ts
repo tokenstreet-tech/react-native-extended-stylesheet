@@ -3,9 +3,7 @@ const rn = {
         OS: 'ios',
     },
     Dimensions: {
-        get: () => {
-            return { width: 110, height: 100 };
-        },
+        get: () => ({ width: 110, height: 100 }),
     },
     I18nManager: {
         isRTL: false,
@@ -17,8 +15,8 @@ jest.setMock('react-native', rn);
 delete require.cache['../media-queries'];
 const mq = require('../media-queries').default;
 
-describe('media-queries', function () {
-    it('should extract and apply media queries', function () {
+describe('media-queries', () => {
+    it('should extract and apply media queries', () => {
         const obj = {
             a: 1,
             b: 2,
@@ -52,7 +50,7 @@ describe('media-queries', function () {
         });
     });
 
-    it('should process width', function () {
+    it('should process width', () => {
         const obj = {
             '@media (min-width: 50) and (max-width: 150)': {
                 a: 1,
@@ -64,7 +62,7 @@ describe('media-queries', function () {
         expect(mq.process(obj)).toEqual({ a: 1 });
     });
 
-    it('should process height', function () {
+    it('should process height', () => {
         const obj = {
             '@media (min-height: 50) and (max-height: 150)': {
                 a: 1,
@@ -76,7 +74,7 @@ describe('media-queries', function () {
         expect(mq.process(obj)).toEqual({ a: 1 });
     });
 
-    it('should process orientation', function () {
+    it('should process orientation', () => {
         const obj = {
             '@media (orientation: landscape)': {
                 a: 1,
@@ -88,7 +86,7 @@ describe('media-queries', function () {
         expect(mq.process(obj)).toEqual({ a: 1 });
     });
 
-    it('should process type', function () {
+    it('should process type', () => {
         const obj = {
             '@media ios': {
                 a: 1,
@@ -100,7 +98,7 @@ describe('media-queries', function () {
         expect(mq.process(obj)).toEqual({ a: 1 });
     });
 
-    it('should process direction', function () {
+    it('should process direction', () => {
         const obj = {
             '@media (direction: ltr)': {
                 a: 1,
@@ -112,7 +110,7 @@ describe('media-queries', function () {
         expect(mq.process(obj)).toEqual({ a: 1 });
     });
 
-    it('should ignore invalid media queries', function () {
+    it('should ignore invalid media queries', () => {
         const obj = {
             a: 0,
             '@media sdfgsdfg': {

@@ -1,8 +1,8 @@
 import child from '../child';
 
-describe('child', function () {
-    it(':first-child', function () {
-        let styles = {
+describe('child', () => {
+    it(':first-child', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -14,8 +14,8 @@ describe('child', function () {
         expect(child(styles, 'a', 0, 5)).toEqual([{ x: 1 }, { x: 2, y: 1 }]);
     });
 
-    it(':nth-child-even', function () {
-        let styles = {
+    it(':nth-child-even', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -27,8 +27,8 @@ describe('child', function () {
         expect(child(styles, 'a', 2, 5)).toEqual([{ x: 1 }, { x: 2, y: 1 }]);
     });
 
-    it(':nth-child-odd', function () {
-        let styles = {
+    it(':nth-child-odd', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -40,8 +40,8 @@ describe('child', function () {
         expect(child(styles, 'a', 1, 5)).toEqual([{ x: 1 }, { x: 2, y: 1 }]);
     });
 
-    it(':last-child', function () {
-        let styles = {
+    it(':last-child', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -53,8 +53,8 @@ describe('child', function () {
         expect(child(styles, 'a', 4, 5)).toEqual([{ x: 1 }, { x: 2, y: 1 }]);
     });
 
-    it('no pseudo', function () {
-        let styles = {
+    it('no pseudo', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -62,8 +62,8 @@ describe('child', function () {
         expect(child(styles, 'a', 0, 5)).toEqual({ x: 1 });
     });
 
-    it('non-existent style', function () {
-        let styles = {
+    it('non-existent style', () => {
+        const styles = {
             a: {
                 x: 1,
             },
@@ -75,8 +75,8 @@ describe('child', function () {
         expect(child(styles, 'b', 0, 5)).toEqual(undefined);
     });
 
-    it(':first-child + :nth-child-even', function () {
-        let styles = {
+    it(':first-child + :nth-child-even', () => {
+        const styles = {
             a: {
                 x: 1,
             },

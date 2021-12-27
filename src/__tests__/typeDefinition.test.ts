@@ -3,7 +3,7 @@
  */
 
 import { StyleSheet } from 'react-native';
-import EStyleSheet from '..';
+import EStyleSheet from '../../types/react-native-extended-stylesheet';
 
 const eStyles = EStyleSheet.create({
     $var: 10,
@@ -41,7 +41,8 @@ EStyleSheet.value('100%');
 EStyleSheet.value('100%', 'width');
 EStyleSheet.subscribe('build', () => {});
 EStyleSheet.clearCache();
-const x = EStyleSheet.absoluteFill;
+// eslint-disable-next-line no-console
+console.dir(EStyleSheet.absoluteFill);
 EStyleSheet.flatten([eStyles.button1, eStyles.button2]);
 EStyleSheet.flatten(styles.button1);
 EStyleSheet.flatten([styles.button1, styles.button2]);
