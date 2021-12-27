@@ -1,6 +1,6 @@
 {
     "name": "@tokenstreet/react-native-extended-stylesheet",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "description": "Extended StyleSheets for React Native",
     "author": "Daniel Reichhart <daniel@tokenstreet.com>",
     "main": "src/index.js",
