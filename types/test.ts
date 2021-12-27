@@ -13,6 +13,10 @@ const eStyles = EStyleSheet.create({
             width: '$var',
         },
     },
+    button2: {
+        color: 'blue',
+        borderBottomWidth: EStyleSheet.hairlineWidth,
+    },
     '@media ios': {
         button2: {
             width: '100%',
