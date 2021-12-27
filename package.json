@@ -2,10 +2,7 @@
     "name": "react-native-extended-stylesheet",
     "version": "0.12.0",
     "description": "Extended StyleSheets for React Native",
-    "author": {
-        "name": "Vitaliy Potapov",
-        "email": "noginsk@rambler.ru"
-    },
+    "author": "Daniel Reichhart <daniel@tokenstreet.com>",
     "main": "src/index.js",
     "types": "types/index.d.ts",
     "scripts": {
@@ -33,10 +30,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/vitalets/react-native-extended-stylesheet.git"
+        "url": "git://github.com/tokenstreet-tech/react-native-extended-stylesheet.git"
     },
     "bugs": {
-        "url": "https://github.com/vitalets/react-native-extended-stylesheet/issues"
+        "url": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet/issues"
     },
     "dependencies": {
         "css-mediaquery": "^0.1.2",
@@ -78,5 +75,6 @@
         "ios",
         "android"
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "homepage": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet#readme"
 }
