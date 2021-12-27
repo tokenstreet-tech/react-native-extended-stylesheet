@@ -9,8 +9,6 @@
         "build": "tsc",
         "test": "jest --onlyChanged",
         "test:cov": "jest --coverage",
-        "tr": "BABEL_ENV=runtyper jest --no-cache",
-        "coveralls": "coveralls < coverage/lcov.info",
         "ts:verify": "tsc --noEmit",
         "lint": "eslint .",
         "lint:fix": "npm run lint -- --fix",
@@ -20,7 +18,7 @@
     },
     "lint-staged": {
         "*": "prettier --ignore-unknown --write",
-        "*.js": "eslint --fix"
+        "*.(js|ts|tsx)": "eslint --fix"
     },
     "repository": {
         "type": "git",
@@ -34,22 +32,16 @@
         "object-resolve-path": "^1.1.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.16.5",
-        "@babel/eslint-parser": "^7.16.5",
-        "@babel/preset-react": "^7.16.5",
-        "@babel/runtime": "^7.16.5",
         "@react-native-community/eslint-config": "^3.0.1",
         "@types/css-mediaquery": "^0.1.1",
         "@types/jest": "^27.0.1",
         "@types/react-native": "^0.66.10",
-        "@typescript-eslint/eslint-plugin": "^4.30.0",
-        "@typescript-eslint/parser": "^4.30.0",
-        "babel-plugin-runtyper": "^0.4.0",
-        "coveralls": "^3.1.1",
+        "@typescript-eslint/eslint-plugin": "^5.8.0",
+        "@typescript-eslint/parser": "^5.8.0",
         "eslint": "^8.5.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
-        "eslint-plugin-jest": "^24.4.0",
+        "eslint-plugin-jest": "^25.3.0",
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-native": "^4.0.0",
         "husky": "^7.0.4",

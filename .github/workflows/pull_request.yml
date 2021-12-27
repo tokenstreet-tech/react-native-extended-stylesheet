@@ -15,16 +15,14 @@ jobs:
         runs-on: [self-hosted, linux]
         strategy:
             matrix:
-                VALIDATION: [lint, 'test:cov', tr, 'ts:verify']
+                VALIDATION: ['TypeScript verification', ESLint, 'Test coverage']
                 include:
-                    - VALIDATION: lint
+                    - VALIDATION: 'TypeScript verification'
+                      COMMAND: 'ts:verify'
+                    - VALIDATION: ESLint
                       COMMAND: lint
-                    - VALIDATION: 'test:cov'
+                    - VALIDATION: 'Test coverage'
                       COMMAND: test:cov
-                    - VALIDATION: tr
-                      COMMAND: tr
-                    - VALIDATION: 'ts:verify'
-                      COMMAND: ts:verify
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
