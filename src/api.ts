@@ -1,37 +1,56 @@
 /**
  * Extended StyleSheet API
  */
-
 import { StyleSheet } from 'react-native';
+
+import { child } from './child';
+import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
+import type { StyleObject, TValueExpr } from './types/common';
 import { Value } from './value';
-import vars from './replacers/vars';
-import mq from './replacers/media-queries';
-import { child } from './child';
-import { StyleObject, TRawGlobalVars, TValueExpr } from './types/common';
 
 type TListener = () => void;
 
 const BUILD_EVENT = 'build';
 
 export class EStyleSheet {
+    // @ts-expect-error Implemented through method _proxyToOriginal
+    public setStyleAttributePreprocessor: typeof StyleSheet.setStyleAttributePreprocessor;
+    // @ts-expect-error Implemented through method _proxyToOriginal
+    public hairlineWidth: typeof StyleSheet.hairlineWidth;
+    // @ts-expect-error Implemented through method _proxyToOriginal
+    public absoluteFill: typeof StyleSheet.absoluteFill;
+    // @ts-expect-error Implemented through method _proxyToOriginal
+    public absoluteFillObject: typeof StyleSheet.absoluteFillObject;
+    // @ts-expect-error Implemented through method _proxyToOriginal
+    public flatten: typeof StyleSheet.flatten;
+
     public child: typeof child;
     private builded: boolean;
-    private sheets: Array<Sheet<unknown>>;
+    private readonly sheets: Array<Sheet<unknown>>;
     private globalVars: any;
-    private listeners: { [key in typeof BUILD_EVENT]: Array<TListener> } | Record<string, never>;
+    private listeners: Record<string, never> | { [key in typeof BUILD_EVENT]: Array<TListener> };
 
     /**
      * Constructor
      */
-    constructor() {
+    public constructor() {
         this.child = child;
         this.builded = false;
         this.sheets = [];
         this.globalVars = null;
         this.listeners = {};
-        this._proxyToOriginal();
+        this.proxyToOriginal();
+    }
+
+    private static assertSubscriptionParams(event: typeof BUILD_EVENT, listener: TListener): void {
+        if (event !== BUILD_EVENT) {
+            throw new Error(`Only '${BUILD_EVENT}' event is currently supported.`);
+        }
+        if (typeof listener !== 'function') {
+            throw new Error('Listener should be a function.');
+        }
     }
 
     /**
@@ -53,11 +72,11 @@ export class EStyleSheet {
      * Builds all created stylesheets with passed variables
      * @param {Object} [rawGlobalVars]
      */
-    public build(rawGlobalVars: TRawGlobalVars) {
+    public build<T>(rawGlobalVars?: T): void {
         this.builded = true;
-        this._calcGlobalVars(rawGlobalVars);
-        this._calcSheets();
-        this._callListeners(BUILD_EVENT);
+        this.calcGlobalVars(rawGlobalVars);
+        this.calcSheets();
+        this.callListeners(BUILD_EVENT);
     }
 
     /**
@@ -66,7 +85,7 @@ export class EStyleSheet {
      * @param {String} [prop]
      * @returns {*}
      */
-    public value(expr: TValueExpr, prop: string) {
+    public value(expr: TValueExpr, prop?: string) {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
@@ -77,7 +96,7 @@ export class EStyleSheet {
      * @param {Function} listener
      */
     public subscribe(event: typeof BUILD_EVENT, listener: TListener) {
-        EStyleSheet._assertSubscriptionParams(event, listener);
+        EStyleSheet.assertSubscriptionParams(event, listener);
         this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT] || [];
         this.listeners[BUILD_EVENT].push(listener);
         if (this.builded) {
@@ -91,7 +110,7 @@ export class EStyleSheet {
      * @param {Function} listener
      */
     public unsubscribe(event: typeof BUILD_EVENT, listener: TListener) {
-        EStyleSheet._assertSubscriptionParams(event, listener);
+        EStyleSheet.assertSubscriptionParams(event, listener);
         if (this.listeners[BUILD_EVENT]) {
             this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT].filter((item) => item !== listener);
         }
@@ -101,30 +120,30 @@ export class EStyleSheet {
      * Clears all cached styles.
      */
     public clearCache(): void {
-        this.sheets.forEach((sheet) => sheet.clearCache());
+        this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.clearCache());
     }
 
     // TODO: move global vars stuff to separate module
-    private _calcGlobalVars(rawGlobalVars: TRawGlobalVars) {
+    private calcGlobalVars<T>(rawGlobalVars?: T): void {
         if (rawGlobalVars) {
-            this._checkGlobalVars(rawGlobalVars);
+            this.checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
-            rawGlobalVars.$theme = rawGlobalVars.$theme || 'default';
-            this.globalVars = new Style(rawGlobalVars, [rawGlobalVars]).calc().calculatedVars;
+            (rawGlobalVars as any).$theme = (rawGlobalVars as any).$theme ?? 'default';
+            this.globalVars = new Style(rawGlobalVars as any, [rawGlobalVars]).calc().calculatedVars;
         }
     }
 
-    private _calcSheets() {
-        this.sheets.forEach((sheet) => sheet.calc(this.globalVars));
+    private calcSheets() {
+        this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.calc(this.globalVars));
     }
 
-    private _callListeners(event: typeof BUILD_EVENT) {
+    private callListeners(event: typeof BUILD_EVENT) {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }
     }
 
-    private _proxyToOriginal() {
+    private proxyToOriginal() {
         // See: https://facebook.github.io/react-native/docs/stylesheet.html
         const props: Array<keyof typeof StyleSheet> = [
             'setStyleAttributePreprocessor',
@@ -141,23 +160,14 @@ export class EStyleSheet {
         });
     }
 
-    private _checkGlobalVars(rawGlobalVars: TRawGlobalVars): void {
+    private checkGlobalVars<T>(rawGlobalVars: T): void {
         Object.keys(rawGlobalVars).forEach((key) => {
-            if (!vars.isVar(key) && !mq.isMediaQuery(key)) {
+            if (!isVar(key) && !mq.isMediaQuery(key)) {
                 throw new Error(
                     `EStyleSheet.build() params should contain global variables (start with $) ` +
                         `or media queries (start with @media). Got '${key}'.`
                 );
             }
         });
-    }
-
-    private static _assertSubscriptionParams(event: typeof BUILD_EVENT, listener: TListener): void {
-        if (event !== BUILD_EVENT) {
-            throw new Error(`Only '${BUILD_EVENT}' event is currently supported.`);
-        }
-        if (typeof listener !== 'function') {
-            throw new Error('Listener should be a function.');
-        }
     }
 }

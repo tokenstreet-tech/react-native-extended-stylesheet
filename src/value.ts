@@ -1,21 +1,20 @@
 /**
  * Calculates particular value
  */
-
-import rem from './replacers/rem';
-import vars from './replacers/vars';
-import percent from './replacers/percent';
-import operation from './replacers/operation';
-import scale from './replacers/scale';
-import { TValueExpr } from './types/common';
+import { exec, isOperation } from './replacers/operation';
+import { calc as percentCalc, isPercent } from './replacers/percent';
+import { calc as remCalc, isRem } from './replacers/rem';
+import { calc as scaleCalc, isScalable } from './replacers/scale';
+import { calc as varsCalc, get, isVar } from './replacers/vars';
+import type { TValueExpr } from './types/common';
 
 export class Value {
-    value: TValueExpr;
-    outValue: any;
-    prop: string;
-    varsArr: any;
-    stack: any;
-    isOperation: boolean;
+    private value: TValueExpr;
+    private outValue: any;
+    private readonly prop?: string;
+    private readonly varsArr: any;
+    private readonly stack: any;
+    private isOperation: boolean;
 
     /**
      * Constructor
@@ -27,25 +26,25 @@ export class Value {
      * @param {Array} [options.stack] stack of calls when resolving variable
      * @param {Boolean} [options.isOperation] is value calculated inside operation
      */
-    constructor(
+    public constructor(
         value: TValueExpr,
-        prop: string,
-        varsArr = [],
-        options: { stack?: Array<any>; isOperation?: boolean } = {}
+        prop?: string,
+        varsArr: Readonly<Array<any>> = [],
+        options: Readonly<{ stack?: Array<any>; isOperation?: boolean }> = {}
     ) {
         this.value = value;
         this.outValue = null;
         this.prop = prop;
         this.varsArr = varsArr;
-        this.stack = options.stack || [];
-        this.isOperation = options.isOperation !== undefined ? options.isOperation : false;
+        this.stack = options.stack ?? [];
+        this.isOperation = options.isOperation === undefined ? false : options.isOperation;
     }
 
     /**
      * Calculates value:
      * execute function, resolve var refs, convert string of (rem, percent) to pixels
      */
-    calc() {
+    public calc() {
         if (typeof this.value === 'function') {
             this.value = this.value();
         }
@@ -68,7 +67,7 @@ export class Value {
      * Here we do not calc direct percent values as they supported natively since RN 43 (#32).
      * But keep calculating percent for operands when value defined as operation.
      */
-    calcString() {
+    private calcString() {
         const actions = [
                 this.tryCalcOperation,
                 this.isOperation ? this.tryCalcPercent : null,
@@ -76,10 +75,10 @@ export class Value {
                 this.tryCalcRem,
             ].filter(Boolean),
             value = this.tryActions(actions, this.value);
-        if (value !== null) {
-            this.outValue = value;
-        } else {
+        if (value === null) {
             this.proxyValue();
+        } else {
+            this.outValue = value;
         }
     }
 
@@ -88,7 +87,7 @@ export class Value {
      * @param {Array} actions
      * @param {String} str
      */
-    tryActions(actions: any, str: any) {
+    private tryActions(actions: any, str: any) {
         // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
         for (let i = 0; i < actions.length; i += 1) {
             const val = actions[i].call(this, str);
@@ -99,8 +98,8 @@ export class Value {
         return null;
     }
 
-    tryCalcOperation(str: any) {
-        const opInfo = operation.isOperation(str);
+    private tryCalcOperation(str: any) {
+        const opInfo = isOperation(str);
         if (!opInfo) {
             return null;
         }
@@ -110,24 +109,23 @@ export class Value {
         for (let i = 0; i < operands.length; i += 1) {
             const operand = operands[i],
                 operandValue = this.calcOperandValue(opInfo[operand]);
-            if (operandValue !== null) {
-                opInfo[operand] = operandValue;
-            } else {
+            if (operandValue === null) {
                 // If we cant calculate operand - it is not operation, see #3
                 return null;
             }
+            opInfo[operand] = operandValue;
         }
-        return operation.exec(opInfo);
+        return exec(opInfo);
     }
 
-    calcOperandValue(str: any) {
+    private calcOperandValue(str: any) {
         const actions = [this.tryCalcVar, this.tryCalcPercent, this.tryCalcRem, this.tryCalcFloat];
         return this.tryActions(actions, str);
     }
 
-    tryCalcVar(str: any) {
-        if (vars.isVar(str)) {
-            const val = vars.calc(str, this.varsArr);
+    private tryCalcVar(str: any) {
+        if (isVar(str)) {
+            const val = varsCalc(str, this.varsArr);
             if (this.stack.indexOf(str) >= 0) {
                 throw new Error(`Cyclic reference: ${this.stack.concat([str]).join(' -> ')}`);
             }
@@ -144,9 +142,9 @@ export class Value {
     /**
      * Tries calc percent
      */
-    tryCalcPercent(str: any) {
-        if (percent.isPercent(str)) {
-            return percent.calc(str, this.prop);
+    private tryCalcPercent(str: any) {
+        if (isPercent(str)) {
+            return percentCalc(str, this.prop);
         }
         return null;
     }
@@ -154,10 +152,10 @@ export class Value {
     /**
      * Tries calc rem
      */
-    tryCalcRem(str: any) {
-        if (rem.isRem(str)) {
-            const remValue = vars.get('$rem', this.varsArr);
-            return rem.calc(str, remValue);
+    private tryCalcRem(str: any) {
+        if (isRem(str)) {
+            const remValue = get('$rem', this.varsArr);
+            return remCalc(str, remValue);
         }
         return null;
     }
@@ -165,39 +163,39 @@ export class Value {
     /**
      * Tries calc float value from string
      */
-    tryCalcFloat(str: any) {
+    private tryCalcFloat(str: any) {
         const val = parseFloat(str);
-        return !isNaN(val) ? val : null;
+        return isNaN(val) ? null : val;
     }
 
     /**
      * Is it final calculation (not recursion)
      */
-    isFinal() {
+    private isFinal() {
         return !this.stack.length;
     }
 
     /**
      * Just proxies value when no processing needed
      */
-    proxyValue() {
+    private proxyValue() {
         this.outValue = this.value;
     }
 
-    applyScale() {
+    private applyScale() {
         /*
          * Do not apply scale to variables, only for final numbers
          * otherwise scale will be applied several times
          */
-        if (vars.isVar(this.prop)) {
+        if (isVar(this.prop)) {
             return;
         }
-        const scaleFactor = vars.get('$scale', this.varsArr) || 1;
+        const scaleFactor = get('$scale', this.varsArr) || 1;
         if (scaleFactor === 1) {
             return;
         }
-        if (scale.isScalable(this.outValue, this.prop)) {
-            this.outValue = scale.calc(this.outValue, scaleFactor);
+        if (isScalable(this.outValue, this.prop)) {
+            this.outValue = scaleCalc(this.outValue, scaleFactor);
         }
     }
 }

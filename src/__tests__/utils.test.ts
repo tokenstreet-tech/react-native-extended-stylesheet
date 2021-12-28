@@ -1,4 +1,4 @@
-// import utils from '../utils';
+// Import utils from '../utils';
 
 describe('utils', () => {
     it('should exclude by array', () => {
@@ -6,7 +6,7 @@ describe('utils', () => {
     });
 
     /*
-     * describe('excludeKeys', function () {
+     * Describe('excludeKeys', function () {
      *
      *   it('should exclude by array', function () {
      *     const obj = {a: 1, b: 2};

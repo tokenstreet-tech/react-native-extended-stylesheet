@@ -10,7 +10,7 @@ const DEFAULT_REM = 16,
  * @param {String} str
  * @returns {Boolean}
  */
-const isRem = (str: string) => str.substr(-SUFFIX.length) === SUFFIX;
+export const isRem = (str: string) => str.substr(-SUFFIX.length) === SUFFIX;
 
 /**
  * Calculate rem to pixels: '1.2rem' => 1.2 * rem
@@ -18,16 +18,11 @@ const isRem = (str: string) => str.substr(-SUFFIX.length) === SUFFIX;
  * @param {Number} rem
  * @returns {number}
  */
-const calc = (str: string, rem = DEFAULT_REM) => {
+export const calc = (str: string, rem = DEFAULT_REM) => {
     const koefStr = str.substr(0, str.length - SUFFIX.length),
         koef = koefStr === '' ? 1 : parseFloat(koefStr);
     if (isNaN(koef)) {
         throw new Error(`Invalid rem value: ${str}`);
     }
     return rem * koef;
-};
-
-export default {
-    isRem,
-    calc,
 };

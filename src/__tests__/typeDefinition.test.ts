@@ -1,9 +1,9 @@
 /**
- * Type definition tests.
+ * Type definition tests
  */
-
 import { StyleSheet } from 'react-native';
-import EStyleSheet from '../../types/react-native-extended-stylesheet';
+
+import EStyleSheet from '../';
 
 const eStyles = EStyleSheet.create({
     $var: 10,
@@ -42,7 +42,8 @@ EStyleSheet.value('100%', 'width');
 EStyleSheet.subscribe('build', () => {});
 EStyleSheet.clearCache();
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const x = EStyleSheet.absoluteFill;
 EStyleSheet.flatten([eStyles.button1, eStyles.button2]);
 EStyleSheet.flatten(styles.button1);

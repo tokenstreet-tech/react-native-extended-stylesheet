@@ -1,4 +1,4 @@
-import child from '../child';
+import { child } from '../child';
 
 describe('child', () => {
     it(':first-child', () => {

@@ -14,7 +14,7 @@ const operators: any = {
  * Is operation in string: '0.25 * $abc' => {operator: '*', v1: '0.25', v2: '$abc'}
  * @param {String} str
  */
-const isOperation = (str: string) => {
+export const isOperation = (str: string) => {
     const opInfo = findOperator(str);
     if (opInfo) {
         opInfo.v1 = str.substr(0, opInfo.pos).trim();
@@ -29,7 +29,7 @@ const isOperation = (str: string) => {
  * Executes operation
  * @param {Object} opInfo
  */
-const exec = (opInfo: any) => {
+export const exec = (opInfo: any) => {
     assertOperator(opInfo.operator);
     assertValue(opInfo.v1);
     assertValue(opInfo.v2);
@@ -65,9 +65,4 @@ const assertDivisor = (divisor: any) => {
     if (divisor === 0) {
         throw new Error('Operation divisor should not be zero');
     }
-};
-
-export default {
-    isOperation,
-    exec,
 };

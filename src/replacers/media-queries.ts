@@ -8,8 +8,9 @@
  * - aspect-ratio
  */
 
-import { Dimensions, I18nManager, Platform } from 'react-native';
 import mediaQuery from 'css-mediaquery';
+import { Dimensions, I18nManager, Platform } from 'react-native';
+
 import { isObject } from '../utils';
 
 const PREFIX = '@media';
@@ -18,21 +19,21 @@ const PREFIX = '@media';
  * Is string is media query
  * @param {String} str
  */
-const isMediaQuery = (str: string) => typeof str === 'string' && str.indexOf(PREFIX) === 0;
+export const isMediaQuery = (str: string) => typeof str === 'string' && str.startsWith(PREFIX);
 
 /**
  * Process and apply media queries in object
  * @param {Object} obj
  * @returns {null|Object}
  */
-const process = (obj: any) => {
+export const process = (obj: any) => {
     const mqKeys: any = [],
         // Copy non-media-query stuff
         res = Object.keys(obj).reduce((res: any, key) => {
-            if (!isMediaQuery(key)) {
-                res[key] = obj[key];
-            } else {
+            if (isMediaQuery(key)) {
                 mqKeys.push(key);
+            } else {
+                res[key] = obj[key];
             }
             return res;
         }, {});
@@ -82,9 +83,4 @@ const merge = (obj: any, mqObj: any) => {
             obj[key] = mqObj[key];
         }
     });
-};
-
-export default {
-    isMediaQuery,
-    process,
 };

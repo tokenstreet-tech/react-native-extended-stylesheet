@@ -1,19 +1,19 @@
-import vars from '../vars';
+import { calc, extract, get, isVar } from '../vars';
 
 describe('vars', () => {
     it('should detect var', () => {
-        expect(vars.isVar('$abc')).toBe(true);
-        expect(vars.isVar('abc')).toBe(false);
+        expect(isVar('$abc')).toBe(true);
+        expect(isVar('abc')).toBe(false);
     });
 
     it('should calc var', () => {
-        expect(vars.calc('$abc', [{ $abc: 1 }])).toBe(1);
-        expect(() => vars.calc('$abc', [])).toThrowError('Unresolved variable: $abc');
-        expect(() => vars.calc('abc', [{ $abc: 1 }])).toThrowError('Unresolved variable: abc');
+        expect(calc('$abc', [{ $abc: 1 }])).toBe(1);
+        expect(() => calc('$abc', [])).toThrowError('Unresolved variable: $abc');
+        expect(() => calc('abc', [{ $abc: 1 }])).toThrowError('Unresolved variable: abc');
     });
 
     it('should take first var from varsArr', () => {
-        expect(vars.calc('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
+        expect(calc('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
     });
 
     it('should extract vars', () => {
@@ -25,16 +25,16 @@ describe('vars', () => {
                 $e: 1,
             },
         };
-        expect(vars.extract(obj)).toEqual({
+        expect(extract(obj)).toEqual({
             $a: 1,
             $b: 2,
         });
     });
 
     it('should get var', () => {
-        expect(vars.get('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
-        expect(vars.get('abc', [])).toBe(undefined);
-        expect(() => vars.get('abc')).toThrowError('You should pass vars array to vars.get()');
+        expect(get('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
+        expect(get('abc', [])).toBe(undefined);
+        expect(() => get('abc', undefined as any)).toThrowError('You should pass vars array to get()');
     });
 
     it('should get object properties using path', () => {
@@ -47,10 +47,10 @@ describe('vars', () => {
             },
         };
 
-        expect(vars.get('$abc.foo', [obj])).toBe('foo');
-        expect(vars.get('$abc.bar.color', [obj])).toBe('#FF');
-        expect(vars.get('$abc.bar.color2', [obj])).toBe(undefined);
-        expect(vars.get('$abc.bar1.color', [obj])).toBe(undefined);
+        expect(get('$abc.foo', [obj])).toBe('foo');
+        expect(get('$abc.bar.color', [obj])).toBe('#FF');
+        expect(get('$abc.bar.color2', [obj])).toBe(undefined);
+        expect(get('$abc.bar1.color', [obj])).toBe(undefined);
     });
 
     it('should get object array values using path', () => {
@@ -65,9 +65,9 @@ describe('vars', () => {
             },
         };
 
-        expect(vars.get('$abc.foo[0]', [obj])).toBe(1);
-        expect(vars.get('$abc.bar[0].value', [obj])).toBe('bar');
-        expect(vars.get('$abc.foo[20]', [obj])).toBe(undefined);
-        expect(vars.get('$abc.unk[10]', [obj])).toBe(undefined);
+        expect(get('$abc.foo[0]', [obj])).toBe(1);
+        expect(get('$abc.bar[0].value', [obj])).toBe('bar');
+        expect(get('$abc.foo[20]', [obj])).toBe(undefined);
+        expect(get('$abc.unk[10]', [obj])).toBe(undefined);
     });
 });

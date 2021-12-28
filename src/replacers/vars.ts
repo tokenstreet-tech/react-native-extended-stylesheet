@@ -10,14 +10,14 @@ const PREFIX = '$';
  * Is string equals to another variable: '$varName'
  * @param {String} str
  */
-const isVar = (str: string) => typeof str === 'string' && str.charAt(0) === PREFIX;
+export const isVar = (str?: string) => typeof str === 'string' && str.startsWith(PREFIX);
 
 /**
  * Replace var with value from vars arr.
  * @param {String} str variable name with $, e.g. '$color'
  * @param {Array<Object>} varsArr array of variable sets to search into.
  */
-const calc = (str: string, varsArr: any) => {
+export const calc = (str: string, varsArr: any) => {
     const realValue = get(str, varsArr);
     if (realValue === undefined) {
         throw new Error(`Unresolved variable: ${str}`);
@@ -30,11 +30,10 @@ const calc = (str: string, varsArr: any) => {
  * @param {Object} obj
  * @returns {null|Object}
  */
-const extract = (obj: any) =>
+export const extract = (obj: any) =>
     Object.keys(obj).reduce((res: any, key) => {
         if (isVar(key)) {
-            res = res || {};
-            res[key] = obj[key];
+            (res || {})[key] = obj[key];
         }
         return res;
     }, null);
@@ -44,13 +43,13 @@ const extract = (obj: any) =>
  * @param {String} name variable with $, e.g. '$myVar'
  * @param {Array} varsArr array of variable sets
  */
-const get = (name: string, varsArr: Array<any>) => {
+export const get = (name: string, varsArr: Readonly<Array<any>>) => {
     if (!Array.isArray(varsArr)) {
         throw new Error('You should pass vars array to vars.get()');
     }
 
-    const machtedName = name.match(/[^.[]*/u);
-    const rootVar = (machtedName ? machtedName : [])[0],
+    const machtedName = /[^.[]*/u.exec(name);
+    const [rootVar] = machtedName ? machtedName : [],
         isSimpleVar = rootVar === name;
 
     // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
@@ -68,11 +67,4 @@ const get = (name: string, varsArr: Array<any>) => {
             return undefined;
         }
     }
-};
-
-export default {
-    isVar,
-    calc,
-    extract,
-    get,
 };

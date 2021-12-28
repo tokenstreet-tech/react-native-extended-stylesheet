@@ -1,6 +1,8 @@
-import Style from '../style';
+import { Style } from '../style';
 
 describe('style', () => {
+    const mathRandomMock = Math.random as jest.MockedFunction<typeof Math.random>;
+
     it('should calc style', () => {
         const source = {
                 $a: 1,
@@ -119,7 +121,7 @@ describe('style', () => {
                 borderColor: 'black',
             },
         });
-        expect(Math.random.mock.calls.length).toBe(1);
+        expect(mathRandomMock.mock.calls.length).toBe(1);
     });
 
     it('should support media queries', () => {

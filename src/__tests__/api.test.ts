@@ -222,12 +222,12 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw error when subscribe to incorrect event', () => {
-            const fn = () => api.subscribe('abc', () => {});
+            const fn = () => api.subscribe('abc' as any, () => {});
             expect(fn).toThrowError("Only 'build' event is currently supported.");
         });
 
         it('should throw error when subscribe with non-function listener', () => {
-            const fn = () => api.subscribe('build', null);
+            const fn = () => api.subscribe('build', null as any);
             expect(fn).toThrowError('Listener should be a function.');
         });
     });
@@ -242,7 +242,7 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw error when unsubscribe with non-function listener', () => {
-            const fn = () => api.unsubscribe('build', null);
+            const fn = () => api.unsubscribe('build', null as any);
             expect(fn).toThrowError('Listener should be a function.');
         });
     });

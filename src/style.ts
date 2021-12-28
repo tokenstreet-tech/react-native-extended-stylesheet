@@ -1,28 +1,27 @@
 /**
  * Style
  */
-
-import vars from './replacers/vars';
-import mediaQueries from './replacers/media-queries';
-import { Value } from './value';
+import { process } from './replacers/media-queries';
+import { extract, get } from './replacers/vars';
+import type { TRawGlobalVars } from './types/common';
 import { excludeKeys } from './utils';
-import { TRawGlobalVars } from './types/common';
+import { Value } from './value';
 
 export class Style {
-    source: TRawGlobalVars;
-    varsArr: any;
-    processedSource: any;
-    extractedVars: any;
-    extractedProps: any;
-    calculatedVars: any;
-    calculatedProps: any;
+    private readonly source: TRawGlobalVars;
+    private varsArr: any;
+    private processedSource: any;
+    private extractedVars: any;
+    private extractedProps: any;
+    private calculatedVars: any;
+    private calculatedProps: any;
 
     /**
      * Constructor
      * @param {Object} source plain object style with variables
      * @param {Array} [varsArr] array of vars objects
      */
-    constructor(source: TRawGlobalVars, varsArr: any = []) {
+    public constructor(source: Readonly<TRawGlobalVars>, varsArr: any = []) {
         this.source = source;
         this.varsArr = varsArr;
         this.processedSource = null;
@@ -36,7 +35,7 @@ export class Style {
      * Calculates style
      * @returns {Object}
      */
-    calc() {
+    public calc() {
         this.processSource();
         this.calcVars();
         this.calcProps();
@@ -47,12 +46,12 @@ export class Style {
         };
     }
 
-    processSource() {
-        this.processedSource = mediaQueries.process(this.source);
+    private processSource() {
+        this.processedSource = process(this.source);
     }
 
-    calcVars() {
-        this.extractedVars = vars.extract(this.processedSource);
+    private calcVars() {
+        this.extractedVars = extract(this.processedSource);
         if (this.extractedVars) {
             const varsArrForVars = [this.extractedVars].concat(this.varsArr);
             this.calculatedVars = calcPlainObject(this.extractedVars, varsArrForVars);
@@ -60,13 +59,13 @@ export class Style {
         }
     }
 
-    calcProps() {
+    private calcProps() {
         this.extractedProps = excludeKeys(this.processedSource, this.extractedVars);
         this.calculatedProps = calcPlainObject(this.extractedProps, this.varsArr);
     }
 
-    tryOutline() {
-        const outline = vars.get('$outline', this.varsArr);
+    private tryOutline() {
+        const outline = get('$outline', this.varsArr);
         if (outline) {
             this.calculatedProps.borderWidth = typeof outline === 'number' ? outline : 1;
             this.calculatedProps.borderColor = getRandomColor();

@@ -9,12 +9,12 @@
  * @param {Number} index
  * @param {Number} count
  */
-export const child = (styles: any, styleName: string, index: number, count: number) => {
+export const child = <T>(styles: T, styleName: string, index: number, count: number): T => {
     if (!isNumber(index) || !isNumber(count)) {
-        return styles[styleName];
+        return (styles as any)[styleName];
     }
 
-    const result = [styles[styleName]];
+    const result = [(styles as any)[styleName]];
 
     addStyle(result, styles, `${styleName}:first-child`, index === 0);
     addStyle(result, styles, `${styleName}:nth-child-even`, index < count && index % 2 === 0);

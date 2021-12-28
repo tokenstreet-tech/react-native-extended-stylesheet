@@ -8,9 +8,9 @@
  * @param {Array|Object} keys
  */
 export const excludeKeys = (obj: any, keys: any) => {
-    keys = Array.isArray(keys) ? keys : keys ? Object.keys(keys) : [];
+    const parsedKeys = Array.isArray(keys) ? keys : keys ? Object.keys(keys) : [];
     return Object.keys(obj).reduce((res: any, key) => {
-        if (keys.indexOf(key) === -1) {
+        if (!parsedKeys.includes(key)) {
             res[key] = obj[key];
         }
         return res;

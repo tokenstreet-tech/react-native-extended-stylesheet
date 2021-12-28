@@ -18,7 +18,7 @@ const { width, height } = Dimensions.get('window'),
  * @param {String} str
  * @returns {boolean}
  */
-const isPercent = (str: string) => str.charAt(str.length - 1) === SUFFIX;
+export const isPercent = (str: string) => str.endsWith(SUFFIX);
 
 /**
  * Calc percent to pixels
@@ -26,24 +26,19 @@ const isPercent = (str: string) => str.charAt(str.length - 1) === SUFFIX;
  * @param {String} prop
  * @returns {number}
  */
-const calc = (str: string, prop: string) => {
+export const calc = (str: string, prop?: string) => {
     const percent = parseInt(str.substring(0, str.length - 1), 10),
         base = isVertical(prop) ? height : width;
     return (base * percent) / 100;
 };
 
 const isVertical = (prop: any) => {
-    prop = prop.toLowerCase();
-    if (V_PROPS.some((p) => prop.indexOf(p) >= 0)) {
+    const lowercaseProp = prop.toLowerCase();
+    if (V_PROPS.some((p) => lowercaseProp.indexOf(p) >= 0)) {
         return true;
     }
-    if (H_PROPS.some((p) => prop.indexOf(p) >= 0)) {
+    if (H_PROPS.some((p) => lowercaseProp.indexOf(p) >= 0)) {
         return false;
     }
     throw new Error(invalidPropMsg);
-};
-
-export default {
-    isPercent,
-    calc,
 };
