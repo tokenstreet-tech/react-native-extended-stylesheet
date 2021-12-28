@@ -41,8 +41,9 @@ EStyleSheet.value('100%');
 EStyleSheet.value('100%', 'width');
 EStyleSheet.subscribe('build', () => {});
 EStyleSheet.clearCache();
-// eslint-disable-next-line no-console
-console.dir(EStyleSheet.absoluteFill);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const x = EStyleSheet.absoluteFill;
 EStyleSheet.flatten([eStyles.button1, eStyles.button2]);
 EStyleSheet.flatten(styles.button1);
 EStyleSheet.flatten([styles.button1, styles.button2]);

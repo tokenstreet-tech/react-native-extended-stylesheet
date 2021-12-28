@@ -17,20 +17,20 @@ const BUILD_EVENT = 'build';
 
 export class EStyleSheet {
     public child: typeof child;
-    private _builded: boolean;
-    private _sheets: Array<Sheet<unknown>>;
-    private _globalVars: any;
-    private _listeners: { [key in typeof BUILD_EVENT]: Array<TListener> } | Record<string, never>;
+    private builded: boolean;
+    private sheets: Array<Sheet<unknown>>;
+    private globalVars: any;
+    private listeners: { [key in typeof BUILD_EVENT]: Array<TListener> } | Record<string, never>;
 
     /**
      * Constructor
      */
     constructor() {
         this.child = child;
-        this._builded = false;
-        this._sheets = [];
-        this._globalVars = null;
-        this._listeners = {};
+        this.builded = false;
+        this.sheets = [];
+        this.globalVars = null;
+        this.listeners = {};
         this._proxyToOriginal();
     }
 
@@ -42,9 +42,9 @@ export class EStyleSheet {
     public create<T>(obj: StyleObject<T>): T {
         const sheet = new Sheet(obj);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
-        this._sheets.push(sheet);
-        if (this._builded) {
-            sheet.calc(this._globalVars);
+        this.sheets.push(sheet);
+        if (this.builded) {
+            sheet.calc(this.globalVars);
         }
         return sheet.getResult();
     }
@@ -54,7 +54,7 @@ export class EStyleSheet {
      * @param {Object} [rawGlobalVars]
      */
     public build(rawGlobalVars: TRawGlobalVars) {
-        this._builded = true;
+        this.builded = true;
         this._calcGlobalVars(rawGlobalVars);
         this._calcSheets();
         this._callListeners(BUILD_EVENT);
@@ -67,7 +67,7 @@ export class EStyleSheet {
      * @returns {*}
      */
     public value(expr: TValueExpr, prop: string) {
-        const varsArr: any = this._globalVars ? [this._globalVars] : [];
+        const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
 
@@ -78,9 +78,9 @@ export class EStyleSheet {
      */
     public subscribe(event: typeof BUILD_EVENT, listener: TListener) {
         EStyleSheet._assertSubscriptionParams(event, listener);
-        this._listeners[BUILD_EVENT] = this._listeners[BUILD_EVENT] || [];
-        this._listeners[BUILD_EVENT].push(listener);
-        if (this._builded) {
+        this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT] || [];
+        this.listeners[BUILD_EVENT].push(listener);
+        if (this.builded) {
             listener();
         }
     }
@@ -92,8 +92,8 @@ export class EStyleSheet {
      */
     public unsubscribe(event: typeof BUILD_EVENT, listener: TListener) {
         EStyleSheet._assertSubscriptionParams(event, listener);
-        if (this._listeners[BUILD_EVENT]) {
-            this._listeners[BUILD_EVENT] = this._listeners[BUILD_EVENT].filter((item) => item !== listener);
+        if (this.listeners[BUILD_EVENT]) {
+            this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT].filter((item) => item !== listener);
         }
     }
 
@@ -101,7 +101,7 @@ export class EStyleSheet {
      * Clears all cached styles.
      */
     public clearCache(): void {
-        this._sheets.forEach((sheet) => sheet.clearCache());
+        this.sheets.forEach((sheet) => sheet.clearCache());
     }
 
     // TODO: move global vars stuff to separate module
@@ -110,17 +110,17 @@ export class EStyleSheet {
             this._checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
             rawGlobalVars.$theme = rawGlobalVars.$theme || 'default';
-            this._globalVars = new Style(rawGlobalVars, [rawGlobalVars]).calc().calculatedVars;
+            this.globalVars = new Style(rawGlobalVars, [rawGlobalVars]).calc().calculatedVars;
         }
     }
 
     private _calcSheets() {
-        this._sheets.forEach((sheet) => sheet.calc(this._globalVars));
+        this.sheets.forEach((sheet) => sheet.calc(this.globalVars));
     }
 
     private _callListeners(event: typeof BUILD_EVENT) {
-        if (Array.isArray(this._listeners[event])) {
-            this._listeners[event].forEach((listener) => listener());
+        if (Array.isArray(this.listeners[event])) {
+            this.listeners[event].forEach((listener) => listener());
         }
     }
 
