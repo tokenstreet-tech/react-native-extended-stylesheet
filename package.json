@@ -7,8 +7,7 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
-        "test": "jest --onlyChanged",
-        "test:cov": "jest --coverage",
+        "test": "jest",
         "ts:verify": "tsc --noEmit",
         "lint": "eslint .",
         "lint:fix": "npm run lint -- --fix",
@@ -49,10 +48,7 @@
         "typescript": "^4.5.4"
     },
     "jest": {
-        "automock": false,
-        "roots": [
-            "src"
-        ]
+        "collectCoverage": true
     },
     "keywords": [
         "react",
