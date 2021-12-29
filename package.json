@@ -33,7 +33,7 @@
         "example": "yarn --cwd example",
         "pods": "cd example && pod-install --quiet",
         "bootstrap": "yarn example && yarn && yarn pods",
-      "prepare": "husky install"
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*": "prettier --ignore-unknown --write",
