@@ -1,3 +1,7 @@
+## 0.13.0 (Dec 27, 2021)
+
+-   Improved typescript intellisense
+
 ## 0.12.0 (Jul 5, 2019)
 
 -   Fix `.subscribe()` method and add `.unsubscribe()` ([#109])
