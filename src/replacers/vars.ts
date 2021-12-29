@@ -32,10 +32,12 @@ export const calc = (str: string, varsArr: any) => {
  */
 export const extract = (obj: any) =>
     Object.keys(obj).reduce((res: any, key) => {
+        let returnRes = res;
         if (isVar(key)) {
-            (res || {})[key] = obj[key];
+            returnRes = returnRes || {};
+            returnRes[key] = obj[key];
         }
-        return res;
+        return returnRes;
     }, null);
 
 /**
