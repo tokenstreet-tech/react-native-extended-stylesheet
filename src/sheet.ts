@@ -8,9 +8,9 @@ import { excludeKeys } from './utils';
 
 export class Sheet<T> {
     private readonly source: StyleObject<T>;
-    private result: any;
+    private readonly result: any;
     private readonly cache: any;
-    private nativeSheet: any;
+    private readonly nativeSheet: any;
     private globalVars: any;
     private localVars: any;
     private allVars: any;
@@ -102,14 +102,14 @@ export class Sheet<T> {
         }
     }
 
-    private calcNative() {
+    private calcNative(): void {
         if (Object.keys(this.nativeSheet).length) {
             const rnStyleSheet = StyleSheet.create(this.nativeSheet);
             Object.assign(this.result, rnStyleSheet);
         }
     }
 
-    private clearResult() {
+    private clearResult(): void {
         Object.keys(this.result).forEach((key) => delete this.result[key]);
     }
 
@@ -118,12 +118,12 @@ export class Sheet<T> {
         return key && this.cache.has(key);
     }
 
-    private applyCache() {
+    private applyCache(): void {
         const cachedResult = this.cache.get(this.getCacheKey());
         Object.assign(this.result, cachedResult);
     }
 
-    private storeCache() {
+    private storeCache(): void {
         const key = this.getCacheKey();
         if (key) {
             this.cache.set(key, { ...this.result });

@@ -46,11 +46,11 @@ export class Style {
         };
     }
 
-    private processSource() {
+    private processSource(): void {
         this.processedSource = process(this.source);
     }
 
-    private calcVars() {
+    private calcVars(): void {
         this.extractedVars = extract(this.processedSource);
         if (this.extractedVars) {
             const varsArrForVars = [this.extractedVars].concat(this.varsArr);
@@ -59,12 +59,12 @@ export class Style {
         }
     }
 
-    private calcProps() {
+    private calcProps(): void {
         this.extractedProps = excludeKeys(this.processedSource, this.extractedVars);
         this.calculatedProps = calcPlainObject(this.extractedProps, this.varsArr);
     }
 
-    private tryOutline() {
+    private tryOutline(): void {
         const outline = get('$outline', this.varsArr);
         if (outline) {
             this.calculatedProps.borderWidth = typeof outline === 'number' ? outline : 1;
