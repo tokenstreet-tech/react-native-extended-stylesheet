@@ -1,7 +1,13 @@
 import { Style } from '../style';
 
 describe('style', () => {
-    const mathRandomMock = Math.random as jest.MockedFunction<typeof Math.random>;
+    let mathRandomSpy: jest.SpyInstance;
+    beforeEach(() => {
+        mathRandomSpy = jest.spyOn(global.Math, 'random').mockReturnValue(0);
+    });
+    afterEach(() => {
+        jest.spyOn(global.Math, 'random').mockRestore();
+    });
 
     it('should calc style', () => {
         const source = {
@@ -109,7 +115,6 @@ describe('style', () => {
                 prop: 10,
             },
             varsArr = [{ $outline: true }, {}];
-        Math.random = jest.fn().mockReturnValue(0);
 
         const res = new Style(source, varsArr).calc();
 
@@ -121,7 +126,7 @@ describe('style', () => {
                 borderColor: 'black',
             },
         });
-        expect(mathRandomMock.mock.calls.length).toBe(1);
+        expect(mathRandomSpy.mock.calls.length).toBe(1);
     });
 
     it('should support media queries', () => {
