@@ -34,7 +34,9 @@ describe('vars', () => {
     it('should get var', () => {
         expect(get('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
         expect(get('abc', [])).toBe(undefined);
-        expect(() => get('abc', undefined as any)).toThrowError('You should pass vars array to vars.get()');
+        expect(() => get('abc', undefined as unknown as Array<never>)).toThrowError(
+            'You should pass vars array to vars.get()'
+        );
     });
 
     it('should get object properties using path', () => {

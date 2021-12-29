@@ -32,12 +32,12 @@ export const calc = (str: string, prop?: string) => {
     return (base * percent) / 100;
 };
 
-const isVertical = (prop: any) => {
-    const lowercaseProp = prop.toLowerCase();
-    if (V_PROPS.some((p) => lowercaseProp.indexOf(p) >= 0)) {
+const isVertical = (prop?: string): boolean => {
+    const lowercaseProp = (prop ?? '').toLowerCase();
+    if (V_PROPS.some((p) => lowercaseProp.includes(p))) {
         return true;
     }
-    if (H_PROPS.some((p) => lowercaseProp.indexOf(p) >= 0)) {
+    if (H_PROPS.some((p) => lowercaseProp.includes(p))) {
         return false;
     }
     throw new Error(invalidPropMsg);

@@ -79,7 +79,7 @@ const assertValue = (value?: number) => {
     }
 };
 
-const assertDivisor = (divisor: any) => {
+const assertDivisor = (divisor?: number) => {
     if (divisor === 0) {
         throw new Error('Operation divisor should not be zero');
     }
