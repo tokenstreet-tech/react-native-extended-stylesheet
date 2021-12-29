@@ -1,4 +1,6 @@
-const rn = {
+import { process } from '../media-queries';
+
+jest.mock('react-native', () => ({
     Platform: {
         OS: 'ios',
     },
@@ -8,12 +10,7 @@ const rn = {
     I18nManager: {
         isRTL: false,
     },
-};
-
-jest.setMock('react-native', rn);
-
-delete require.cache['../media-queries'];
-const mq = require('../media-queries').default;
+}));
 
 describe('media-queries', () => {
     it('should extract and apply media queries', () => {
@@ -37,7 +34,7 @@ describe('media-queries', () => {
                 d: 5,
             },
         };
-        expect(mq.process(obj)).toEqual({
+        expect(process(obj)).toEqual({
             a: 2,
             b: 2,
             c: 3,
@@ -59,7 +56,7 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 1 });
+        expect(process(obj)).toEqual({ a: 1 });
     });
 
     it('should process height', () => {
@@ -71,7 +68,7 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 1 });
+        expect(process(obj)).toEqual({ a: 1 });
     });
 
     it('should process orientation', () => {
@@ -83,7 +80,7 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 1 });
+        expect(process(obj)).toEqual({ a: 1 });
     });
 
     it('should process type', () => {
@@ -95,7 +92,7 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 1 });
+        expect(process(obj)).toEqual({ a: 1 });
     });
 
     it('should process direction', () => {
@@ -107,7 +104,7 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 1 });
+        expect(process(obj)).toEqual({ a: 1 });
     });
 
     it('should ignore invalid media queries', () => {
@@ -120,6 +117,6 @@ describe('media-queries', () => {
                 a: 2,
             },
         };
-        expect(mq.process(obj)).toEqual({ a: 0 });
+        expect(process(obj)).toEqual({ a: 0 });
     });
 });
