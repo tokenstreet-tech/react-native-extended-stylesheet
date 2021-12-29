@@ -1,17 +1,15 @@
-import { multiply } from '@tokenstreet/react-native-extended-stylesheet';
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-    const [result, setResult] = React.useState<number | undefined>();
-
     React.useEffect(() => {
-        multiply(3, 7).then(setResult);
+        EStyleSheet.build();
     }, []);
 
     return (
         <View style={styles.container}>
-            <Text>Result: {result}</Text>
+            <Text>Text</Text>
         </View>
     );
 }
