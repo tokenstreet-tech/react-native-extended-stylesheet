@@ -1,3 +1,4 @@
+import type { TOperator } from '../operation';
 import { exec, isOperation } from '../operation';
 
 describe('operation', () => {
@@ -42,12 +43,14 @@ describe('operation', () => {
     });
 
     it('should throw on invalid data', () => {
-        expect(() => exec({ operator: 'a', v1: 10, v2: 0.5 })).toThrowError('Unknown operator: a');
-        expect(() => exec({ operator: '+', v1: '10', v2: 0.5 })).toThrowError(
+        expect(() => exec({ operator: 'a' as unknown as TOperator, v1: 10, v2: 0.5 })).toThrowError(
+            'Unknown operator: a'
+        );
+        expect(() => exec({ operator: '+', v1: '10' as unknown as number, v2: 0.5 })).toThrowError(
             'Operation value should be number, you try: 10'
         );
         expect(() => exec({ operator: '/', v1: 10, v2: 0 })).toThrowError('Operation divisor should not be zero');
-        expect(() => exec({ operator: '+', v1: 10, v2: null })).toThrowError(
+        expect(() => exec({ operator: '+', v1: 10, v2: null as unknown as number })).toThrowError(
             'Operation value should be number, you try: null'
         );
     });

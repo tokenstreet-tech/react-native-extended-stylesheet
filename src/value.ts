@@ -108,14 +108,14 @@ export class Value {
         const operands = ['v1', 'v2'];
         for (let i = 0; i < operands.length; i += 1) {
             const operand = operands[i],
-                operandValue = this.calcOperandValue(opInfo[operand]);
+                operandValue = this.calcOperandValue((opInfo as any)[operand]);
             if (operandValue === null) {
                 // If we cant calculate operand - it is not operation, see #3
                 return null;
             }
-            opInfo[operand] = operandValue;
+            (opInfo as any)[operand] = operandValue;
         }
-        return exec(opInfo);
+        return exec(opInfo as any);
     }
 
     private calcOperandValue(str: any) {
