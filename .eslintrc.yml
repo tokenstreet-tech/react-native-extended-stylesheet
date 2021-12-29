@@ -34,7 +34,6 @@ rules:
     '@typescript-eslint/no-explicit-any': 0
     '@typescript-eslint/no-magic-numbers': 0
     '@typescript-eslint/no-require-imports': 0
-    '@typescript-eslint/no-shadow': 0
     '@typescript-eslint/no-type-alias': 0
     '@typescript-eslint/no-unnecessary-condition': 0
     '@typescript-eslint/no-unsafe-argument': 0

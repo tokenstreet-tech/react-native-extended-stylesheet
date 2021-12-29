@@ -29,13 +29,13 @@ export const isMediaQuery = (str: string) => typeof str === 'string' && str.star
 export const process = (obj: any) => {
     const mqKeys: any = [],
         // Copy non-media-query stuff
-        res = Object.keys(obj).reduce((res: any, key) => {
+        res = Object.keys(obj).reduce((resParam: any, key) => {
             if (isMediaQuery(key)) {
                 mqKeys.push(key);
             } else {
-                res[key] = obj[key];
+                resParam[key] = obj[key];
             }
-            return res;
+            return resParam;
         }, {});
 
     // Apply media query stuff
