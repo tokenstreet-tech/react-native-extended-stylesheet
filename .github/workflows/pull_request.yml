@@ -15,18 +15,20 @@ jobs:
         runs-on: [self-hosted, linux]
         strategy:
             matrix:
-                VALIDATION: ['TypeScript verification', ESLint, Test]
+                VALIDATION: ['Typecheck files', 'Lint files', 'Run unit tests']
                 include:
-                    - VALIDATION: 'TypeScript verification'
-                      COMMAND: 'ts:verify'
-                    - VALIDATION: ESLint
+                    - VALIDATION: 'Typecheck files'
+                      COMMAND: typescript
+                    - VALIDATION: 'Lint files'
                       COMMAND: lint
-                    - VALIDATION: Test
+                    - VALIDATION: 'Run unit tests'
                       COMMAND: test
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
               with:
                   node-version: 16
-            - run: yarn install --frozen-lockfile
-            - run: yarn run ${{ matrix.COMMAND }}
+            - run: |
+                  yarn install --cwd example --frozen-lockfile
+                  yarn install --frozen-lockfile
+            - run: yarn ${{ matrix.COMMAND }}

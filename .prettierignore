@@ -4,9 +4,8 @@
 /node_modules
 
 # Build
-/dist
-/build
+/lib
 
 # Misc
 /coverage
-tsconfig.json
+
