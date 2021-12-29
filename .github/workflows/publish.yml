@@ -28,7 +28,7 @@ jobs:
             - run: |
                   yarn install --cwd example --frozen-lockfile
                   yarn install --frozen-lockfile
-            - run: yarn prepare
+            - run: yarn build
             - run: yarn version --${{ github.event.inputs.version }}
             - run: git push --follow-tags
             - run: yarn publish
