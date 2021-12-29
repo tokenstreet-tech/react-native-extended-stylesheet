@@ -4,6 +4,7 @@
 import { StyleSheet } from 'react-native';
 
 import { child } from './child';
+import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
@@ -162,7 +163,7 @@ export class EStyleSheet {
 
     private checkGlobalVars<T>(rawGlobalVars: T): void {
         Object.keys(rawGlobalVars).forEach((key) => {
-            if (!isVar(key) && !mq.isMediaQuery(key)) {
+            if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(
                     `EStyleSheet.build() params should contain global variables (start with $) ` +
                         `or media queries (start with @media). Got '${key}'.`
