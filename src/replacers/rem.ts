@@ -18,7 +18,7 @@ export const isRem = (str: string) => str.substr(-SUFFIX.length) === SUFFIX;
  * @param {Number} rem
  * @returns {number}
  */
-export const calc = (str: string, rem = DEFAULT_REM) => {
+export const calc = (str: string, rem = DEFAULT_REM): number => {
     const koefStr = str.substr(0, str.length - SUFFIX.length),
         koef = koefStr === '' ? 1 : parseFloat(koefStr);
     if (isNaN(koef)) {

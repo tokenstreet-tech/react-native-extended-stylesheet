@@ -8,6 +8,8 @@ import { calc as scaleCalc, isScalable } from './replacers/scale';
 import { calc as varsCalc, get, isVar } from './replacers/vars';
 import type { TValueExpr } from './types/common';
 
+type TAction = (str: string) => number | null;
+
 export class Value {
     private value: TValueExpr;
     private outValue: any;
@@ -68,12 +70,12 @@ export class Value {
      * But keep calculating percent for operands when value defined as operation.
      */
     private calcString() {
-        const actions = [
+        const actions: Array<TAction> = [
                 this.tryCalcOperation,
                 this.isOperation ? this.tryCalcPercent : null,
                 this.tryCalcVar,
                 this.tryCalcRem,
-            ].filter(Boolean),
+            ].filter(Boolean) as Array<TAction>,
             value = this.tryActions(actions, this.value);
         if (value === null) {
             this.proxyValue();
@@ -87,7 +89,7 @@ export class Value {
      * @param {Array} actions
      * @param {String} str
      */
-    private tryActions(actions: any, str: any) {
+    private tryActions(actions: Readonly<Array<TAction>>, str: any) {
         // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
         for (let i = 0; i < actions.length; i += 1) {
             const val = actions[i].call(this, str);
@@ -98,7 +100,7 @@ export class Value {
         return null;
     }
 
-    private tryCalcOperation(str: any) {
+    private tryCalcOperation(str: string): number | null {
         const opInfo = isOperation(str);
         if (!opInfo) {
             return null;
@@ -118,12 +120,12 @@ export class Value {
         return exec(opInfo as any);
     }
 
-    private calcOperandValue(str: any) {
+    private calcOperandValue(str: string) {
         const actions = [this.tryCalcVar, this.tryCalcPercent, this.tryCalcRem, this.tryCalcFloat];
         return this.tryActions(actions, str);
     }
 
-    private tryCalcVar(str: any) {
+    private tryCalcVar(str: string): number | null {
         if (isVar(str)) {
             const val = varsCalc(str, this.varsArr);
             if (this.stack.indexOf(str) >= 0) {
@@ -142,7 +144,7 @@ export class Value {
     /**
      * Tries calc percent
      */
-    private tryCalcPercent(str: any) {
+    private tryCalcPercent(str: string): number | null {
         if (isPercent(str)) {
             return percentCalc(str, this.prop);
         }
@@ -152,7 +154,7 @@ export class Value {
     /**
      * Tries calc rem
      */
-    private tryCalcRem(str: any) {
+    private tryCalcRem(str: string): number | null {
         if (isRem(str)) {
             const remValue = get('$rem', this.varsArr);
             return remCalc(str, remValue);
@@ -163,7 +165,7 @@ export class Value {
     /**
      * Tries calc float value from string
      */
-    private tryCalcFloat(str: any) {
+    private tryCalcFloat(str: string): number | null {
         const val = parseFloat(str);
         return isNaN(val) ? null : val;
     }
