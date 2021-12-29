@@ -54,9 +54,7 @@ export const get = (name: string, varsArr: Readonly<Array<any>>) => {
     const [rootVar] = machtedName ? machtedName : [],
         isSimpleVar = rootVar === name;
 
-    // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
-    for (let i = 0; i < varsArr.length; i += 1) {
-        const vars = varsArr[i];
+    for (const vars of varsArr) {
         if (!vars || vars[rootVar] === undefined) {
             continue;
         }

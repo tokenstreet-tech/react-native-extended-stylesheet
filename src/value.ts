@@ -90,9 +90,8 @@ export class Value {
      * @param {String} str
      */
     private tryActions(actions: Readonly<Array<TAction>>, str: any) {
-        // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
-        for (let i = 0; i < actions.length; i += 1) {
-            const val = actions[i].call(this, str);
+        for (const action of actions) {
+            const val = action.call(this, str);
             if (val !== null) {
                 return val;
             }
@@ -106,11 +105,9 @@ export class Value {
             return null;
         }
         this.isOperation = true;
-        // TODO: use for.. of after https://github.com/facebook/react-native/issues/4676
-        const operands = ['v1', 'v2'];
-        for (let i = 0; i < operands.length; i += 1) {
-            const operand = operands[i],
-                operandValue = this.calcOperandValue((opInfo as any)[operand]);
+
+        for (const operand of ['v1', 'v2']) {
+            const operandValue = this.calcOperandValue((opInfo as any)[operand]);
             if (operandValue === null) {
                 // If we cant calculate operand - it is not operation, see #3
                 return null;

@@ -57,9 +57,11 @@ export const exec = (opInfo: Readonly<IOpInfo>) => {
 
 const findOperator = (str: string): IOpInfoRaw | undefined => {
     for (const operator in operators) {
-        const pos = str.indexOf(operator);
-        if (pos >= 0) {
-            return { operator: operator as TOperator, pos };
+        if (Object.prototype.hasOwnProperty.call(operators, operator)) {
+            const pos = str.indexOf(operator);
+            if (pos >= 0) {
+                return { operator: operator as TOperator, pos };
+            }
         }
     }
     return undefined;
