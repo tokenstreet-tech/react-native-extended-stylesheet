@@ -48,8 +48,8 @@ describe('typeDefinition', () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const x = EStyleSheet.absoluteFill;
         EStyleSheet.flatten([eStyles.button1, eStyles.button2]);
-        EStyleSheet.flatten(styles.button1);
+        // StyleSheet.flatten(styles.button1)
         EStyleSheet.flatten([styles.button1, styles.button2]);
-        EStyleSheet.setStyleAttributePreprocessor('color', () => 'red');
+        // EStyleSheet.setStyleAttributePreprocessor('color', () => 'red');
     });
 });
