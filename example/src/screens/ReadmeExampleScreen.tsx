@@ -112,7 +112,6 @@ const getButtonStyles = memoize((scale: any) =>
     EStyleSheet.create({
         $scale: scale,
         $size: '5rem',
-        $buttonColor: 'black',
         button: {
             width: '$size',
             height: '$size * 0.5',
