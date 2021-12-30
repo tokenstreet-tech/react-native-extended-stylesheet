@@ -17,7 +17,6 @@
         "@tokenstreet/react-native-extended-stylesheet": "file:..",
         "expo": "^42.0.0",
         "expo-splash-screen": "~0.11.2",
-        "lodash.memoize": "^4.1.2",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-native": "0.63.4",

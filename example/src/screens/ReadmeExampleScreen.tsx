@@ -1,6 +1,5 @@
 import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
-import memoize from 'lodash.memoize';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
 
 EStyleSheet.build({
@@ -13,8 +12,8 @@ EStyleSheet.build({
 const items = [':first-child', ':nth-child-odd', ':nth-child-even', ':nth-child-odd', ':last-child'];
 
 export const ReadmeExampleScreen: React.FC = () => {
-    const btnStyles = getButtonStyles(1);
-    const btnStyles2x = getButtonStyles(2);
+    const btnStyles = useMemo(() => getButtonStyles(1), []);
+    const btnStyles2x = useMemo(() => getButtonStyles(2), []);
     return (
         <View style={styles.column}>
             <Text style={styles.header}>Extended StyleSheets</Text>
@@ -41,14 +40,14 @@ export const ReadmeExampleScreen: React.FC = () => {
                     @media (max-width: 350): {'{'} width: 20% {'}'}
                 </Text>
             </Text>
-            <TouchableHighlight style={btnStyles.button} underlayColor={btnStyles._button.$underlayColor}>
+            <TouchableHighlight style={btnStyles.button} underlayColor={btnStyles.button.$underlayColor}>
                 <Text style={btnStyles.buttonText}>Like it!</Text>
             </TouchableHighlight>
 
             <Text style={styles.label}>
                 <Text style={styles.bold}>Scale </Text>(2x):
             </Text>
-            <TouchableHighlight style={btnStyles2x.button} underlayColor={btnStyles2x._button.$underlayColor}>
+            <TouchableHighlight style={btnStyles2x.button} underlayColor={btnStyles2x.button.$underlayColor}>
                 <Text style={btnStyles2x.buttonText}>Like it!</Text>
             </TouchableHighlight>
 
@@ -56,6 +55,26 @@ export const ReadmeExampleScreen: React.FC = () => {
         </View>
     );
 };
+
+const getButtonStyles = (scale: number): any =>
+    EStyleSheet.create({
+        $scale: scale,
+        $size: '5rem',
+        button: {
+            width: '$size',
+            height: '$size * 0.5',
+            borderRadius: '$size * 0.1', // Calc borderRadius
+            backgroundColor: '$buttonColor',
+            justifyContent: 'center',
+            alignItems: 'center',
+            $underlayColor: 'red', // Put underlayColor to variable, access via styles._button.$underlayColor
+        },
+        buttonText: {
+            fontSize: '1.1rem',
+            color: 'white',
+            fontWeight: 'bold',
+        },
+    });
 
 const styles = EStyleSheet.create({
     column: {
@@ -107,24 +126,3 @@ const styles = EStyleSheet.create({
         fontSize: '.8rem',
     },
 });
-
-const getButtonStyles = memoize((scale: any) =>
-    EStyleSheet.create({
-        $scale: scale,
-        $size: '5rem',
-        button: {
-            width: '$size',
-            height: '$size * 0.5',
-            borderRadius: '$size * 0.1', // Calc borderRadius
-            backgroundColor: '$buttonColor',
-            justifyContent: 'center',
-            alignItems: 'center',
-            $underlayColor: 'red', // Put underlayColor to variable, access via styles._button.$underlayColor
-        },
-        buttonText: {
-            fontSize: '1.1rem',
-            color: 'white',
-            fontWeight: 'bold',
-        },
-    })
-);

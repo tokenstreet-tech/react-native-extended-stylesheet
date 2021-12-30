@@ -27,7 +27,7 @@ type Value<T> = T | (string & {});
 type Variable<T> = Function<Value<T>> | Value<T>;
 type Extended<T> = { [K in keyof T]: Variable<T[K]> };
 
-type AnyStyle = ImageStyle & TextStyle & ViewStyle;
+export type AnyStyle = ImageStyle & TextStyle & ViewStyle;
 
 type MediaQuery = Record<string, Extended<AnyStyle>>;
 
