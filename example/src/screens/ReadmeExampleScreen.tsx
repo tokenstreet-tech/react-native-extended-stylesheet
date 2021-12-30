@@ -1,7 +1,7 @@
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 import memoize from 'lodash.memoize';
 import React from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 EStyleSheet.build({
     $textColor: 'black',

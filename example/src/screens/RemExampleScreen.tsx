@@ -1,6 +1,6 @@
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Define REM depending on screen width
 const { width } = Dimensions.get('window');

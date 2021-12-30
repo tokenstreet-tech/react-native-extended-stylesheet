@@ -1,6 +1,6 @@
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 import React from 'react';
 import { Platform, Text, View } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 const instructions = Platform.select({
     ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
