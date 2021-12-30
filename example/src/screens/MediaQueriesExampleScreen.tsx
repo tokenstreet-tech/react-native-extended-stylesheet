@@ -1,20 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-export default class extends React.Component {
-    render() {
-        return (
-            <View style={styles.column}>
-                <Text>
-                    Column width depends on device width: {'\n'}- 70% for {'<'}350{'\n'}- 80% for 350-500{'\n'}- 90% for{' '}
-                    {'>'}500
-                </Text>
-                <Text style={styles.text}>Text size/color depends on platform.</Text>
-            </View>
-        );
-    }
-}
+// Calc styles
+EStyleSheet.build({
+    '@media ios': {
+        // Media queries for global variables
+        $fontSize: 12,
+    },
+    '@media android': {
+        $fontSize: 16,
+    },
+});
+
+export const MediaQueriesExampleScreen: React.FC = () => (
+    <View style={styles.column}>
+        <Text>
+            Column width depends on device width: {'\n'}- 70% for {'<'}350{'\n'}- 80% for 350-500{'\n'}- 90% for {'>'}
+            500
+        </Text>
+        <Text style={styles.text}>Text size/color depends on platform.</Text>
+    </View>
+);
 
 const styles = EStyleSheet.create({
     column: {
@@ -24,7 +31,7 @@ const styles = EStyleSheet.create({
         padding: 5,
     },
     '@media (max-width: 350)': {
-        // media query on sheet level
+        // Media query on sheet level
         column: {
             width: '70%',
         },
@@ -42,7 +49,7 @@ const styles = EStyleSheet.create({
     text: {
         fontSize: '$fontSize',
         '@media ios': {
-            // media query on style level
+            // Media query on style level
             color: 'green',
         },
         '@media android': {
