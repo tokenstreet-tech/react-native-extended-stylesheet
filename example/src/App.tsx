@@ -1,28 +1,17 @@
-import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { SimpleExampleScreen } from './screens/SimpleExampleScreen';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-    React.useEffect(() => {
-        EStyleSheet.build();
-    }, []);
-
     return (
-        <View style={styles.container}>
-            <Text>Text</Text>
-        </View>
+        <NavigationContainer>
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen name="SimpleExampleScreen" component={SimpleExampleScreen} />
+            </Drawer.Navigator>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    box: {
-        width: 60,
-        height: 60,
-        marginVertical: 20,
-    },
-});
