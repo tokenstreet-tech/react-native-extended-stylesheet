@@ -151,7 +151,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-Local variables are also available in result style: `styles.$textColor`.  
+Local variables are also available in result style: `styles.$textColor`.
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Theming
@@ -172,7 +172,7 @@ EStyleSheet.build({
 
 > Please note that special variable **`$theme` is required** for proper caching of calculated styles.
 
-Re-rendering whole component tree is currently a bit tricky in React.  
+Re-rendering whole component tree is currently a bit tricky in React.
 One option is to wrap app into component and re-mount it on theme change:
 
 ```js
@@ -187,11 +187,11 @@ One option is to wrap app into component and re-mount it on theme change:
 ```
 
 The caveat is that all components loss their state.
-In the future it may be possible with `forceDeepUpdate()` method (see [facebook/react#7759](https://github.com/facebook/react/issues/7759)).  
+In the future it may be possible with `forceDeepUpdate()` method (see [facebook/react#7759](https://github.com/facebook/react/issues/7759)).
 The approach is open for discusison, feel free to share your ideas in [#22](https://github.com/vitalets/react-native-extended-stylesheet/issues/22),
 [#47](https://github.com/vitalets/react-native-extended-stylesheet/issues/47).
 
-You can check out full theming code in [examples/theming](examples/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).  
+You can check out full theming code in [examples/theming](examples/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Media queries
@@ -253,12 +253,12 @@ const styles = EStyleSheet.create({
 });
 ```
 
-You can check out full example code in [examples/media-queries](examples/media-queries) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).  
+You can check out full example code in [examples/media-queries](examples/media-queries) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Math operations
 
-Any value can contain **one** of following math operations: `*`, `/`, `+`, `-`. Operands can be numbers, variables and percents.  
+Any value can contain **one** of following math operations: `*`, `/`, `+`, `-`. Operands can be numbers, variables and percents.
 For example, to render circle you may create style:
 
 ```js
@@ -293,7 +293,7 @@ EStyleSheet.build({
 });
 ```
 
-You can check out full example code in [examples/rem](examples/rem) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).  
+You can check out full example code in [examples/rem](examples/rem) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Percents
@@ -310,8 +310,8 @@ const styles = EStyleSheet.create({
 });
 ```
 
-**Percents in nested components**  
-If you need sub-component with percent operations relative to parent component - you can achieve that with variables.  
+**Percents in nested components**
+If you need sub-component with percent operations relative to parent component - you can achieve that with variables.
 For example, to render 2 sub-columns with 30%/70% width of parent column:
 
 ```js
@@ -383,13 +383,13 @@ let getStyle = function (scale = 1) {
 };
 ```
 
-To cache calculated styles please have a look on [caching](#caching) section.  
+To cache calculated styles please have a look on [caching](#caching) section.
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Underscored styles
 
 Original react-native stylesheets are calculated to integer numbers and original values are unavailable.
-But sometimes they are needed. Let's take an example:  
+But sometimes they are needed. Let's take an example:
 You want to render text and icon with the same size and color.
 You can take this [awesome icon library](https://github.com/oblador/react-native-vector-icons)
 and see that `<Icon>` component has `size` and `color` props.
@@ -439,7 +439,7 @@ return (
 
 ### Pseudo classes (:nth-child)
 
-Extended stylesheet supports 4 pseudo classes: `:first-child`, `:nth-child-even`, `:nth-child-odd`, `:last-child`. As well as in traditional CSS it allows to apply special styling for first/last items or render stripped rows.  
+Extended stylesheet supports 4 pseudo classes: `:first-child`, `:nth-child-even`, `:nth-child-odd`, `:last-child`. As well as in traditional CSS it allows to apply special styling for first/last items or render stripped rows.
 To get style for appropriate index you should use `EStyleSheet.child()` method.
 It's signature: `EStyleSheet.child(stylesObj, styleName, index, count)`.
 
@@ -560,7 +560,7 @@ let getStyle = memoize(function (scale = 1) {
 ```
 
 Now if you call `getStyle(1.5)` 3 times actually style will be created on the first call
-and two other calls will get it from cache.  
+and two other calls will get it from cache.
 \[[top](#react-native-extended-stylesheet)\]
 
 ### Outline for debug
@@ -745,16 +745,16 @@ Unsubscribe from event.
 
 ## Caveats
 
-1. **Dynamic theme change is possible only with loosing components local state**  
+1. **Dynamic theme change is possible only with loosing components local state**
    When theme styles are re-calculated - all components should be re-rendered.
    Currently it can be done via re-mounting components tree, please see [#47].
 
     > Note: it is not issue if you are using state container like [Redux](https://github.com/reactjs/redux)
     > and can easily re-render app in the same state
 
-2. **Dynamic orientation change is not supported**  
+2. **Dynamic orientation change is not supported**
    Please see [#9] for more details.
-3. **Old RN versions (< 0.43) can crash the app with percent values**  
+3. **Old RN versions (< 0.43) can crash the app with percent values**
    RN >= 0.43 supports percent values natively ([#32]) and EStyleSheet since 0.5.0 just proxy percent values to RN as is ([#77]) to keep things simple.
    Older RN versions (< 0.43) can't process percents and EStyleSheet process such values.
    So if you are using RN < 0.43, you should stick to EStyleSheet@0.4.0.
@@ -777,18 +777,4 @@ If you have any ideas or something goes wrong feel free to
 
 ## License
 
-[MIT](LICENSE.md) @ [Vitaliy Potapov](https://github.com/vitalets)
-
-\[[top](#react-native-extended-stylesheet)\]
-
-<div align="center">
-* * *<br>
-<i>If you love :heart: JavaScript and would like to track new trending repositories, <br>
-have a look on <a href="https://github.com/vitalets/github-trending-repos">vitalets/github-trending-repos</a>.</i>
-</div>
-
-[#9]: https://github.com/vitalets/react-native-extended-stylesheet/issues/9
-[#16]: https://github.com/vitalets/react-native-extended-stylesheet/issues/16
-[#47]: https://github.com/vitalets/react-native-extended-stylesheet/issues/47
-[#32]: https://github.com/vitalets/react-native-extended-stylesheet/issues/32
-[#77]: https://github.com/vitalets/react-native-extended-stylesheet/issues/77
+[MIT](LICENSE.md) @ [Daniel Reichhart](https://github.com/reichhartd)
