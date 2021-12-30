@@ -10,20 +10,18 @@ import { RemExampleScreen } from './screens/RemExampleScreen';
 import { SimpleExampleScreen } from './screens/SimpleExampleScreen';
 import { ThemingExampleScreen } from './screens/ThemingExampleScreen';
 
-const Drawer = createDrawerNavigator();
+const { Navigator, Screen } = createDrawerNavigator();
 
-export default function App() {
-    return (
-        <NavigationContainer>
-            <Drawer.Navigator initialRouteName="SimpleExampleScreen">
-                <Drawer.Screen name="HotModuleReloadExampleScreen" component={HotModuleReloadExampleScreen} />
-                <Drawer.Screen name="JestTestingScreenExample" component={JestTestingScreenExample} />
-                <Drawer.Screen name="MediaQueriesExampleScreen" component={MediaQueriesExampleScreen} />
-                <Drawer.Screen name="ReadmeExampleScreen" component={ReadmeExampleScreen} />
-                <Drawer.Screen name="RemExampleScreen" component={RemExampleScreen} />
-                <Drawer.Screen name="SimpleExampleScreen" component={SimpleExampleScreen} />
-                <Drawer.Screen name="ThemingExampleScreen" component={ThemingExampleScreen} />
-            </Drawer.Navigator>
-        </NavigationContainer>
-    );
-}
+export const App = () => (
+    <NavigationContainer>
+        <Navigator initialRouteName="SimpleExampleScreen">
+            <Screen name="HotModuleReloadExampleScreen" component={HotModuleReloadExampleScreen} />
+            <Screen name="JestTestingScreenExample" component={JestTestingScreenExample} />
+            <Screen name="MediaQueriesExampleScreen" component={MediaQueriesExampleScreen} />
+            <Screen name="ReadmeExampleScreen" component={ReadmeExampleScreen} />
+            <Screen name="RemExampleScreen" component={RemExampleScreen} />
+            <Screen name="SimpleExampleScreen" component={SimpleExampleScreen} />
+            <Screen name="ThemingExampleScreen" component={ThemingExampleScreen} />
+        </Navigator>
+    </NavigationContainer>
+);
