@@ -1,3 +1,10 @@
+## 0.14.0 (Dec 31, 2021)
+
+-   Migrated complete project to TypeScript
+-   Revised build pipeline in order to support CommonJS and ES modules
+-   Fixed types for `.child()`
+-   Reworked example folder
+
 ## 0.13.0 (Dec 27, 2021)
 
 -   Improved typescript intellisense
