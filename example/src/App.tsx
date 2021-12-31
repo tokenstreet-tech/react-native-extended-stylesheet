@@ -1,27 +1,30 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { HotModuleReloadScreen } from './screens/HotModuleReloadScreen';
 import { JestTestingScreen } from './screens/JestTestingScreen';
 import { MediaQueriesScreen } from './screens/MediaQueriesScreen';
 import { ReadmeScreen } from './screens/ReadmeScreen';
 import { RemScreen } from './screens/RemScreen';
 import { SimpleScreen } from './screens/SimpleScreen';
-import { ThemingScreen } from './screens/ThemingScreen';
+import { ThemingScreen } from './screens/theming/ThemingScreen';
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
-const { Navigator, Screen } = createDrawerNavigator();
-
+/**
+ * The screens must be rendered individually,
+ * because each screen calls EStyleSheet.build() with the respective global variables.
+ * Otherwise, the screens would interfere with each other.
+ * @constructor
+ */
 export const App = () => (
-    <NavigationContainer>
-        <Navigator initialRouteName="SimpleExampleScreen">
-            <Screen name="HotModuleReloadScreen" component={HotModuleReloadScreen} />
-            <Screen name="JestTestingScreen" component={JestTestingScreen} />
-            <Screen name="MediaQueriesScreen" component={MediaQueriesScreen} />
-            <Screen name="ReadmeScreen" component={ReadmeScreen} />
-            <Screen name="RemScreen" component={RemScreen} />
-            <Screen name="SimpleScreen" component={SimpleScreen} />
-            <Screen name="ThemingScreen" component={ThemingScreen} />
-        </Navigator>
-    </NavigationContainer>
+    <SafeAreaView>
+        {/* <HotModuleReloadScreen />*/}
+        {/* <JestTestingScreen />*/}
+        {/* <MediaQueriesScreen />*/}
+        {/* <ReadmeScreen />*/}
+        {/* <RemScreen />*/}
+        <SimpleScreen />
+        {/* <ThemingScreen />*/}
+    </SafeAreaView>
 );

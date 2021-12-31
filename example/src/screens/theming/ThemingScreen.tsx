@@ -1,6 +1,8 @@
 import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
-import React, { useCallback, useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button, View } from 'react-native';
+
+import { ThemingComponent } from './ThemingComponent';
 
 const lightTheme = {
     $theme: 'light',
@@ -22,18 +24,21 @@ export const ThemingScreen: React.FC = () => {
     const toggleTheme = useCallback(() => {
         const theme = EStyleSheet.value('$theme') === 'light' ? darkTheme : lightTheme;
         EStyleSheet.build(theme);
-        // SetState() called twice to re-render whole component tree
         setShouldRender(false);
-        setShouldRender(true);
     }, []);
+
+    useEffect(() => {
+        // Function setState() should be called twice to re-render whole component tree
+        if (!shouldRender) {
+            setShouldRender(true);
+        }
+    }, [shouldRender]);
 
     if (shouldRender) {
         const buttonTitle = EStyleSheet.value('$theme') === 'light' ? 'Set dark theme' : 'Set light theme';
         return (
             <View style={styles.container}>
-                <View style={styles.content}>
-                    <Text style={styles.text}>Welcome to Extended StyleSheet!</Text>
-                </View>
+                <ThemingComponent />
                 <Button title={buttonTitle} onPress={toggleTheme} />
             </View>
         );
@@ -44,14 +49,5 @@ export const ThemingScreen: React.FC = () => {
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
-    },
-    content: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '$bgColor',
-    },
-    text: {
-        color: '$textColor',
     },
 });

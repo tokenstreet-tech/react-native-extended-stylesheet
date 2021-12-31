@@ -12,8 +12,6 @@
         "test": "jest"
     },
     "dependencies": {
-        "@react-navigation/drawer": "^6.1.8",
-        "@react-navigation/native": "^6.0.6",
         "@tokenstreet/react-native-extended-stylesheet": "file:..",
         "expo": "^42.0.0",
         "expo-splash-screen": "~0.11.2",
