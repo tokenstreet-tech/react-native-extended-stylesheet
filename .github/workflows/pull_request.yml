@@ -15,20 +15,21 @@ jobs:
         runs-on: [self-hosted, linux]
         strategy:
             matrix:
-                VALIDATION: [lint, 'test:cov', tr, 'ts:verify']
+                VALIDATION: ['Typecheck files', 'Lint files', 'Run unit tests']
                 include:
-                    - VALIDATION: lint
+                    - VALIDATION: 'Typecheck files'
+                      COMMAND: typescript
+                    - VALIDATION: 'Lint files'
                       COMMAND: lint
-                    - VALIDATION: 'test:cov'
-                      COMMAND: test:cov
-                    - VALIDATION: tr
-                      COMMAND: tr
-                    - VALIDATION: 'ts:verify'
-                      COMMAND: ts:verify
+                    - VALIDATION: 'Run unit tests'
+                      COMMAND: test
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
               with:
                   node-version: 16
-            - run: yarn install --frozen-lockfile
-            - run: yarn run ${{ matrix.COMMAND }}
+            - run: |
+                  yarn install --frozen-lockfile
+                  yarn build
+                  yarn install --cwd example --frozen-lockfile
+            - run: yarn ${{ matrix.COMMAND }}

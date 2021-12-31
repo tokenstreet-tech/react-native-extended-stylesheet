@@ -1,0 +1,38 @@
+{
+    "name": "@tokenstreet/react-native-extended-stylesheet-example",
+    "description": "Example app for @tokenstreet/react-native-extended-stylesheet",
+    "version": "0.0.1",
+    "private": true,
+    "main": "index",
+    "scripts": {
+        "android": "expo start --android",
+        "ios": "expo start --ios",
+        "web": "expo start --web",
+        "start": "expo start",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@tokenstreet/react-native-extended-stylesheet": "file:..",
+        "expo": "^42.0.0",
+        "expo-splash-screen": "~0.11.2",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-native": "0.63.4",
+        "react-native-gesture-handler": "~1.10.2",
+        "react-native-reanimated": "~2.2.0",
+        "react-native-safe-area-context": "3.2.0",
+        "react-native-screens": "~3.4.0",
+        "react-native-unimodules": "~0.14.5",
+        "react-native-web": "~0.13.12"
+    },
+    "devDependencies": {
+        "@babel/core": "~7.9.0",
+        "@babel/runtime": "^7.9.6",
+        "@types/lodash.memoize": "^4.1.6",
+        "@types/react-test-renderer": "^17.0.1",
+        "babel-plugin-module-resolver": "^4.0.0",
+        "babel-preset-expo": "8.3.0",
+        "expo-cli": "^4.0.13",
+        "react-test-renderer": "^17.0.2"
+    }
+}
