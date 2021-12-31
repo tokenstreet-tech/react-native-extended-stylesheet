@@ -24,6 +24,12 @@ describe('typeDefinition', () => {
                     width: '100%',
                 },
             },
+            root: {
+                // @ts-expect-error The next line should be false to test the type safety for negative-examples
+                includeFontPadding: 5,
+                // @ts-expect-error The next line should be false to test the type safety for negative-examples
+                textAlignVertical: false,
+            },
         });
 
         const styles = StyleSheet.create({

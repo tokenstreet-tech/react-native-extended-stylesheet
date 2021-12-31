@@ -8,7 +8,7 @@ import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
-import type { EStyleSet, StyleObject, StyleSet, TValueExpr } from './types/common';
+import type { EStyleSet, StyleSet, TValueExpr } from './types/common';
 import { Value } from './value';
 
 type TListener = () => void;
@@ -59,8 +59,8 @@ export class EStyleSheet {
      * @param {Object} obj
      * @returns {Object}
      */
-    public create<T = EStyleSet>(obj: StyleObject<T>): StyleSet<T> {
-        const sheet = new Sheet(obj);
+    public create<T = EStyleSet>(obj: EStyleSet<T>): StyleSet<T> {
+        const sheet = new Sheet(obj as any);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
         this.sheets.push(sheet);
         if (this.builded) {
