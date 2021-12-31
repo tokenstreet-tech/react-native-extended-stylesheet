@@ -7,7 +7,7 @@ EStyleSheet.build({
     $fontColor: 'black',
 });
 
-export const SimpleExampleScreen: React.FC = () => (
+export const SimpleScreen: React.FC = () => (
     <View style={styles.column}>
         <Text style={styles.header}>Welcome to Extended StyleSheet!</Text>
     </View>

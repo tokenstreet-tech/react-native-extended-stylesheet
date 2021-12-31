@@ -2,26 +2,26 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
-import { HotModuleReloadExampleScreen } from './screens/HotModuleReloadExampleScreen';
-import { JestTestingScreenExample } from './screens/JestTestingScreenExample';
-import { MediaQueriesExampleScreen } from './screens/MediaQueriesExampleScreen';
-import { ReadmeExampleScreen } from './screens/ReadmeExampleScreen';
-import { RemExampleScreen } from './screens/RemExampleScreen';
-import { SimpleExampleScreen } from './screens/SimpleExampleScreen';
-import { ThemingExampleScreen } from './screens/ThemingExampleScreen';
+import { HotModuleReloadScreen } from './screens/HotModuleReloadScreen';
+import { JestTestingScreen } from './screens/JestTestingScreen';
+import { MediaQueriesScreen } from './screens/MediaQueriesScreen';
+import { ReadmeScreen } from './screens/ReadmeScreen';
+import { RemScreen } from './screens/RemScreen';
+import { SimpleScreen } from './screens/SimpleScreen';
+import { ThemingScreen } from './screens/ThemingScreen';
 
 const { Navigator, Screen } = createDrawerNavigator();
 
 export const App = () => (
     <NavigationContainer>
         <Navigator initialRouteName="SimpleExampleScreen">
-            <Screen name="HotModuleReloadExampleScreen" component={HotModuleReloadExampleScreen} />
-            <Screen name="JestTestingScreenExample" component={JestTestingScreenExample} />
-            <Screen name="MediaQueriesExampleScreen" component={MediaQueriesExampleScreen} />
-            <Screen name="ReadmeExampleScreen" component={ReadmeExampleScreen} />
-            <Screen name="RemExampleScreen" component={RemExampleScreen} />
-            <Screen name="SimpleExampleScreen" component={SimpleExampleScreen} />
-            <Screen name="ThemingExampleScreen" component={ThemingExampleScreen} />
+            <Screen name="HotModuleReloadScreen" component={HotModuleReloadScreen} />
+            <Screen name="JestTestingScreen" component={JestTestingScreen} />
+            <Screen name="MediaQueriesScreen" component={MediaQueriesScreen} />
+            <Screen name="ReadmeScreen" component={ReadmeScreen} />
+            <Screen name="RemScreen" component={RemScreen} />
+            <Screen name="SimpleScreen" component={SimpleScreen} />
+            <Screen name="ThemingScreen" component={ThemingScreen} />
         </Navigator>
     </NavigationContainer>
 );

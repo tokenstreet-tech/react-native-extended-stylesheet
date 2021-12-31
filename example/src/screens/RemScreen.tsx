@@ -11,7 +11,7 @@ EStyleSheet.build({
     $rem: rem,
 });
 
-export const RemExampleScreen: React.FC = () => <Text style={styles.text}>Font size 1.5rem</Text>;
+export const RemScreen: React.FC = () => <Text style={styles.text}>Font size 1.5rem</Text>;
 
 const styles = EStyleSheet.create({
     text: {

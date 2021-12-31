@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { JestTestingScreenExample } from '../JestTestingScreenExample';
+import { JestTestingScreen } from '../JestTestingScreen';
 
 test('renders correctly', () => {
-    const tree = renderer.create(<JestTestingScreenExample />).toJSON();
+    const tree = renderer.create(<JestTestingScreen />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 

@@ -11,7 +11,7 @@ EStyleSheet.build({
 
 const items = [':first-child', ':nth-child-odd', ':nth-child-even', ':nth-child-odd', ':last-child'];
 
-export const ReadmeExampleScreen: React.FC = () => {
+export const ReadmeScreen: React.FC = () => {
     const btnStyles = useMemo(() => getButtonStyles(1), []);
     const btnStyles2x = useMemo(() => getButtonStyles(2), []);
     return (

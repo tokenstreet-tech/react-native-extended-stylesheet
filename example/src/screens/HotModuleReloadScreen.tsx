@@ -14,7 +14,7 @@ EStyleSheet.build({
     $fontColor: 'black', // Change this to another color
 });
 
-export const HotModuleReloadExampleScreen: React.FC = () => {
+export const HotModuleReloadScreen: React.FC = () => {
     const [count, setCount] = useState<number>(0);
 
     return (

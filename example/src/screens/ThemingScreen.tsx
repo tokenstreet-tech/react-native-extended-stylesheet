@@ -16,7 +16,7 @@ const darkTheme = {
 
 EStyleSheet.build(lightTheme);
 
-export const ThemingExampleScreen: React.FC = () => {
+export const ThemingScreen: React.FC = () => {
     const [shouldRender, setShouldRender] = useState<boolean>(true);
 
     const toggleTheme = useCallback(() => {

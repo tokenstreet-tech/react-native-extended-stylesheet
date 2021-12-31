@@ -13,7 +13,7 @@ EStyleSheet.build({
     },
 });
 
-export const MediaQueriesExampleScreen: React.FC = () => (
+export const MediaQueriesScreen: React.FC = () => (
     <View style={styles.column}>
         <Text>
             Column width depends on device width: {'\n'}- 70% for {'<'}350{'\n'}- 80% for 350-500{'\n'}- 90% for {'>'}
