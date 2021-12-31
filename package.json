@@ -36,7 +36,7 @@
         "@babel/core": "^7.16.5",
         "@babel/eslint-parser": "^7.16.5",
         "@babel/preset-react": "^7.16.7",
-        "@babel/runtime": "^7.16.5",
+        "@babel/runtime": "^7.16.7",
         "@types/react-native": "^0.66.10",
         "babel-plugin-runtyper": "^0.4.0",
         "coveralls": "^3.1.1",
