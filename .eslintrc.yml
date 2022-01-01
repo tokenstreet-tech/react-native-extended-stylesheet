@@ -66,3 +66,5 @@ rules:
     sort-keys: 0
     sort-vars: 0
     no-underscore-dangle: 0
+    camelcase: 0
+    func-names: 0
