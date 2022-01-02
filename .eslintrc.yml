@@ -68,3 +68,4 @@ rules:
     camelcase: 0
     func-names: 0
     require-unicode-regexp: 0
+    '@typescript-eslint/no-empty-interface': 0

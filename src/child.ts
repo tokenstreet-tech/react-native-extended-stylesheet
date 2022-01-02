@@ -2,7 +2,32 @@
  * Implementation of CSS pseudo class :first-child, :last-child, :nth-child
  */
 
-import type { AnyStyle, StyleSet } from './types/common';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+
+export type AnyStyle = ImageStyle & TextStyle & ViewStyle;
+type Function<K> = () => K;
+// eslint-disable-next-line @typescript-eslint/ban-types
+type Value<T> = T | (string & {});
+// eslint-disable-next-line @typescript-eslint/ban-types
+type Variable<T> = Function<Value<T>> | Value<T>;
+type Extended<T> = { [K in keyof T]: Variable<T[K]> };
+type MediaQuery = Record<string, Extended<AnyStyle>>;
+
+export type StyleSet<T = any> = {
+    [K in keyof T]: T[K] extends number
+        ? T[K]
+        : T[K] extends string
+        ? T[K]
+        : // eslint-disable-next-line @typescript-eslint/ban-types
+        T[K] extends Function<number>
+        ? number
+        : // eslint-disable-next-line @typescript-eslint/ban-types
+        T[K] extends Function<string>
+        ? string
+        : T[K] extends MediaQuery
+        ? any
+        : AnyStyle;
+};
 
 /**
  * Returns base style and style with child pseudo selector

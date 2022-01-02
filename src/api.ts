@@ -1,6 +1,7 @@
 /**
  * Extended StyleSheet API
  */
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { child } from './child';
@@ -8,16 +9,25 @@ import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
-import type { EStyleSet, StyleSet, TValueExpr } from './types/common';
+import type { TValueExpr } from './types/common';
+import type { TExtendedStyles } from './types/styles';
 import { Value } from './value';
 
 type TListener = () => void;
-const BUILD_EVENT = 'build';
+
 type TMediaQueryKey = string;
-type TRawGlobalVarsValues = number | string;
-type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TRawGlobalVarsValues> | TRawGlobalVarsValues>;
+
+type TVarsValues = number | string | (() => number | string);
+type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
+
+type TExtendedNamedStyles<T> = {
+    [P in keyof T]: Record<TMediaQueryKey, TExtendedStyles> | TExtendedStyles | TVarsValues;
+};
+type TNamedStyles<T> = { [P in keyof T]: ImageStyle | TextStyle | ViewStyle };
 
 export class EStyleSheet {
+    private static readonly BUILD_EVENT: string = 'build';
+
     // Proxy to original
     public setStyleAttributePreprocessor = StyleSheet.setStyleAttributePreprocessor;
     public hairlineWidth = StyleSheet.hairlineWidth;
@@ -29,7 +39,7 @@ export class EStyleSheet {
     private builded: boolean;
     private readonly sheets: Array<Sheet<unknown>>;
     private globalVars: any;
-    private listeners: Record<string, never> | { [key in typeof BUILD_EVENT]: Array<TListener> };
+    private listeners: Record<string, never> | { [key in typeof EStyleSheet.BUILD_EVENT]: Array<TListener> };
 
     /**
      * Constructor
@@ -42,9 +52,9 @@ export class EStyleSheet {
         this.listeners = {};
     }
 
-    private static assertSubscriptionParams(event: typeof BUILD_EVENT, listener: TListener): void {
-        if (event !== BUILD_EVENT) {
-            throw new Error(`Only '${BUILD_EVENT}' event is currently supported.`);
+    private static assertSubscriptionParams(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
+        if (event !== EStyleSheet.BUILD_EVENT) {
+            throw new Error(`Only '${EStyleSheet.BUILD_EVENT}' event is currently supported.`);
         }
         if (typeof listener !== 'function') {
             throw new Error('Listener should be a function.');
@@ -53,11 +63,11 @@ export class EStyleSheet {
 
     /**
      * Creates stylesheet that will be calculated after build
-     * @param {Object} obj
+     * @param {Object} styles
      * @returns {Object}
      */
-    public create<T = EStyleSet>(obj: EStyleSet<T>): StyleSet<T> {
-        const sheet = new Sheet(obj as any);
+    public create<T extends TExtendedNamedStyles<T>>(styles: T): TNamedStyles<T> {
+        const sheet = new Sheet(styles as any);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
         this.sheets.push(sheet);
         if (this.builded) {
@@ -74,7 +84,7 @@ export class EStyleSheet {
         this.builded = true;
         this.calcGlobalVars(rawGlobalVars);
         this.calcSheets();
-        this.callListeners(BUILD_EVENT);
+        this.callListeners(EStyleSheet.BUILD_EVENT);
     }
 
     /**
@@ -93,10 +103,10 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public subscribe(event: typeof BUILD_EVENT, listener: TListener): void {
+    public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
-        this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT] || [];
-        this.listeners[BUILD_EVENT].push(listener);
+        this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT] || [];
+        this.listeners[EStyleSheet.BUILD_EVENT].push(listener);
         if (this.builded) {
             listener();
         }
@@ -107,10 +117,12 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public unsubscribe(event: typeof BUILD_EVENT, listener: TListener): void {
+    public unsubscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
-        if (this.listeners[BUILD_EVENT]) {
-            this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT].filter((item) => item !== listener);
+        if (this.listeners[EStyleSheet.BUILD_EVENT]) {
+            this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT].filter(
+                (item) => item !== listener
+            );
         }
     }
 
@@ -135,7 +147,7 @@ export class EStyleSheet {
         this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.calc(this.globalVars));
     }
 
-    private callListeners(event: typeof BUILD_EVENT): void {
+    private callListeners(event: typeof EStyleSheet.BUILD_EVENT): void {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }
