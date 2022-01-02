@@ -9,11 +9,13 @@ type TExtendedFlexStyle = {
 };
 
 // View styles
-type TOmittedViewStyle = Omit<ViewStyle, keyof FlexStyle>;
+type TOmittedViewStyle = Omit<ViewStyle, keyof FlexStyle | 'borderRadius'>;
 type TFuncViewStyle = {
     [Key in keyof TOmittedViewStyle]: TOmittedViewStyle[Key] | (() => TOmittedViewStyle[Key]);
 };
-interface IExtendedViewStyle extends TExtendedFlexStyle, TFuncViewStyle {}
+interface IExtendedViewStyle extends TExtendedFlexStyle, TFuncViewStyle {
+    borderRadius?: TExtendedSizeValues;
+}
 
 // Image styles
 type TOmittedImageStyle = Omit<ImageStyle, keyof FlexStyle>;
