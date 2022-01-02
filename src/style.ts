@@ -35,7 +35,7 @@ export class Style {
      * Calculates style
      * @returns {Object}
      */
-    public calc() {
+    public calc(): any {
         this.processSource();
         this.calcVars();
         this.calcProps();
@@ -80,7 +80,7 @@ export class Style {
  * @param {Array} varsArr
  * @returns {Object}
  */
-const calcPlainObject = (obj: any, varsArr: any) =>
+const calcPlainObject = (obj: any, varsArr: any): any =>
     Object.keys(obj).reduce((res: any, prop) => {
         res[prop] = calcStyleValue(prop, obj[prop], varsArr);
         return res;
@@ -92,7 +92,7 @@ const calcPlainObject = (obj: any, varsArr: any) =>
  * @param {*} value
  * @param {Array} varsArr
  */
-const calcStyleValue = (prop: string, value: any, varsArr: any) => {
+const calcStyleValue = (prop: string, value: any, varsArr: any): Value => {
     if (value && typeof value === 'object') {
         return Array.isArray(value)
             ? value.map((obj) => calcPlainObject(obj, varsArr))
@@ -105,7 +105,7 @@ const calcStyleValue = (prop: string, value: any, varsArr: any) => {
  * Returns random color (needed for outline)
  * @returns {String}
  */
-const getRandomColor = () => {
+const getRandomColor = (): string => {
     const colors = ['black', 'red', 'green', 'blue'],
         index = Math.round(Math.random() * (colors.length - 1));
     return colors[index];

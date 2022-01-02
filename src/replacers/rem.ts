@@ -10,7 +10,7 @@ const DEFAULT_REM = 16,
  * @param {String} str
  * @returns {Boolean}
  */
-export const isRem = (str: string) => str.substr(-SUFFIX.length) === SUFFIX;
+export const isRem = (str: string): boolean => str.substr(-SUFFIX.length) === SUFFIX;
 
 /**
  * Calculate rem to pixels: '1.2rem' => 1.2 * rem

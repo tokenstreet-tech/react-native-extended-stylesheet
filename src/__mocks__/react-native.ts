@@ -1,9 +1,11 @@
+import type { ScaledSize } from 'react-native';
+
 /**
  * React-native mock
  */
 
 export const Dimensions = {
-    get: () => ({ width: 100, height: 200 }),
+    get: (): Partial<ScaledSize> => ({ width: 100, height: 200 }),
 };
 
 export const Platform = {
@@ -15,13 +17,13 @@ export const I18nManager = {
 };
 
 export const StyleSheet = {
-    create(obj: any) {
+    create(obj: any): any {
         return Object.keys(obj).reduce((res: any, key, index) => {
             res[key] = index;
             return res;
         }, {});
     },
-    flatten(arr: any) {
+    flatten(arr: any): any {
         return arr.reduce((res: any, item: any) => Object.assign(res, item), {});
     },
     hairlineWidth: 1,

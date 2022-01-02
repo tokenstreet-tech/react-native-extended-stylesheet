@@ -26,10 +26,10 @@ export const child = <T = StyleSet>(styles: T, styleName: string, index: number,
     return result.length > 1 ? result : result[0];
 };
 
-const addStyle = (result: any, styles: any, styleName: string, condition: boolean) => {
+const addStyle = (result: any, styles: any, styleName: string, condition: boolean): void => {
     if (styles[styleName] && condition) {
         result.push(styles[styleName]);
     }
 };
 
-const isNumber = (value: number) => typeof value === 'number';
+const isNumber = (value: number): boolean => typeof value === 'number';

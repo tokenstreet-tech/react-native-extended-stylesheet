@@ -1,3 +1,5 @@
+import type { ScaledSize } from 'react-native';
+
 import { process } from '../media-queries';
 
 jest.mock('react-native', () => ({
@@ -5,7 +7,7 @@ jest.mock('react-native', () => ({
         OS: 'ios',
     },
     Dimensions: {
-        get: () => ({ width: 110, height: 100 }),
+        get: (): Partial<ScaledSize> => ({ width: 110, height: 100 }),
     },
     I18nManager: {
         isRTL: false,

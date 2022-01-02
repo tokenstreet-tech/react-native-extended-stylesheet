@@ -93,7 +93,7 @@ describe('sheet', () => {
     it('should calc style as a function', () => {
         const source = {
                 $b: 2,
-                text: () => ({ fontSize: '$b' }),
+                text: (): Record<'fontSize', '$b'> => ({ fontSize: '$b' }),
             },
             result = new Sheet(source).calc();
         expect(result).toEqual({

@@ -10,7 +10,7 @@ const SCALABLE_PROPS = ['width', 'height', 'margin', 'padding', 'fontsize', 'rad
  * @param {String} prop
  * @returns {Boolean}
  */
-export const isScalable = (value: any, prop?: string) => typeof value === 'number' && isScalableProp(prop);
+export const isScalable = (value: any, prop?: string): boolean => typeof value === 'number' && isScalableProp(prop);
 
 /**
  * Performs scaling
@@ -18,7 +18,7 @@ export const isScalable = (value: any, prop?: string) => typeof value === 'numbe
  * @param {Number} scaleFactor
  * @returns {number}
  */
-export const calc = (value: number, scaleFactor: number) => {
+export const calc = (value: number, scaleFactor: number): number => {
     if (typeof value !== 'number') {
         throw new Error(`Invalid value for scale: ${value}`);
     }

@@ -43,7 +43,7 @@ export const isOperation = (str: string): IOpInfoRaw | boolean => {
  * Executes operation
  * @param {Object} opInfo
  */
-export const exec = (opInfo: Readonly<IOpInfo>) => {
+export const exec = (opInfo: Readonly<IOpInfo>): number => {
     assertOperator(opInfo.operator);
     assertValue(opInfo.v1);
     assertValue(opInfo.v2);
@@ -67,19 +67,19 @@ const findOperator = (str: string): IOpInfoRaw | undefined => {
     return undefined;
 };
 
-const assertOperator = (operator: TOperator) => {
+const assertOperator = (operator: TOperator): void => {
     if (!operators[operator]) {
         throw new Error(`Unknown operator: ${operator}`);
     }
 };
 
-const assertValue = (value?: number) => {
+const assertValue = (value?: number): void => {
     if (typeof value !== 'number') {
         throw new Error(`Operation value should be number, you try: ${String(value)}`);
     }
 };
 
-const assertDivisor = (divisor?: number) => {
+const assertDivisor = (divisor?: number): void => {
     if (divisor === 0) {
         throw new Error('Operation divisor should not be zero');
     }

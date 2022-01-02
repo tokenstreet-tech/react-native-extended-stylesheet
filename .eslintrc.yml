@@ -28,7 +28,6 @@ rules:
     no-inline-comments: 0 # Worsens the structure
     line-comment-position: 0 # Worsens the structure
 
-    '@typescript-eslint/explicit-function-return-type': 0
     '@typescript-eslint/explicit-module-boundary-types': 0
     '@typescript-eslint/init-declarations': 0
     '@typescript-eslint/naming-convention': 0

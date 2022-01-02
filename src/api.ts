@@ -81,7 +81,7 @@ export class EStyleSheet {
      * @param {String} [prop]
      * @returns {*}
      */
-    public value(expr: TValueExpr, prop?: string) {
+    public value(expr: TValueExpr, prop?: string): Value {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
@@ -91,7 +91,7 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public subscribe(event: typeof BUILD_EVENT, listener: TListener) {
+    public subscribe(event: typeof BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
         this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT] || [];
         this.listeners[BUILD_EVENT].push(listener);
@@ -105,7 +105,7 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public unsubscribe(event: typeof BUILD_EVENT, listener: TListener) {
+    public unsubscribe(event: typeof BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
         if (this.listeners[BUILD_EVENT]) {
             this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT].filter((item) => item !== listener);
@@ -129,11 +129,11 @@ export class EStyleSheet {
         }
     }
 
-    private calcSheets() {
+    private calcSheets(): void {
         this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.calc(this.globalVars));
     }
 
-    private callListeners(event: typeof BUILD_EVENT) {
+    private callListeners(event: typeof BUILD_EVENT): void {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }

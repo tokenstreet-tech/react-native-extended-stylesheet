@@ -1,5 +1,5 @@
 import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 
 /*
@@ -16,11 +16,11 @@ EStyleSheet.build({
 
 export const HotModuleReloadScreen: React.FC = () => {
     const [count, setCount] = useState<number>(0);
-
+    const increaseCount = useCallback(() => setCount((prevCount) => prevCount + 1), []);
     return (
         <View style={styles.column}>
             <Text style={styles.header}>You clicked: {count}</Text>
-            <Button onPress={() => setCount((prevCount) => prevCount + 1)} title="Click me!" />
+            <Button onPress={increaseCount} title="Click me!" />
         </View>
     );
 };

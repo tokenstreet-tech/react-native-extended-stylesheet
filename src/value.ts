@@ -46,7 +46,7 @@ export class Value {
      * Calculates value:
      * execute function, resolve var refs, convert string of (rem, percent) to pixels
      */
-    public calc() {
+    public calc(): any {
         if (typeof this.value === 'function') {
             this.value = this.value();
         }
@@ -69,7 +69,7 @@ export class Value {
      * Here we do not calc direct percent values as they supported natively since RN 43 (#32).
      * But keep calculating percent for operands when value defined as operation.
      */
-    private calcString() {
+    private calcString(): void {
         const actions: Array<TAction> = [
                 this.tryCalcOperation,
                 this.isOperation ? this.tryCalcPercent : null,
@@ -89,7 +89,7 @@ export class Value {
      * @param {Array} actions
      * @param {String} str
      */
-    private tryActions(actions: Readonly<Array<TAction>>, str: any) {
+    private tryActions(actions: Readonly<Array<TAction>>, str: any): number | null {
         for (const action of actions) {
             const val = action.call(this, str);
             if (val !== null) {
@@ -117,7 +117,7 @@ export class Value {
         return exec(opInfo as any);
     }
 
-    private calcOperandValue(str: string) {
+    private calcOperandValue(str: string): number | null {
         const actions = [this.tryCalcVar, this.tryCalcPercent, this.tryCalcRem, this.tryCalcFloat];
         return this.tryActions(actions, str);
     }
@@ -170,18 +170,18 @@ export class Value {
     /**
      * Is it final calculation (not recursion)
      */
-    private isFinal() {
+    private isFinal(): boolean {
         return !this.stack.length;
     }
 
     /**
      * Just proxies value when no processing needed
      */
-    private proxyValue() {
+    private proxyValue(): void {
         this.outValue = this.value;
     }
 
-    private applyScale() {
+    private applyScale(): void {
         /*
          * Do not apply scale to variables, only for final numbers
          * otherwise scale will be applied several times
