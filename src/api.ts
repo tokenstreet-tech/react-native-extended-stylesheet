@@ -16,16 +16,12 @@ type TListener = () => void;
 const BUILD_EVENT = 'build';
 
 export class EStyleSheet {
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public setStyleAttributePreprocessor: typeof StyleSheet.setStyleAttributePreprocessor;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public hairlineWidth: typeof StyleSheet.hairlineWidth;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public absoluteFill: typeof StyleSheet.absoluteFill;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public absoluteFillObject: typeof StyleSheet.absoluteFillObject;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public flatten: typeof StyleSheet.flatten;
+    // Proxy to original
+    public setStyleAttributePreprocessor = StyleSheet.setStyleAttributePreprocessor;
+    public hairlineWidth = StyleSheet.hairlineWidth;
+    public absoluteFill = StyleSheet.absoluteFill;
+    public absoluteFillObject = StyleSheet.absoluteFillObject;
+    public flatten = StyleSheet.flatten;
 
     public child: typeof child;
     private builded: boolean;
@@ -42,7 +38,6 @@ export class EStyleSheet {
         this.sheets = [];
         this.globalVars = null;
         this.listeners = {};
-        this.proxyToOriginal();
     }
 
     private static assertSubscriptionParams(event: typeof BUILD_EVENT, listener: TListener): void {
@@ -142,23 +137,6 @@ export class EStyleSheet {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }
-    }
-
-    private proxyToOriginal() {
-        // See: https://facebook.github.io/react-native/docs/stylesheet.html
-        const props: Array<keyof typeof StyleSheet> = [
-            'setStyleAttributePreprocessor',
-            'hairlineWidth',
-            'absoluteFill',
-            'absoluteFillObject',
-            'flatten',
-        ];
-        props.forEach((prop) => {
-            Object.defineProperty(this, prop, {
-                get: () => StyleSheet[prop],
-                enumerable: true,
-            });
-        });
     }
 
     private checkGlobalVars<T>(rawGlobalVars: T): void {
