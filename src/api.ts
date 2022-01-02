@@ -12,8 +12,8 @@ import type { EStyleSet, StyleSet, TValueExpr } from './types/common';
 import { Value } from './value';
 
 type TListener = () => void;
-
 const BUILD_EVENT = 'build';
+type TRawGlobalVars = Record<string, Record<string, boolean | number | string> | boolean | number | string>;
 
 export class EStyleSheet {
     // Proxy to original
@@ -68,7 +68,7 @@ export class EStyleSheet {
      * Builds all created stylesheets with passed variables
      * @param {Object} [rawGlobalVars]
      */
-    public build<T>(rawGlobalVars?: T): void {
+    public build(rawGlobalVars?: TRawGlobalVars): void {
         this.builded = true;
         this.calcGlobalVars(rawGlobalVars);
         this.calcSheets();
@@ -81,7 +81,7 @@ export class EStyleSheet {
      * @param {String} [prop]
      * @returns {*}
      */
-    public value(expr: TValueExpr, prop?: string): Value {
+    public value(expr: TValueExpr, prop?: string): any {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
@@ -120,7 +120,7 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars<T>(rawGlobalVars?: T): void {
+    private calcGlobalVars(rawGlobalVars?: TRawGlobalVars): void {
         if (rawGlobalVars) {
             this.checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
@@ -139,7 +139,7 @@ export class EStyleSheet {
         }
     }
 
-    private checkGlobalVars<T>(rawGlobalVars: T): void {
+    private checkGlobalVars(rawGlobalVars: Readonly<TRawGlobalVars>): void {
         Object.keys(rawGlobalVars).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(
