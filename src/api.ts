@@ -13,7 +13,9 @@ import { Value } from './value';
 
 type TListener = () => void;
 const BUILD_EVENT = 'build';
-type TRawGlobalVars = Record<string, Record<string, boolean | number | string> | boolean | number | string>;
+type TMediaQueryKey = string;
+type TRawGlobalVarsValues = number | string;
+type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TRawGlobalVarsValues> | TRawGlobalVarsValues>;
 
 export class EStyleSheet {
     // Proxy to original
