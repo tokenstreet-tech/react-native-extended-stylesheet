@@ -1,4 +1,4 @@
-import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React, { useCallback, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 

@@ -1,4 +1,4 @@
-import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React, { useMemo } from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
 
