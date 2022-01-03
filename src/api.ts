@@ -66,7 +66,7 @@ export class EStyleSheet {
      * @param {Object} styles
      * @returns {Object}
      */
-    public create<T extends TExtendedNamedStyles<T>>(styles: T): TNamedStyles<T> {
+    public create<T>(styles: TExtendedNamedStyles<T>): TNamedStyles<T> {
         const sheet = new Sheet(styles as any);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
         this.sheets.push(sheet);
