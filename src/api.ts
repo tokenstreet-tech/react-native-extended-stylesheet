@@ -10,7 +10,7 @@ import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
 import type { TValueExpr } from './types/common';
-import type { TExtendedStyles } from './types/styles';
+import type { TExtendedStyles } from './types/extendedStyles';
 import { Value } from './value';
 
 type TListener = () => void;
