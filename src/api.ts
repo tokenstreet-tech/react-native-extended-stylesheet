@@ -10,7 +10,7 @@ import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
 import type { TValueExpr } from './types/common';
-import type { TExtendedStyles } from './types/extendedStyles';
+import type { TExtendedNamedStyles } from './types/extendedStyles';
 import { Value } from './value';
 
 type TListener = () => void;
@@ -20,9 +20,6 @@ type TMediaQueryKey = string;
 type TVarsValues = number | string | (() => number | string);
 type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
 
-type TExtendedNamedStyles<T> = {
-    [P in keyof T]: Record<TMediaQueryKey, TExtendedStyles> | TExtendedStyles | TVarsValues;
-};
 type TNamedStyles<T> = { [P in keyof T]: ImageStyle | TextStyle | ViewStyle };
 
 export class EStyleSheet {

@@ -1,7 +1,10 @@
 import type { FlexStyle, ImageStyle, Omit, TextStyle, ViewStyle } from 'react-native';
 
 // Common
-type TExtendedSizeValues = number | string | undefined;
+type TExtendedVariablesKeys = `$${string}`;
+type TExtendedVariablesValues = number | string;
+type TRem = `${number}rem`;
+type TExtendedSizeValues = TRem | number | undefined;
 
 // Flex styles
 type TFlexStyleSizeKeys = Pick<FlexStyle, 'borderBottomWidth'>;
@@ -9,7 +12,7 @@ type TOmittedFlexStyle = Omit<FlexStyle, keyof TFlexStyleSizeKeys>;
 type TFuncFlexStyle = {
     [Key in keyof TOmittedFlexStyle]: TOmittedFlexStyle[Key] | (() => TOmittedFlexStyle[Key]);
 };
-type TFlexStyleSize = Record<keyof TFlexStyleSizeKeys, TExtendedSizeValues>;
+type TFlexStyleSize = Partial<Record<keyof TFlexStyleSizeKeys, TExtendedSizeValues>>;
 interface IExtendedFlexStyle extends TFlexStyleSize, TFuncFlexStyle {}
 
 // View styles
@@ -18,7 +21,7 @@ type TOmittedViewStyle = Omit<ViewStyle, keyof IExtendedFlexStyle | keyof TViewS
 type TFuncViewStyle = {
     [Key in keyof TOmittedViewStyle]: TOmittedViewStyle[Key] | (() => TOmittedViewStyle[Key]);
 };
-type TViewStyleSize = Record<keyof TViewStyleSizeKeys, TExtendedSizeValues>;
+type TViewStyleSize = Partial<Record<keyof TViewStyleSizeKeys, TExtendedSizeValues>>;
 interface IExtendedViewStyle extends IExtendedFlexStyle, TFuncViewStyle, TViewStyleSize {}
 
 // Image styles
@@ -27,7 +30,7 @@ type TOmittedImageStyle = Omit<ImageStyle, keyof IExtendedFlexStyle | keyof TIma
 type TFuncImageStyle = {
     [Key in keyof TOmittedImageStyle]: TOmittedImageStyle[Key] | (() => TOmittedImageStyle[Key]);
 };
-type TImageStyleSize = Record<keyof TImageStyleSizeKeys, TExtendedSizeValues>;
+type TImageStyleSize = Partial<Record<keyof TImageStyleSizeKeys, TExtendedSizeValues>>;
 interface IExtendedImageStyle extends IExtendedFlexStyle, TFuncImageStyle, TImageStyleSize {}
 
 // Text styles
@@ -36,8 +39,11 @@ type TOmittedTextStyle = Omit<TextStyle, keyof TTextStyleSizeKeys | keyof ViewSt
 type TFuncTextStyle = {
     [Key in keyof TOmittedTextStyle]: TOmittedTextStyle[Key] | (() => TOmittedTextStyle[Key]);
 };
-type TTextStyleSize = Record<keyof TTextStyleSizeKeys, TExtendedSizeValues>;
+type TTextStyleSize = Partial<Record<keyof TTextStyleSizeKeys, TExtendedSizeValues>>;
 interface IExtendedTextStyle extends IExtendedViewStyle, TFuncTextStyle, TTextStyleSize {}
 
 // Export
-export type TExtendedStyles = IExtendedImageStyle | IExtendedTextStyle | IExtendedViewStyle;
+type TExtendedStyles = IExtendedImageStyle | IExtendedTextStyle | IExtendedViewStyle;
+export type TExtendedNamedStyles<T> = {
+    [P in keyof T]: P extends TExtendedVariablesKeys ? TExtendedVariablesValues : TExtendedStyles;
+};
