@@ -5,7 +5,8 @@ type TypesafeExtract<T extends U, U> = T extends U ? T : never;
 
 // Common
 type TRem = `${number}rem`;
-type TExtendedSizeValues = TRem | number | undefined;
+type TPercent = `${number}%`;
+type TExtendedSizeValues = TPercent | TRem | number | undefined;
 
 type TExtendedVariablesKeys = `$${string}`;
 type TExtendedVariablesValues = number | string;
