@@ -1,0 +1,33 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Development
+/src
+/scripts
+__tests__/
+__fixtures__/
+__mocks__/
+.husky
+
+# Example
+/example
+
+# IDE
+/.idea
+
+# GitHub
+/.github
+
+# Misc
+.editorconfig
+.eslintignore
+.eslintrc.yml
+.gitattributes
+.prettierignore
+.prettierrc.yml
+.yarnrc
+babel.config.js
+tsconfig.build.json
+tsconfig.json
+
+# Secrets
+.env
