@@ -3,12 +3,12 @@
  * Supports: '-', '*', '/', '+'
  */
 
-export type TOperator = '-' | '*' | '/' | '+';
+export type TMathOperator = '-' | '*' | '/' | '+';
 
 interface IOpInfo {
     v1?: number;
     v2?: number;
-    operator: TOperator;
+    operator: TMathOperator;
     pos?: number;
 }
 
@@ -17,7 +17,7 @@ interface IOpInfoRaw extends Omit<IOpInfo, 'v1' | 'v2'> {
     v2?: string;
 }
 
-const operators: Record<TOperator, (v1: number, v2: number) => number> = {
+const operators: Record<TMathOperator, (v1: number, v2: number) => number> = {
     '*': (v1, v2) => v1 * v2,
     '+': (v1, v2) => v1 + v2,
     '-': (v1, v2) => v1 - v2,

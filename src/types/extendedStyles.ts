@@ -1,12 +1,16 @@
 import type { FlexStyle, ImageStyle, Omit, PlatformOSType, TextStyle, ViewStyle } from 'react-native';
 
+import type { TMathOperator } from '../replacers/operation';
+
 // Util
 type TypesafeExtract<T extends U, U> = T extends U ? T : never;
 
 // Common
-type TRem = `${number}rem`;
+type TMathOperand = TExtendedVariablesKeys | number;
+type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TPercent = `${number}%`;
-type TExtendedSizeValues = TPercent | TRem | number | undefined;
+type TRem = `${number}rem`;
+type TExtendedSizeValues = TMathCalculation | TPercent | TRem | number | 'auto' | undefined;
 
 type TExtendedVariablesKeys = `$${string}`;
 type TExtendedVariablesValues = number | string;
