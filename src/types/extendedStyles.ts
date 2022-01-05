@@ -66,7 +66,7 @@ type TFuncImageStyle = {
 interface IExtendedImageStyle extends IExtendedFlexStyle, TFuncImageStyle {}
 
 // Text styles
-type TTextStyleSizeKeys = Pick<Omit<TextStyle, keyof ViewStyle>, 'fontSize'>;
+type TTextStyleSizeKeys = Pick<Omit<TextStyle, keyof ViewStyle>, 'fontSize' | 'letterSpacing' | 'lineHeight'>;
 type TOmittedTextStyle = Omit<TextStyle, keyof TTextStyleSizeKeys | keyof ViewStyle>;
 type TTextStyleSize = Partial<Record<keyof TTextStyleSizeKeys, TExtendedSizeValues>>;
 type TCombinedTextStyle = TOmittedTextStyle & TTextStyleSize;
