@@ -71,5 +71,5 @@ export type TExtendedNamedStyles<T> = {
         : P extends TMediaQueriesKeys
         ? // TODO: Replace string to make media queries typesafe
           Record<string, TExtendedStyles>
-        : TExtendedStyles;
+        : Record<TMediaQueriesKeys, TExtendedStyles> | TExtendedStyles;
 };
