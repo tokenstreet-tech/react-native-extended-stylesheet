@@ -6,10 +6,10 @@ import type { TMathOperator } from '../replacers/operation';
 type TypesafeExtract<T extends U, U> = T extends U ? T : never;
 
 // Common
-type TMathOperand = TExtendedVariablesKeys | number;
-type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TPercent = `${number}%`;
 type TRem = `${number}rem`;
+type TMathOperand = TExtendedVariablesKeys | TPercent | TRem | number;
+type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TExtendedSizeValues = TMathCalculation | TPercent | TRem | number | 'auto' | undefined;
 
 type TExtendedVariablesKeys = `$${string}`;
