@@ -68,7 +68,7 @@ const getButtonStyles = (scale: number): any =>
             justifyContent: 'center',
             alignItems: 'center',
             $underlayColor: 'red', // Put underlayColor to variable, access via styles._button.$underlayColor
-        },
+        } as any,
         buttonText: {
             fontSize: '1.1rem',
             color: 'white',

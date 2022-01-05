@@ -16,7 +16,7 @@ describe('EStyleSheet API', () => {
                     $b: '1',
                     fontSize: '$a',
                     color: '$c',
-                },
+                } as any,
             });
 
             expect(styles).toEqual({});
@@ -87,7 +87,7 @@ describe('EStyleSheet API', () => {
 
         it('styles should have prototype chain (#101)', () => {
             api.build();
-            const styles = api.create({ foo: 'bar' });
+            const styles = api.create({ foo: 'bar' } as any);
             expect(typeof styles.hasOwnProperty).toEqual('function');
         });
     });
@@ -101,7 +101,7 @@ describe('EStyleSheet API', () => {
                     fontSize: '$a',
                     color: '$c',
                 },
-            },
+            } as any,
             resultStyles = {
                 $a: 1,
                 $d: 3,
@@ -174,7 +174,7 @@ describe('EStyleSheet API', () => {
             });
             const styles = api.create({
                 text: () => api.value('$defaultText'),
-            });
+            } as any);
             expect(styles).toEqual({
                 _text: {
                     fontSize: 1,
