@@ -60,14 +60,14 @@ const findOperator = (str: string): IOpInfoRaw | undefined => {
         if (Object.prototype.hasOwnProperty.call(operators, operator)) {
             const pos = str.indexOf(operator);
             if (pos >= 0) {
-                return { operator: operator as TOperator, pos };
+                return { operator: operator as TMathOperator, pos };
             }
         }
     }
     return undefined;
 };
 
-const assertOperator = (operator: TOperator): void => {
+const assertOperator = (operator: TMathOperator): void => {
     if (!operators[operator]) {
         throw new Error(`Unknown operator: ${operator}`);
     }
