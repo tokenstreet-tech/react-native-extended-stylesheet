@@ -1,7 +1,6 @@
 /**
  * Extended StyleSheet API
  */
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { child } from './child';
@@ -10,7 +9,7 @@ import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
 import type { TValueExpr } from './types/common';
-import type { TExtendedNamedStyles } from './types/extendedStyles';
+import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
 import { Value } from './value';
 
 type TListener = () => void;
@@ -19,8 +18,6 @@ type TMediaQueryKey = string;
 
 type TVarsValues = number | string | (() => number | string);
 type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
-
-type TNamedStyles<T> = { [P in keyof T]: ImageStyle | TextStyle | ViewStyle };
 
 export class EStyleSheet {
     private static readonly BUILD_EVENT: string = 'build';

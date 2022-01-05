@@ -26,7 +26,44 @@ type TMediaType = TypesafeExtract<'android' | 'ios', PlatformOSType>;
 type TMediaQueriesKeys = `@media ${TMediaExpression | TMediaType}${'' | ` and ${TMediaExpression}`}`;
 
 // Flex styles
-type TFlexStyleSizeKeys = Pick<FlexStyle, 'borderBottomWidth'>;
+type TFlexStyleSizeKeys = Pick<
+    FlexStyle,
+    | 'borderBottomWidth'
+    | 'borderEndWidth'
+    | 'borderLeftWidth'
+    | 'borderRightWidth'
+    | 'borderStartWidth'
+    | 'borderTopWidth'
+    | 'borderWidth'
+    | 'height'
+    | 'left'
+    | 'margin'
+    | 'marginBottom'
+    | 'marginEnd'
+    | 'marginHorizontal'
+    | 'marginLeft'
+    | 'marginRight'
+    | 'marginStart'
+    | 'marginTop'
+    | 'marginVertical'
+    | 'maxHeight'
+    | 'maxWidth'
+    | 'minHeight'
+    | 'minWidth'
+    | 'padding'
+    | 'paddingBottom'
+    | 'paddingEnd'
+    | 'paddingHorizontal'
+    | 'paddingLeft'
+    | 'paddingRight'
+    | 'paddingStart'
+    | 'paddingTop'
+    | 'paddingVertical'
+    | 'right'
+    | 'start'
+    | 'top'
+    | 'width'
+>;
 type TOmittedFlexStyle = Omit<FlexStyle, keyof TFlexStyleSizeKeys>;
 type TFlexStyleSize = Partial<Record<keyof TFlexStyleSizeKeys, TExtendedSizeValues>>;
 type TCombinedFlexStyle = TFlexStyleSize & TOmittedFlexStyle;
@@ -39,7 +76,18 @@ type TFuncFlexStyle = {
 interface IExtendedFlexStyle extends TFuncFlexStyle {}
 
 // View styles
-type TViewStyleSizeKeys = Pick<Omit<ViewStyle, keyof FlexStyle>, 'borderRadius'>;
+type TViewStyleSizeKeys = Pick<
+    Omit<ViewStyle, keyof FlexStyle>,
+    | 'borderBottomEndRadius'
+    | 'borderBottomLeftRadius'
+    | 'borderBottomRightRadius'
+    | 'borderBottomStartRadius'
+    | 'borderRadius'
+    | 'borderTopEndRadius'
+    | 'borderTopLeftRadius'
+    | 'borderTopRightRadius'
+    | 'borderTopStartRadius'
+>;
 type TOmittedViewStyle = Omit<ViewStyle, keyof IExtendedFlexStyle | keyof TViewStyleSizeKeys>;
 type TViewStyleSize = Partial<Record<keyof TViewStyleSizeKeys, TExtendedSizeValues>>;
 type TCombinedViewStyle = TOmittedViewStyle & TViewStyleSize;
@@ -53,7 +101,14 @@ type TFuncViewStyle = {
 interface IExtendedViewStyle extends IExtendedFlexStyle, TFuncViewStyle {}
 
 // Image styles
-type TImageStyleSizeKeys = Pick<Omit<ImageStyle, keyof FlexStyle>, 'borderRadius'>;
+type TImageStyleSizeKeys = Pick<
+    Omit<ImageStyle, keyof FlexStyle>,
+    | 'borderBottomLeftRadius'
+    | 'borderBottomRightRadius'
+    | 'borderRadius'
+    | 'borderTopLeftRadius'
+    | 'borderTopRightRadius'
+>;
 type TOmittedImageStyle = Omit<ImageStyle, keyof IExtendedFlexStyle | keyof TImageStyleSizeKeys>;
 type TImageStyleSize = Partial<Record<keyof TImageStyleSizeKeys, TExtendedSizeValues>>;
 type TCombinedImageStyle = TImageStyleSize & TOmittedImageStyle;
@@ -66,7 +121,10 @@ type TFuncImageStyle = {
 interface IExtendedImageStyle extends IExtendedFlexStyle, TFuncImageStyle {}
 
 // Text styles
-type TTextStyleSizeKeys = Pick<Omit<TextStyle, keyof ViewStyle>, 'fontSize' | 'letterSpacing' | 'lineHeight'>;
+type TTextStyleSizeKeys = Pick<
+    Omit<TextStyle, keyof ViewStyle>,
+    'fontSize' | 'letterSpacing' | 'lineHeight' | 'textShadowRadius'
+>;
 type TOmittedTextStyle = Omit<TextStyle, keyof TTextStyleSizeKeys | keyof ViewStyle>;
 type TTextStyleSize = Partial<Record<keyof TTextStyleSizeKeys, TExtendedSizeValues>>;
 type TCombinedTextStyle = TOmittedTextStyle & TTextStyleSize;
@@ -87,4 +145,8 @@ export type TExtendedNamedStyles<T> = {
         ? // TODO: Replace string to make media queries typesafe
           Record<string, TExtendedStyles>
         : Record<TMediaQueriesKeys, TExtendedStyles> | TExtendedStyles;
+};
+type TStyles = ImageStyle | TextStyle | ViewStyle;
+export type TNamedStyles<T> = {
+    [P in keyof T]: P extends TExtendedVariablesKeys ? TExtendedVariablesValues : TStyles;
 };
