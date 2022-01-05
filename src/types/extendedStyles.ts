@@ -7,8 +7,20 @@ type TExtendedSizeValues = TRem | number | undefined;
 type TExtendedVariablesKeys = `$${string}`;
 type TExtendedVariablesValues = number | string;
 
-// TODO: Make media queries more typesafe
-type TMediaQueriesKeys = `@media ${string}`;
+type TMediaDirectionExpression = `(direction: ${'ltr' | 'rtl'})`;
+type TMediaOrientationExpression = `(orientation: ${'landscape' | 'portrait'})`;
+type TMediaSizeExpressionKeys =
+    | 'aspect-ratio'
+    | 'height'
+    | 'max-height'
+    | 'max-width'
+    | 'min-height'
+    | 'min-width'
+    | 'width';
+type TMediaSizeExpression = `(${TMediaSizeExpressionKeys}: ${number})`;
+type TMediaExpression = TMediaDirectionExpression | TMediaOrientationExpression | TMediaSizeExpression;
+type TMediaType = 'android' | 'ios';
+type TMediaQueriesKeys = `@media ${TMediaExpression | TMediaType}${'' | ` and ${TMediaExpression}`}`;
 
 // Flex styles
 type TFlexStyleSizeKeys = Pick<FlexStyle, 'borderBottomWidth'>;
