@@ -1,4 +1,7 @@
-import type { FlexStyle, ImageStyle, Omit, TextStyle, ViewStyle } from 'react-native';
+import type { FlexStyle, ImageStyle, Omit, PlatformOSType, TextStyle, ViewStyle } from 'react-native';
+
+// Util
+type TypesafeExtract<T extends U, U> = T extends U ? T : never;
 
 // Common
 type TRem = `${number}rem`;
@@ -19,7 +22,7 @@ type TMediaSizeExpressionKeys =
     | 'width';
 type TMediaSizeExpression = `(${TMediaSizeExpressionKeys}: ${number})`;
 type TMediaExpression = TMediaDirectionExpression | TMediaOrientationExpression | TMediaSizeExpression;
-type TMediaType = 'android' | 'ios';
+type TMediaType = TypesafeExtract<'android' | 'ios', PlatformOSType>;
 type TMediaQueriesKeys = `@media ${TMediaExpression | TMediaType}${'' | ` and ${TMediaExpression}`}`;
 
 // Flex styles
