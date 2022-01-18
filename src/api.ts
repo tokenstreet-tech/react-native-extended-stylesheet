@@ -86,7 +86,7 @@ export class EStyleSheet {
      * @param {String} [prop]
      * @returns {*}
      */
-    public value(expr: TValueExpr, prop?: string) {
+    public value(expr: Readonly<TValueExpr>, prop?: string) {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
