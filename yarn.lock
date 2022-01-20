@@ -2014,10 +2014,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-native@^0.66.12":
-  version "0.66.12"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.12.tgz#3afc5ad3a03601666a2c5893af6f2652bfaec651"
-  integrity sha512-4qQwvfXzVtik/cN/13wwH0cIMHYLzQ40iRazVdEEhjzz8YpNrkESSUUMsSE683YSse4zLShHQYWeI1x2/zB1BA==
+"@types/react-native@^0.66.13":
+  version "0.66.13"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.13.tgz#90f0c828c6267af8648649f90c02c92fbb596d68"
+  integrity sha512-Yp8hiCvez9HdaSNx1xKMog8uzXEugk47nmfWvXLnyERchjcnaF4VZwi9NmZMU5ETrx7apN+aynBdC+64JM9o2g==
   dependencies:
     "@types/react" "*"
 
@@ -6269,10 +6269,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-lint-staged@^12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.2.0.tgz#6f7298399519efc382a414d36717949714b705c3"
-  integrity sha512-TnNciMBhmEqzqM+RvzqqdvrG4TsI8wCDMX1Vg9+rj2Y9uY70Nq84Mb1WOIiwxW9l5tUlCOqtY5La71RM2fSgfA==
+lint-staged@^12.2.1:
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.2.1.tgz#e37b5a81deaabf5823f43b3aa903a70c15c9d0b3"
+  integrity sha512-VCVcA9C2Vt5HHxSR4EZVZFJcQRJH984CGBeY+cJ/xed4mBd+JidbM/xbKcCq5ASaygAV0iITtdsCTnID7h/1OQ==
   dependencies:
     cli-truncate "^3.1.0"
     colorette "^2.0.16"
