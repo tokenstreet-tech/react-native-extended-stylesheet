@@ -1088,10 +1088,10 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo/apple-utils@0.0.0-alpha.26":
-  version "0.0.0-alpha.26"
-  resolved "https://registry.yarnpkg.com/@expo/apple-utils/-/apple-utils-0.0.0-alpha.26.tgz#cf5a893b7c9cc779af5b54a482196325dcde1426"
-  integrity sha512-t+xOhn4bYSAXkXamhDPUiI2Ol+QIwHRHLn/2QiCmNAGHolaVan/hMaVveSzvCYitpaJ16b4nthvcWFoJipxGlA==
+"@expo/apple-utils@0.0.0-alpha.31":
+  version "0.0.0-alpha.31"
+  resolved "https://registry.yarnpkg.com/@expo/apple-utils/-/apple-utils-0.0.0-alpha.31.tgz#ab18640c384ba4b088e4490977a12f6f41a1e2a0"
+  integrity sha512-lGJOS8eAPcZhaRl5GZFIg4ZNSRY1k10wYeYXjHUbHxbZGE9lkzrATY8OvrVpcu8qQh3lvPguel63V4mrnoAuOA==
 
 "@expo/bunyan@4.0.0", "@expo/bunyan@^4.0.0":
   version "4.0.0"
@@ -1265,10 +1265,10 @@
     serialize-error "6.0.0"
     temp-dir "^2.0.0"
 
-"@expo/dev-tools@0.13.147":
-  version "0.13.147"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.147.tgz#167aaf9254aa4e4cdb5aa3fddfa6f974bd95c2a0"
-  integrity sha512-zWZdlRinxKearhkmwfJoCaHA25HGl8WZIehF1dIq2s4UPbQ58hvHBQdB6q9W4d78arRAnJKHljJq3t6Rs4smAQ==
+"@expo/dev-tools@0.13.148":
+  version "0.13.148"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.148.tgz#5c3620261ed834501e5ca9872bf625fa5f0228ad"
+  integrity sha512-bPZwm7HIjj4Fm9KeNaQGUKFiPGSj4X9LQuTaNFg1nQlJ9sXRGQ8Mct2V/Vyz5Hh3dQz+KVVSF4a3D8irVM0PPA==
   dependencies:
     "@expo/config" "6.0.20"
     base64url "3.0.1"
@@ -1450,10 +1450,10 @@
     remove-trailing-slash "^0.1.0"
     uuid "^8.3.2"
 
-"@expo/schemer@1.3.34":
-  version "1.3.34"
-  resolved "https://registry.yarnpkg.com/@expo/schemer/-/schemer-1.3.34.tgz#940c37f930f28e2757f2797223cbda19747a5a5f"
-  integrity sha512-oEcU9aZclpUfO83RSIxESywzt+NbOCbC/z1//dw8flWW9niu2qkHC8zGWWFU+V36LM3Pdhi+dlUYapo66eTitQ==
+"@expo/schemer@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@expo/schemer/-/schemer-1.4.0.tgz#f0d9716e2a828efd2da2e5db5a1344c20b4d999e"
+  integrity sha512-HSFwpcS/gYdkV2mj7cXnZKVCHInWimaBIg81On9DKGmwwTqgGFKwYFOcpoTL3dK2K8VbV2qNH9VRaj68jq81Bw==
   dependencies:
     ajv "^5.2.2"
     json-schema-traverse "0.3.1"
@@ -4647,18 +4647,18 @@ expo-asset@~8.4.0, expo-asset@~8.4.3, expo-asset@~8.4.6:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.3.1.tgz#32fd2a751c83b74157f93bc4af9ce4dd8e24d7e2"
-  integrity sha512-iNJLde2HDRiQTNGBlhNfWcTQQCKOwZoXsl55YV2YlRWWiWhLCWFrC8+j5OxD2PRiRqueSOtwR+Kf+ODD60dBAA==
+expo-cli@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.3.2.tgz#4533a63f073cc2758d4c4a4fb28bfcede6ce4634"
+  integrity sha512-kUCIPYW1bHs+Jj8MvEkr1gp4ssN4kONUH3BEnEotW7Emoc9N7st7J6iNcEiB7obcPF532VSXzvYgcyRR8pJ8NA==
   dependencies:
     "@babel/runtime" "7.9.0"
-    "@expo/apple-utils" "0.0.0-alpha.26"
+    "@expo/apple-utils" "0.0.0-alpha.31"
     "@expo/bunyan" "4.0.0"
     "@expo/config" "6.0.20"
     "@expo/config-plugins" "4.1.1"
     "@expo/dev-server" "0.1.107"
-    "@expo/dev-tools" "0.13.147"
+    "@expo/dev-tools" "0.13.148"
     "@expo/json-file" "8.2.35"
     "@expo/osascript" "2.0.32"
     "@expo/package-manager" "0.0.51"
@@ -4708,7 +4708,7 @@ expo-cli@^5.3.1:
     url-join "4.0.0"
     uuid "^8.0.0"
     wrap-ansi "^7.0.0"
-    xdl "59.2.31"
+    xdl "59.2.32"
 
 expo-constants@~12.0.0:
   version "12.0.0"
@@ -11659,10 +11659,10 @@ xcode@^3.0.0, xcode@^3.0.1:
     simple-plist "^1.1.0"
     uuid "^7.0.3"
 
-xdl@59.2.31:
-  version "59.2.31"
-  resolved "https://registry.yarnpkg.com/xdl/-/xdl-59.2.31.tgz#b798bf72cece349f8416adb34b573933dc9e7612"
-  integrity sha512-RCx00veTOTZeB2aCz84wBJw4dgOJPR5cEBgngyFf33hK5VCP/2+YjzNEAkKbZySjfG6q5pY1Wli9ktlLbFdwDA==
+xdl@59.2.32:
+  version "59.2.32"
+  resolved "https://registry.yarnpkg.com/xdl/-/xdl-59.2.32.tgz#72bee9a4ef4ae466190163bb0016d06d4be0c8d7"
+  integrity sha512-aXrgplZQJeDUlGsgA/lcMzf+opKHXOKt0a3B/+/FA6AE8SSSda9p+86t441x9d/is/PPUM4G5jbzIT4pqrvGAw==
   dependencies:
     "@expo/bunyan" "4.0.0"
     "@expo/config" "6.0.20"
@@ -11674,7 +11674,7 @@ xdl@59.2.31:
     "@expo/package-manager" "0.0.51"
     "@expo/plist" "0.0.18"
     "@expo/rudder-sdk-node" "1.1.1"
-    "@expo/schemer" "1.3.34"
+    "@expo/schemer" "1.4.0"
     "@expo/sdk-runtime-versions" "^1.0.0"
     "@expo/spawn-async" "1.5.0"
     "@expo/webpack-config" "0.16.20"
