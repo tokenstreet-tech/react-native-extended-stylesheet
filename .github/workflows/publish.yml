@@ -10,18 +10,20 @@ on:
 jobs:
     publish:
         runs-on: [self-hosted, linux]
-        permissions:
-            packages: write
-            contents: read
+        container:
+            image: tokenstreet/github-actions-base-image:latest
+            credentials:
+                username: ${{ secrets.DOCKER_USER }}
+                password: ${{ secrets.DOCKER_PASSWORD }}
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v3
               with:
                   token: ${{ secrets.PERSONAL_ACCESS_TOKEN_TOOLS_TOKENSTREET }}
             - name: Set git credentials
               run: |
                   git config --global user.name "tokenstreet Tools"
                   git config --global user.email "tools@tokenstreet.com"
-            - uses: actions/setup-node@v2
+            - uses: actions/setup-node@v3.1.1
               with:
                   node-version: 16
                   registry-url: 'https://registry.npmjs.org'

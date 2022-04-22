@@ -29,10 +29,10 @@ export class Value {
      * @param {Boolean} [options.isOperation] is value calculated inside operation
      */
     public constructor(
-        value: TValueExpr,
+        value: Readonly<TValueExpr>,
         prop?: string,
         varsArr: Readonly<Array<any>> = [],
-        options: Readonly<{ stack?: Array<any>; isOperation?: boolean }> = {}
+        options: Readonly<{ readonly stack?: Readonly<Array<any>>; readonly isOperation?: boolean }> = {}
     ) {
         this.value = value;
         this.outValue = null;

@@ -3,11 +3,11 @@ const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 const { resolver } = require('./metro.config');
 
 const root = path.resolve(__dirname, '..');
-const node_modules = path.join(__dirname, 'node_modules');
+const nodeModules = path.join(__dirname, 'node_modules');
 
 // TODO: Make PR to disabled return types in JS files
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-module.exports = async function (env, argv) {
+module.exports = async function webpackConfig(env, argv) {
     const config = await createExpoWebpackConfigAsync(env, argv);
 
     config.module.rules.push({
@@ -22,7 +22,7 @@ module.exports = async function (env, argv) {
      */
     Object.assign(config.resolve.alias, {
         ...resolver.extraNodeModules,
-        'react-native-web': path.join(node_modules, 'react-native-web'),
+        'react-native-web': path.join(nodeModules, 'react-native-web'),
     });
 
     return config;
