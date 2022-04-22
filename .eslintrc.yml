@@ -5,12 +5,13 @@ parserOptions:
         - './tsconfig.json'
 plugins:
     - '@typescript-eslint'
-    - prettier
+    - jest
     - simple-import-sort
 extends:
     - '@react-native-community'
     - eslint:all
     - plugin:@typescript-eslint/all
+    - plugin:jest/recommended
     - prettier
 rules:
     '@typescript-eslint/array-type':
