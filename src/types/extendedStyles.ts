@@ -13,6 +13,8 @@ type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TExtendedSizeValues = TMathCalculation | TPercent | TRem | number | 'auto' | undefined;
 
 type TExtendedVariablesKeys = `$${string}`;
+
+// TODO: Improve type with generics. Because sometimes you need exactly a number or a string, and not a union type.
 type TExtendedVariablesValues = number | string;
 
 type TMediaDirectionExpression = `(direction: ${'ltr' | 'rtl'})`;
