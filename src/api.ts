@@ -8,30 +8,33 @@ import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
-import type { EStyleSet, StyleSet, TValueExpr } from './types/common';
+import type { TValueExpr } from './types/common';
+import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
 import { Value } from './value';
 
 type TListener = () => void;
 
-const BUILD_EVENT = 'build';
+type TMediaQueryKey = string;
+
+type TVarsValues = number | string | (() => number | string);
+type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
 
 export class EStyleSheet {
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public setStyleAttributePreprocessor: typeof StyleSheet.setStyleAttributePreprocessor;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public hairlineWidth: typeof StyleSheet.hairlineWidth;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public absoluteFill: typeof StyleSheet.absoluteFill;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public absoluteFillObject: typeof StyleSheet.absoluteFillObject;
-    // @ts-expect-error Implemented through method _proxyToOriginal
-    public flatten: typeof StyleSheet.flatten;
+    private static readonly BUILD_EVENT: string = 'build';
+
+    // Proxy to original
+    public flatten = StyleSheet.flatten;
+    public compose = StyleSheet.compose;
+    public setStyleAttributePreprocessor = StyleSheet.setStyleAttributePreprocessor;
+    public hairlineWidth = StyleSheet.hairlineWidth;
+    public absoluteFillObject = StyleSheet.absoluteFillObject;
+    public absoluteFill = StyleSheet.absoluteFill;
 
     public child: typeof child;
     private builded: boolean;
     private readonly sheets: Array<Sheet<unknown>>;
     private globalVars: any;
-    private listeners: Record<string, never> | { [key in typeof BUILD_EVENT]: Array<TListener> };
+    private listeners: Record<string, never> | { [key in typeof EStyleSheet.BUILD_EVENT]: Array<TListener> };
 
     /**
      * Constructor
@@ -42,12 +45,11 @@ export class EStyleSheet {
         this.sheets = [];
         this.globalVars = null;
         this.listeners = {};
-        this.proxyToOriginal();
     }
 
-    private static assertSubscriptionParams(event: typeof BUILD_EVENT, listener: TListener): void {
-        if (event !== BUILD_EVENT) {
-            throw new Error(`Only '${BUILD_EVENT}' event is currently supported.`);
+    private static assertSubscriptionParams(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
+        if (event !== EStyleSheet.BUILD_EVENT) {
+            throw new Error(`Only '${EStyleSheet.BUILD_EVENT}' event is currently supported.`);
         }
         if (typeof listener !== 'function') {
             throw new Error('Listener should be a function.');
@@ -56,11 +58,11 @@ export class EStyleSheet {
 
     /**
      * Creates stylesheet that will be calculated after build
-     * @param {Object} obj
+     * @param {Object} styles
      * @returns {Object}
      */
-    public create<T = EStyleSet>(obj: EStyleSet<T>): StyleSet<T> {
-        const sheet = new Sheet(obj as any);
+    public create<T>(styles: TExtendedNamedStyles<T>): TNamedStyles<T> {
+        const sheet = new Sheet(styles as any);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
         this.sheets.push(sheet);
         if (this.builded) {
@@ -73,11 +75,11 @@ export class EStyleSheet {
      * Builds all created stylesheets with passed variables
      * @param {Object} [rawGlobalVars]
      */
-    public build<T>(rawGlobalVars?: T): void {
+    public build(rawGlobalVars?: TRawGlobalVars): void {
         this.builded = true;
         this.calcGlobalVars(rawGlobalVars);
         this.calcSheets();
-        this.callListeners(BUILD_EVENT);
+        this.callListeners(EStyleSheet.BUILD_EVENT);
     }
 
     /**
@@ -86,7 +88,7 @@ export class EStyleSheet {
      * @param {String} [prop]
      * @returns {*}
      */
-    public value(expr: Readonly<TValueExpr>, prop?: string) {
+    public value(expr: Readonly<TValueExpr>, prop?: string): any {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
         return new Value(expr, prop, varsArr).calc();
     }
@@ -96,10 +98,10 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public subscribe(event: typeof BUILD_EVENT, listener: TListener) {
+    public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
-        this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT] || [];
-        this.listeners[BUILD_EVENT].push(listener);
+        this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT] || [];
+        this.listeners[EStyleSheet.BUILD_EVENT].push(listener);
         if (this.builded) {
             listener();
         }
@@ -110,10 +112,12 @@ export class EStyleSheet {
      * @param {String} event
      * @param {Function} listener
      */
-    public unsubscribe(event: typeof BUILD_EVENT, listener: TListener) {
+    public unsubscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
-        if (this.listeners[BUILD_EVENT]) {
-            this.listeners[BUILD_EVENT] = this.listeners[BUILD_EVENT].filter((item) => item !== listener);
+        if (this.listeners[EStyleSheet.BUILD_EVENT]) {
+            this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT].filter(
+                (item) => item !== listener
+            );
         }
     }
 
@@ -125,7 +129,7 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars<T>(rawGlobalVars?: T): void {
+    private calcGlobalVars(rawGlobalVars?: TRawGlobalVars): void {
         if (rawGlobalVars) {
             this.checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
@@ -134,34 +138,17 @@ export class EStyleSheet {
         }
     }
 
-    private calcSheets() {
+    private calcSheets(): void {
         this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.calc(this.globalVars));
     }
 
-    private callListeners(event: typeof BUILD_EVENT) {
+    private callListeners(event: typeof EStyleSheet.BUILD_EVENT): void {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }
     }
 
-    private proxyToOriginal() {
-        // See: https://facebook.github.io/react-native/docs/stylesheet.html
-        const props: Array<keyof typeof StyleSheet> = [
-            'setStyleAttributePreprocessor',
-            'hairlineWidth',
-            'absoluteFill',
-            'absoluteFillObject',
-            'flatten',
-        ];
-        props.forEach((prop) => {
-            Object.defineProperty(this, prop, {
-                get: () => StyleSheet[prop],
-                enumerable: true,
-            });
-        });
-    }
-
-    private checkGlobalVars<T>(rawGlobalVars: T): void {
+    private checkGlobalVars(rawGlobalVars: Readonly<TRawGlobalVars>): void {
         Object.keys(rawGlobalVars).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(

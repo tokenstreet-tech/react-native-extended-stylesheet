@@ -23,7 +23,7 @@ import { ThemingScreen } from './screens/theming/ThemingScreen';
  * Otherwise, the screens would interfere with each other.
  * @constructor
  */
-export const App = () => (
+export const App: React.FC = () => (
     <SafeAreaView>
         {/* <HotModuleReloadScreen />*/}
         {/* <JestTestingScreen />*/}

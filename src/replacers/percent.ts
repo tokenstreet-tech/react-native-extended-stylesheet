@@ -18,7 +18,7 @@ const { width, height } = Dimensions.get('window'),
  * @param {String} str
  * @returns {boolean}
  */
-export const isPercent = (str: string) => str.endsWith(SUFFIX);
+export const isPercent = (str: string): boolean => str.endsWith(SUFFIX);
 
 /**
  * Calc percent to pixels
@@ -26,7 +26,7 @@ export const isPercent = (str: string) => str.endsWith(SUFFIX);
  * @param {String} prop
  * @returns {number}
  */
-export const calc = (str: string, prop?: string) => {
+export const calc = (str: string, prop?: string): number => {
     const percent = parseInt(str.substring(0, str.length - 1), 10),
         base = isVertical(prop) ? height : width;
     return (base * percent) / 100;

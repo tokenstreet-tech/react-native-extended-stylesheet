@@ -3,12 +3,12 @@
  * Supports: '-', '*', '/', '+'
  */
 
-export type TOperator = '-' | '*' | '/' | '+';
+export type TMathOperator = '-' | '*' | '/' | '+';
 
 interface IOpInfo {
     v1?: number;
     v2?: number;
-    operator: TOperator;
+    operator: TMathOperator;
     pos?: number;
 }
 
@@ -17,7 +17,7 @@ interface IOpInfoRaw extends Omit<IOpInfo, 'v1' | 'v2'> {
     v2?: string;
 }
 
-const operators: Record<TOperator, (v1: number, v2: number) => number> = {
+const operators: Record<TMathOperator, (v1: number, v2: number) => number> = {
     '*': (v1, v2) => v1 * v2,
     '+': (v1, v2) => v1 + v2,
     '-': (v1, v2) => v1 - v2,
@@ -43,7 +43,7 @@ export const isOperation = (str: string): IOpInfoRaw | boolean => {
  * Executes operation
  * @param {Object} opInfo
  */
-export const exec = (opInfo: Readonly<IOpInfo>) => {
+export const exec = (opInfo: Readonly<IOpInfo>): number => {
     assertOperator(opInfo.operator);
     assertValue(opInfo.v1);
     assertValue(opInfo.v2);
@@ -60,26 +60,26 @@ const findOperator = (str: string): IOpInfoRaw | undefined => {
         if (Object.prototype.hasOwnProperty.call(operators, operator)) {
             const pos = str.indexOf(operator);
             if (pos >= 0) {
-                return { operator: operator as TOperator, pos };
+                return { operator: operator as TMathOperator, pos };
             }
         }
     }
     return undefined;
 };
 
-const assertOperator = (operator: TOperator) => {
+const assertOperator = (operator: TMathOperator): void => {
     if (!operators[operator]) {
         throw new Error(`Unknown operator: ${operator}`);
     }
 };
 
-const assertValue = (value?: number) => {
+const assertValue = (value?: number): void => {
     if (typeof value !== 'number') {
         throw new Error(`Operation value should be number, you try: ${String(value)}`);
     }
 };
 
-const assertDivisor = (divisor?: number) => {
+const assertDivisor = (divisor?: number): void => {
     if (divisor === 0) {
         throw new Error('Operation divisor should not be zero');
     }

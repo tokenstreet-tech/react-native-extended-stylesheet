@@ -1,4 +1,4 @@
-import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
 

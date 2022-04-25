@@ -36,7 +36,7 @@ export class Sheet<T> {
      * Calculates sheet and update result
      * @param {Object} globalVars
      */
-    public calc(globalVars?: any) {
+    public calc(globalVars?: any): any {
         this.globalVars = globalVars;
         this.clearResult();
         if (this.hasCache()) {
@@ -51,19 +51,19 @@ export class Sheet<T> {
         return this.getResult();
     }
 
-    public getResult() {
+    public getResult(): any {
         return this.result;
     }
 
-    public clearCache() {
+    public clearCache(): void {
         this.cache.clear();
     }
 
-    private processMediaQueries() {
+    private processMediaQueries(): void {
         this.processedSource = process(this.source);
     }
 
-    private calcVars() {
+    private calcVars(): void {
         const rawLocalVars = extract(this.processedSource);
         if (rawLocalVars) {
             this.localVars = new Style(rawLocalVars, [rawLocalVars, this.globalVars]).calc().calculatedVars;
@@ -74,7 +74,7 @@ export class Sheet<T> {
         this.allVars = [this.localVars, this.globalVars].filter(Boolean);
     }
 
-    private calcStyles() {
+    private calcStyles(): void {
         const extractedStyles = excludeKeys(this.processedSource, this.localVars);
         Object.keys(extractedStyles).forEach((key) => {
             let styles = extractedStyles[key];
@@ -90,7 +90,7 @@ export class Sheet<T> {
         });
     }
 
-    private calcStyle(key: string, styleProps: any) {
+    private calcStyle(key: string, styleProps: any): any {
         const style = new Style(styleProps, this.allVars),
             { calculatedProps, calculatedVars } = style.calc(),
             merged = { ...calculatedVars, ...calculatedProps };
@@ -113,7 +113,7 @@ export class Sheet<T> {
         Object.keys(this.result).forEach((key) => delete this.result[key]);
     }
 
-    private hasCache() {
+    private hasCache(): boolean {
         const key = this.getCacheKey();
         return key && this.cache.has(key);
     }
@@ -130,7 +130,7 @@ export class Sheet<T> {
         }
     }
 
-    private getCacheKey() {
+    private getCacheKey(): any {
         return this.globalVars?.$theme;
     }
 }

@@ -1,4 +1,4 @@
-import type { TOperator } from '../operation';
+import type { TMathOperator } from '../operation';
 import { exec, isOperation } from '../operation';
 
 describe('operation', () => {
@@ -43,7 +43,7 @@ describe('operation', () => {
     });
 
     it('should throw on invalid data', () => {
-        expect(() => exec({ operator: 'a' as unknown as TOperator, v1: 10, v2: 0.5 })).toThrowError(
+        expect(() => exec({ operator: 'a' as unknown as TMathOperator, v1: 10, v2: 0.5 })).toThrowError(
             'Unknown operator: a'
         );
         expect(() => exec({ operator: '+', v1: '10' as unknown as number, v2: 0.5 })).toThrowError(

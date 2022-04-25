@@ -19,14 +19,14 @@ const PREFIX = '@media';
  * Is string is media query
  * @param {String} str
  */
-export const isMediaQuery = (str: string) => typeof str === 'string' && str.startsWith(PREFIX);
+export const isMediaQuery = (str: string): boolean => typeof str === 'string' && str.startsWith(PREFIX);
 
 /**
  * Process and apply media queries in object
  * @param {Object} obj
  * @returns {null|Object}
  */
-export const process = (obj: any) => {
+export const process = (obj: any): any => {
     const mqKeys: any = [],
         // Copy non-media-query stuff
         res = Object.keys(obj).reduce((resParam: any, key) => {
@@ -57,7 +57,14 @@ export const process = (obj: any) => {
  * Returns object to match media query
  * @returns {Object}
  */
-const getMatchObject = () => {
+const getMatchObject = (): {
+    width: number;
+    height: number;
+    orientation: 'landscape' | 'portrait';
+    'aspect-ratio': number;
+    type: string;
+    direction: 'ltr' | 'rtl';
+} => {
     const win = Dimensions.get('window'),
         { isRTL } = I18nManager;
     return {
@@ -75,7 +82,7 @@ const getMatchObject = () => {
  * @param {Object} obj
  * @param {Object} mqObj
  */
-const merge = (obj: any, mqObj: any) => {
+const merge = (obj: any, mqObj: any): void => {
     Object.keys(mqObj).forEach((key) => {
         if (isObject(obj[key]) && isObject(mqObj[key])) {
             Object.assign(obj[key], mqObj[key]);

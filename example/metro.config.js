@@ -29,6 +29,8 @@ module.exports = {
     },
 
     transformer: {
+        // TODO: Make PR to disabled return types in JS files
+        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
         getTransformOptions: () => ({
             transform: {
                 experimentalImportSupport: false,

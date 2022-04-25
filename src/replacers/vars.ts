@@ -10,14 +10,14 @@ const PREFIX = '$';
  * Is string equals to another variable: '$varName'
  * @param {String} str
  */
-export const isVar = (str?: string) => typeof str === 'string' && str.startsWith(PREFIX);
+export const isVar = (str?: string): boolean => typeof str === 'string' && str.startsWith(PREFIX);
 
 /**
  * Replace var with value from vars arr.
  * @param {String} str variable name with $, e.g. '$color'
  * @param {Array<Object>} varsArr array of variable sets to search into.
  */
-export const calc = (str: string, varsArr: any) => {
+export const calc = (str: string, varsArr: any): any => {
     const realValue = get(str, varsArr);
     if (realValue === undefined) {
         throw new Error(`Unresolved variable: ${str}`);
@@ -30,7 +30,7 @@ export const calc = (str: string, varsArr: any) => {
  * @param {Object} obj
  * @returns {null|Object}
  */
-export const extract = (obj: any) =>
+export const extract = (obj: any): any =>
     Object.keys(obj).reduce((res: any, key) => {
         let returnRes = res;
         if (isVar(key)) {
@@ -45,7 +45,7 @@ export const extract = (obj: any) =>
  * @param {String} name variable with $, e.g. '$myVar'
  * @param {Array} varsArr array of variable sets
  */
-export const get = (name: string, varsArr: Readonly<Array<any>>) => {
+export const get = (name: string, varsArr: Readonly<Array<any>>): any => {
     if (!Array.isArray(varsArr)) {
         throw new Error('You should pass vars array to vars.get()');
     }

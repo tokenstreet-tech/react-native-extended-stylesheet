@@ -5,6 +5,8 @@ const { resolver } = require('./metro.config');
 const root = path.resolve(__dirname, '..');
 const nodeModules = path.join(__dirname, 'node_modules');
 
+// TODO: Make PR to disabled return types in JS files
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 module.exports = async function webpackConfig(env, argv) {
     const config = await createExpoWebpackConfigAsync(env, argv);
 

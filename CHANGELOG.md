@@ -1,3 +1,8 @@
+## 0.15.0 (Apr 25, 2022)
+
+-   Improved type system: Foundation laid for the future ([#19])
+-   Proxying `compose` to the `StyleSheet` ([#19])
+
 ## 0.14.0 (Dec 31, 2021)
 
 -   Migrated complete project to TypeScript

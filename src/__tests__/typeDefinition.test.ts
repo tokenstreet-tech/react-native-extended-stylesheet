@@ -3,7 +3,7 @@
  */
 import { StyleSheet } from 'react-native';
 
-import EStyleSheet from '../';
+import { EStyleSheet } from '../';
 
 describe('typeDefinition', () => {
     it('should not throw an error', () => {

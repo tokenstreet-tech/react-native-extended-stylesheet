@@ -2,5 +2,7 @@
  * Extended StyleSheet
  */
 
-import { EStyleSheet } from './api';
-export default new EStyleSheet();
+import { EStyleSheet as EStyleSheetClass } from './api';
+
+export const EStyleSheet = new EStyleSheetClass();
+export default EStyleSheet;

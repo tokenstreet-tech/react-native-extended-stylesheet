@@ -5,6 +5,7 @@
 
 # Build
 /lib
+.expo
 
 # Misc
 /coverage

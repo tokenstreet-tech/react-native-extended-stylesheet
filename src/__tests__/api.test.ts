@@ -16,7 +16,7 @@ describe('EStyleSheet API', () => {
                     $b: '1',
                     fontSize: '$a',
                     color: '$c',
-                },
+                } as any,
             });
 
             expect(styles).toEqual({});
@@ -59,7 +59,7 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw for incorrect global vars', () => {
-            const fn = () => api.build({ a: 1 });
+            const fn = (): void => api.build({ a: 1 });
             expect(fn).toThrowError(
                 `EStyleSheet.build() params should contain global variables (start with $) ` +
                     `or media queries (start with @media). Got 'a'.`
@@ -87,7 +87,7 @@ describe('EStyleSheet API', () => {
 
         it('styles should have prototype chain (#101)', () => {
             api.build();
-            const styles = api.create({ foo: 'bar' });
+            const styles = api.create({ foo: 'bar' } as any);
             expect(typeof styles.hasOwnProperty).toEqual('function');
         });
     });
@@ -101,7 +101,7 @@ describe('EStyleSheet API', () => {
                     fontSize: '$a',
                     color: '$c',
                 },
-            },
+            } as any,
             resultStyles = {
                 $a: 1,
                 $d: 3,
@@ -174,7 +174,7 @@ describe('EStyleSheet API', () => {
             });
             const styles = api.create({
                 text: () => api.value('$defaultText'),
-            });
+            } as any);
             expect(styles).toEqual({
                 _text: {
                     fontSize: 1,
@@ -222,12 +222,12 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw error when subscribe to incorrect event', () => {
-            const fn = () => api.subscribe('abc' as any, () => {});
+            const fn = (): void => api.subscribe('abc' as any, () => {});
             expect(fn).toThrowError("Only 'build' event is currently supported.");
         });
 
         it('should throw error when subscribe with non-function listener', () => {
-            const fn = () => api.subscribe('build', null as any);
+            const fn = (): void => api.subscribe('build', null as any);
             expect(fn).toThrowError('Listener should be a function.');
         });
     });
@@ -242,7 +242,7 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw error when unsubscribe with non-function listener', () => {
-            const fn = () => api.unsubscribe('build', null as any);
+            const fn = (): void => api.unsubscribe('build', null as any);
             expect(fn).toThrowError('Listener should be a function.');
         });
     });
