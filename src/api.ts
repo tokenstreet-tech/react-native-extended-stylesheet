@@ -23,11 +23,12 @@ export class EStyleSheet {
     private static readonly BUILD_EVENT: string = 'build';
 
     // Proxy to original
+    public flatten = StyleSheet.flatten;
+    public compose = StyleSheet.compose;
     public setStyleAttributePreprocessor = StyleSheet.setStyleAttributePreprocessor;
     public hairlineWidth = StyleSheet.hairlineWidth;
-    public absoluteFill = StyleSheet.absoluteFill;
     public absoluteFillObject = StyleSheet.absoluteFillObject;
-    public flatten = StyleSheet.flatten;
+    public absoluteFill = StyleSheet.absoluteFill;
 
     public child: typeof child;
     private builded: boolean;
