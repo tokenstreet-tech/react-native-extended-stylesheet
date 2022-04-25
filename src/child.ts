@@ -4,7 +4,7 @@
 
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-export type AnyStyle = ImageStyle & TextStyle & ViewStyle;
+type AnyStyle = ImageStyle & TextStyle & ViewStyle;
 type Function<K> = () => K;
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Value<T> = T | (string & {});
@@ -13,7 +13,7 @@ type Variable<T> = Function<Value<T>> | Value<T>;
 type Extended<T> = { [K in keyof T]: Variable<T[K]> };
 type MediaQuery = Record<string, Extended<AnyStyle>>;
 
-export type StyleSet<T = any> = {
+type StyleSet<T = any> = {
     [K in keyof T]: T[K] extends number
         ? T[K]
         : T[K] extends string
