@@ -59,6 +59,7 @@ describe('EStyleSheet API', () => {
         });
 
         it('should throw for incorrect global vars', () => {
+            // @ts-expect-error Required for the test case
             const fn = (): void => api.build({ a: 1 });
             expect(fn).toThrowError(
                 `EStyleSheet.build() params should contain global variables (start with $) ` +

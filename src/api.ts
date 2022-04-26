@@ -10,16 +10,10 @@ import { Sheet } from './sheet';
 import { Style } from './style';
 import type { TValueExpr } from './types/deperecatedCommon';
 import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
-import type { TMediaQueriesKeys } from './types/mediaQueries';
-import type { TExtendedVariablesKeys, TExtendedVariablesValues } from './types/variables';
+import type { TGlobalVariables } from './types/globalVariables';
 import { Value } from './value';
 
 type TListener = () => void;
-
-type TRawGlobalVars = Record<
-    TExtendedVariablesKeys,
-    Record<TMediaQueriesKeys, TExtendedVariablesValues> | TExtendedVariablesValues
->;
 
 export class EStyleSheet {
     private static readonly BUILD_EVENT: string = 'build';
@@ -77,7 +71,7 @@ export class EStyleSheet {
      * Builds all created stylesheets with passed variables
      * @param {Object} [rawGlobalVars]
      */
-    public build(rawGlobalVars?: TRawGlobalVars): void {
+    public build<T>(rawGlobalVars?: TGlobalVariables<T>): void {
         this.builded = true;
         this.calcGlobalVars(rawGlobalVars);
         this.calcSheets();
@@ -131,7 +125,7 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars(rawGlobalVars?: TRawGlobalVars): void {
+    private calcGlobalVars<T>(rawGlobalVars?: TGlobalVariables<T>): void {
         if (rawGlobalVars) {
             this.checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
@@ -150,7 +144,7 @@ export class EStyleSheet {
         }
     }
 
-    private checkGlobalVars(rawGlobalVars: Readonly<TRawGlobalVars>): void {
+    private checkGlobalVars<T>(rawGlobalVars: Readonly<TGlobalVariables<T>>): void {
         Object.keys(rawGlobalVars).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(
