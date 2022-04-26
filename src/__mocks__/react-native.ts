@@ -1,37 +1,29 @@
-import type { ScaledSize } from 'react-native';
+import type ReactNative from 'react-native';
+import type { DeepPartial } from 'utility-types';
 
-/**
- * React-native mock
- */
-
-export const Dimensions = {
-    get: (): Partial<ScaledSize> => ({ width: 100, height: 200 }),
-};
-
-export const Platform = {
-    OS: 'ios',
-};
-
-export const I18nManager = {
-    isRTL: false,
-};
-
-export const StyleSheet = {
-    create(obj: any): any {
-        return Object.keys(obj).reduce((res: any, key, index) => {
-            res[key] = index;
-            return res;
-        }, {});
+const reactNativeMock: DeepPartial<typeof ReactNative> = {
+    Dimensions: {
+        get: () => ({ width: 100, height: 200, scale: 1, fontScale: 1 }),
     },
-    flatten(arr: any): any {
-        return arr.reduce((res: any, item: any) => Object.assign(res, item), {});
+    Platform: {
+        OS: 'ios',
+        select: jest.fn(),
     },
-    hairlineWidth: 1,
+    I18nManager: {
+        isRTL: false,
+    },
+    StyleSheet: {
+        create(obj: any) {
+            return Object.keys(obj).reduce((res: any, key, index) => {
+                res[key] = index;
+                return res;
+            }, {});
+        },
+        flatten(arr: any) {
+            return arr.reduce((res: any, item: any) => Object.assign(res, item), {});
+        },
+        hairlineWidth: 1,
+    },
 };
 
-export default {
-    Dimensions,
-    Platform,
-    StyleSheet,
-    I18nManager,
-};
+module.exports = reactNativeMock;
