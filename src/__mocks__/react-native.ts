@@ -13,15 +13,12 @@ const reactNativeMock: DeepPartial<typeof ReactNative> = {
         isRTL: false,
     },
     StyleSheet: {
-        create(obj: any) {
-            return Object.keys(obj).reduce((res: any, key, index) => {
+        create: (obj) =>
+            Object.keys(obj).reduce((res: any, key, index) => {
                 res[key] = index;
                 return res;
-            }, {});
-        },
-        flatten(arr: any) {
-            return arr.reduce((res: any, item: any) => Object.assign(res, item), {});
-        },
+            }, {}),
+        flatten: (arr: any) => arr.reduce((res: any, item: any) => Object.assign(res, item), {}),
         hairlineWidth: 1,
     },
 };
