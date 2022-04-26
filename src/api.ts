@@ -8,17 +8,18 @@ import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
-import type { TExtendedVariablesKeys } from './types/common';
 import type { TValueExpr } from './types/deperecatedCommon';
 import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
+import type { TMediaQueriesKeys } from './types/mediaQueries';
+import type { TExtendedVariablesKeys, TExtendedVariablesValues } from './types/variables';
 import { Value } from './value';
 
 type TListener = () => void;
 
-type TMediaQueryKey = string;
-
-type TVarsValues = number | string | (() => number | string);
-type TRawGlobalVars = Record<TExtendedVariablesKeys, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
+type TRawGlobalVars = Record<
+    TExtendedVariablesKeys,
+    Record<TMediaQueriesKeys, TExtendedVariablesValues> | TExtendedVariablesValues
+>;
 
 export class EStyleSheet {
     private static readonly BUILD_EVENT: string = 'build';

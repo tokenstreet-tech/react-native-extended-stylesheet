@@ -1,10 +1,8 @@
-import type { FlexStyle, ImageStyle, Omit, PlatformOSType, TextStyle, ViewStyle } from 'react-native';
+import type { FlexStyle, ImageStyle, Omit, TextStyle, ViewStyle } from 'react-native';
 
 import type { TMathOperator } from '../replacers/operation';
-import type { TExtendedVariablesKeys } from './common';
-
-// Util
-type TypesafeExtract<T extends U, U> = T extends U ? T : never;
+import type { TMediaQueriesKeys } from './mediaQueries';
+import type { TExtendedVariablesKeys, TExtendedVariablesValues } from './variables';
 
 // Common
 type TPercent = `${number}%`;
@@ -12,24 +10,6 @@ type TRem = `${number}rem`;
 type TMathOperand = TExtendedVariablesKeys | TPercent | TRem | number;
 type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TExtendedSizeValues = TMathCalculation | TPercent | TRem | number | 'auto' | undefined;
-
-// TODO: Improve type with generics. Because sometimes you need exactly a number or a string, and not a union type.
-type TExtendedVariablesValues = number | string;
-
-type TMediaDirectionExpression = `(direction: ${'ltr' | 'rtl'})`;
-type TMediaOrientationExpression = `(orientation: ${'landscape' | 'portrait'})`;
-type TMediaSizeExpressionKeys =
-    | 'aspect-ratio'
-    | 'height'
-    | 'max-height'
-    | 'max-width'
-    | 'min-height'
-    | 'min-width'
-    | 'width';
-type TMediaSizeExpression = `(${TMediaSizeExpressionKeys}: ${number})`;
-type TMediaExpression = TMediaDirectionExpression | TMediaOrientationExpression | TMediaSizeExpression;
-type TMediaType = TypesafeExtract<'android' | 'ios', PlatformOSType>;
-type TMediaQueriesKeys = `@media ${TMediaExpression | TMediaType}${'' | ` and ${TMediaExpression}`}`;
 
 // Flex styles
 type TFlexStyleSizeKeys = Pick<

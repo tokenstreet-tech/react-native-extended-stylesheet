@@ -3,7 +3,7 @@
  */
 import { process } from './replacers/media-queries';
 import { extract, get } from './replacers/vars';
-import type { TRawGlobalVars } from './types/common';
+import type { TRawGlobalVars } from './types/deperecatedCommon';
 import { excludeKeys } from './utils';
 import { Value } from './value';
 
