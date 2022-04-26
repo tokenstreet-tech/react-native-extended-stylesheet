@@ -2,7 +2,7 @@ import type { FlexStyle, ImageStyle, Omit, TextStyle, ViewStyle } from 'react-na
 
 import type { TMathOperator } from '../replacers/operation';
 import type { TMediaQueriesKeys } from './mediaQueries';
-import type { TExtendedVariablesKeys, TExtendedVariablesValues } from './variables';
+import type { TExtendedVariablesKeys, TExtendedVariablesValues, TVariablesKeys, TVariablesValues } from './variables';
 
 // Common
 type TPercent = `${number}%`;
@@ -132,7 +132,7 @@ export type TExtendedNamedStyles<T> = {
           Record<string, TExtendedStyles>
         : Record<TMediaQueriesKeys, TExtendedStyles> | TExtendedStyles;
 };
-type TStyles = ImageStyle | TextStyle | ViewStyle;
+export type TStyles = ImageStyle | TextStyle | ViewStyle;
 export type TNamedStyles<T> = {
-    [P in keyof T]: P extends TExtendedVariablesKeys ? TExtendedVariablesValues : TStyles;
+    [P in keyof T]: P extends TVariablesKeys ? TVariablesValues : TStyles;
 };
