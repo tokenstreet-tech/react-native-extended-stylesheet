@@ -6,7 +6,7 @@ import { calc as percentCalc, isPercent } from './replacers/percent';
 import { calc as remCalc, isRem } from './replacers/rem';
 import { calc as scaleCalc, isScalable } from './replacers/scale';
 import { calc as varsCalc, get, isVar } from './replacers/vars';
-import type { TValueExpr } from './types/common';
+import type { TValueExpr } from './types/deperecatedCommon';
 
 type TAction = (str: string) => number | null;
 

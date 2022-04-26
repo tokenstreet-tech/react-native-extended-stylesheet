@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { process } from './replacers/media-queries';
 import { extract } from './replacers/vars';
 import { Style } from './style';
-import type { StyleObject } from './types/common';
+import type { StyleObject } from './types/deperecatedCommon';
 import { excludeKeys } from './utils';
 
 export class Sheet<T> {
