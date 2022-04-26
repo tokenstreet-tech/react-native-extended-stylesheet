@@ -54,8 +54,7 @@ export class EStyleSheet {
 
     /**
      * Creates stylesheet that will be calculated after build
-     * @param {Object} styles
-     * @returns {Object}
+     * @param styles
      */
     public create<T>(styles: TExtendedNamedStyles<T>): TNamedStyles<T> {
         const sheet = new Sheet(styles as any);
@@ -69,20 +68,19 @@ export class EStyleSheet {
 
     /**
      * Builds all created stylesheets with passed variables
-     * @param {Object} [rawGlobalVars]
+     * @param globalVariablesObject
      */
-    public build<TGlobalVariablesObject>(rawGlobalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
+    public build<TGlobalVariablesObject>(globalVariablesObject?: TGlobalVariables<TGlobalVariablesObject>): void {
         this.builded = true;
-        this.calcGlobalVars(rawGlobalVars);
+        this.calcGlobalVars(globalVariablesObject);
         this.calcSheets();
         this.callListeners(EStyleSheet.BUILD_EVENT);
     }
 
     /**
      * Calculates particular value. For some values you need to pass prop (e.g. percent)
-     * @param {*} expr
-     * @param {String} [prop]
-     * @returns {*}
+     * @param expr
+     * @param prop
      */
     public value(expr: Readonly<TValueExpr>, prop?: string): any {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
@@ -91,8 +89,8 @@ export class EStyleSheet {
 
     /**
      * Subscribe to event. Currently only 'build' event is supported.
-     * @param {String} event
-     * @param {Function} listener
+     * @param event
+     * @param listener
      */
     public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
@@ -105,8 +103,8 @@ export class EStyleSheet {
 
     /**
      * Unsubscribe from event. Currently only 'build' event is supported.
-     * @param {String} event
-     * @param {Function} listener
+     * @param event
+     * @param listener
      */
     public unsubscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
@@ -125,12 +123,14 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars<TGlobalVariablesObject>(rawGlobalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
-        if (rawGlobalVars) {
-            this.checkGlobalVars(rawGlobalVars);
+    private calcGlobalVars<TGlobalVariablesObject>(
+        globalVariablesObject?: TGlobalVariables<TGlobalVariablesObject>
+    ): void {
+        if (globalVariablesObject) {
+            this.checkGlobalVars(globalVariablesObject);
             // $theme is system variable used for caching
-            (rawGlobalVars as any).$theme = (rawGlobalVars as any).$theme ?? 'default';
-            this.globalVars = new Style(rawGlobalVars as any, [rawGlobalVars]).calc().calculatedVars;
+            (globalVariablesObject as any).$theme = (globalVariablesObject as any).$theme ?? 'default';
+            this.globalVars = new Style(globalVariablesObject as any, [globalVariablesObject]).calc().calculatedVars;
         }
     }
 
@@ -145,9 +145,9 @@ export class EStyleSheet {
     }
 
     private checkGlobalVars<TGlobalVariablesObject>(
-        rawGlobalVars: Readonly<TGlobalVariables<TGlobalVariablesObject>>
+        globalVariablesObject: Readonly<TGlobalVariables<TGlobalVariablesObject>>
     ): void {
-        Object.keys(rawGlobalVars).forEach((key) => {
+        Object.keys(globalVariablesObject).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(
                     `EStyleSheet.build() params should contain global variables (start with $) ` +
