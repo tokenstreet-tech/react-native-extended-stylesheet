@@ -123,7 +123,7 @@ type TFuncTextStyle = {
 interface IExtendedTextStyle extends IExtendedViewStyle, TFuncTextStyle {}
 
 // Export
-type TExtendedStyles = IExtendedImageStyle | IExtendedTextStyle | IExtendedViewStyle;
+export type TExtendedStyles = IExtendedImageStyle | IExtendedTextStyle | IExtendedViewStyle;
 export type TExtendedNamedStyles<T> = {
     [P in keyof T]: P extends TExtendedVariablesKeys
         ? TExtendedVariablesValues
