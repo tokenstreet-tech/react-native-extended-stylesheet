@@ -14,7 +14,7 @@ const reactNativeMock: DeepPartial<typeof ReactNative> = {
         flatten: (arr: any) => arr.reduce((res: any, item: any) => Object.assign(res, item), {}),
         hairlineWidth: 1,
     },
-    View: jest.fn().mockReturnValue('View'),
+    View: jest.fn().mockReturnValue('View') as any,
     Text: jest.fn().mockReturnValue('Text'),
 };
 
