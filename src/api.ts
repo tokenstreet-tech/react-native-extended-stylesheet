@@ -88,7 +88,7 @@ export class EStyleSheet {
     }
 
     /**
-     * Subscribe to event. Currently only 'build' event is supported.
+     * Subscribe to event. Currently, only 'build' event is supported.
      * @param event
      * @param listener
      */
@@ -102,7 +102,7 @@ export class EStyleSheet {
     }
 
     /**
-     * Unsubscribe from event. Currently only 'build' event is supported.
+     * Unsubscribe from event. Currently, only 'build' event is supported.
      * @param event
      * @param listener
      */
