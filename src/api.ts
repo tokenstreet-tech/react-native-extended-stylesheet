@@ -8,7 +8,8 @@ import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
-import type { TValueExpr } from './types/common';
+import type { TExtendedVariablesKeys } from './types/common';
+import type { TValueExpr } from './types/deperecatedCommon';
 import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
 import { Value } from './value';
 
@@ -17,7 +18,7 @@ type TListener = () => void;
 type TMediaQueryKey = string;
 
 type TVarsValues = number | string | (() => number | string);
-type TRawGlobalVars = Record<string, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
+type TRawGlobalVars = Record<TExtendedVariablesKeys, Record<TMediaQueryKey, TVarsValues> | TVarsValues>;
 
 export class EStyleSheet {
     private static readonly BUILD_EVENT: string = 'build';
@@ -34,7 +35,7 @@ export class EStyleSheet {
     private builded: boolean;
     private readonly sheets: Array<Sheet<unknown>>;
     private globalVars: any;
-    private listeners: Record<string, never> | { [key in typeof EStyleSheet.BUILD_EVENT]: Array<TListener> };
+    private readonly listeners: Record<string, never> | { [key in typeof EStyleSheet.BUILD_EVENT]: Array<TListener> };
 
     /**
      * Constructor

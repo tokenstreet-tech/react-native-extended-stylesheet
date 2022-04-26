@@ -1,6 +1,7 @@
 import type { FlexStyle, ImageStyle, Omit, PlatformOSType, TextStyle, ViewStyle } from 'react-native';
 
 import type { TMathOperator } from '../replacers/operation';
+import type { TExtendedVariablesKeys } from './common';
 
 // Util
 type TypesafeExtract<T extends U, U> = T extends U ? T : never;
@@ -11,8 +12,6 @@ type TRem = `${number}rem`;
 type TMathOperand = TExtendedVariablesKeys | TPercent | TRem | number;
 type TMathCalculation = `${TMathOperand} ${TMathOperator} ${TMathOperand}`;
 type TExtendedSizeValues = TMathCalculation | TPercent | TRem | number | 'auto' | undefined;
-
-type TExtendedVariablesKeys = `$${string}`;
 
 // TODO: Improve type with generics. Because sometimes you need exactly a number or a string, and not a union type.
 type TExtendedVariablesValues = number | string;
