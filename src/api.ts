@@ -71,7 +71,7 @@ export class EStyleSheet {
      * Builds all created stylesheets with passed variables
      * @param {Object} [rawGlobalVars]
      */
-    public build<T>(rawGlobalVars?: TGlobalVariables<T>): void {
+    public build<TGlobalVariablesObject>(rawGlobalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
         this.builded = true;
         this.calcGlobalVars(rawGlobalVars);
         this.calcSheets();
@@ -125,7 +125,7 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars<T>(rawGlobalVars?: TGlobalVariables<T>): void {
+    private calcGlobalVars<TGlobalVariablesObject>(rawGlobalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
         if (rawGlobalVars) {
             this.checkGlobalVars(rawGlobalVars);
             // $theme is system variable used for caching
@@ -144,7 +144,9 @@ export class EStyleSheet {
         }
     }
 
-    private checkGlobalVars<T>(rawGlobalVars: Readonly<TGlobalVariables<T>>): void {
+    private checkGlobalVars<TGlobalVariablesObject>(
+        rawGlobalVars: Readonly<TGlobalVariables<TGlobalVariablesObject>>
+    ): void {
         Object.keys(rawGlobalVars).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(

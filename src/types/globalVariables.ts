@@ -1,10 +1,10 @@
 import type { TMediaQueriesKeys } from './mediaQueries';
 import type { TExtendedVariablesKeys, TExtendedVariablesValues } from './variables';
 
-export type TGlobalVariables<T> = {
-    [P in keyof T]: P extends TExtendedVariablesKeys
+export type TGlobalVariables<TGlobalVariablesObject> = {
+    [TKey in keyof TGlobalVariablesObject]: TKey extends TExtendedVariablesKeys
         ? TExtendedVariablesValues
-        : P extends TMediaQueriesKeys
+        : TKey extends TMediaQueriesKeys
         ? Record<TExtendedVariablesKeys, TExtendedVariablesValues>
         : never;
 };
