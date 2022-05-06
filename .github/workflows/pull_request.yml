@@ -20,14 +20,7 @@ jobs:
                 password: ${{ secrets.DOCKER_PASSWORD }}
         strategy:
             matrix:
-                VALIDATION: [TypeScript, ESLint, Tests]
-                include:
-                    - VALIDATION: TypeScript
-                      COMMAND: typescript
-                    - VALIDATION: ESLint
-                      COMMAND: lint
-                    - VALIDATION: Tests
-                      COMMAND: test
+                script: [typescript, lint, test]
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3.1.1
@@ -36,4 +29,4 @@ jobs:
             - run: yarn install --frozen-lockfile
             - run: yarn build
             - run: yarn install --cwd example --frozen-lockfile
-            - run: yarn ${{ matrix.COMMAND }}
+            - run: yarn ${{ matrix.script }}
