@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@tokenstreet/react-native-extended-stylesheet": "file:..",
-        "expo": "^45.0.1",
+        "expo": "^45.0.2",
         "expo-splash-screen": "~0.15.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
