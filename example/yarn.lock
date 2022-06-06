@@ -4994,10 +4994,10 @@ expo-asset@~8.5.0:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-cli@^5.4.8:
-  version "5.4.8"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.4.8.tgz#da498746293b450d61e71091b2b35b732e2dac14"
-  integrity sha512-wVkVl92FAHiWccY9xQvmPn6ukLCDjTQ4aaioaJ4GSj1IaiYIr95JJBUhyGRDiPh0Vam2MZe51OX1uoFYIUXodg==
+expo-cli@^5.4.9:
+  version "5.4.9"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.4.9.tgz#71408d15005a11efe71f14caae90bd767afe1f70"
+  integrity sha512-21NQaJLL7JQ8ZvFY/2/8xDt9R/5lfMbVoQXtfHt/Qx/sW3DCopUivm1i1M4zhiuNGdVW/wZZOH/f9oTWXHR/EQ==
   dependencies:
     "@babel/runtime" "7.9.0"
     "@expo/apple-utils" "0.0.0-alpha.31"
