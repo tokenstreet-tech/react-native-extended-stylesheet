@@ -1366,10 +1366,10 @@
     serialize-error "6.0.0"
     temp-dir "^2.0.0"
 
-"@expo/dev-tools@0.13.157":
-  version "0.13.157"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.157.tgz#a405ff877b862504a87bb8c25ea9506a4492dce1"
-  integrity sha512-CigDk3drSC1LN/VBtTLfxTfB7URR5rPcNuAsqF2WySHaJypWk2hxunMKUzfxR45RgSQLb0iwmSRuK+eqpD7SJw==
+"@expo/dev-tools@0.13.158":
+  version "0.13.158"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.158.tgz#02648f7ec223376470f52532aa767a5f15fa0b7b"
+  integrity sha512-wPvY0+6jJRbJQ7DqlFMn4FuiYbY/kTDFfZ2Z7G4cM3flcTQCJRC+j0HWykDCPzuCEXjxrdXJAOrXVr49olamog==
   dependencies:
     "@expo/config" "6.0.24"
     base64url "3.0.1"
@@ -4922,10 +4922,10 @@ expo-asset@~8.5.0:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-cli@^5.4.10:
-  version "5.4.10"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.4.10.tgz#f6ac55dbd5af15b62c811268b65db7da005483c0"
-  integrity sha512-7OhZvyZZecmfSYZLSku3q/0MAA4FJA0tU1+jsO5ZHNoialcGuVJ8ycqDKhHvNHpORpsNJ/58jCs/8L7tpXuLUQ==
+expo-cli@^5.4.11:
+  version "5.4.11"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-5.4.11.tgz#b874125286fff1c1fb93fd06c253575b2f8aa43e"
+  integrity sha512-AWx0Zr3YYnnAQkVLxL98zBgj7CLyiTlKtiRMeexYkW0o4O85udfokF4FSCDFWf7YHrGg17PfNGKzlNya0Ths7w==
   dependencies:
     "@babel/runtime" "7.9.0"
     "@expo/apple-utils" "0.0.0-alpha.31"
@@ -4933,7 +4933,7 @@ expo-cli@^5.4.10:
     "@expo/config" "6.0.24"
     "@expo/config-plugins" "4.1.5"
     "@expo/dev-server" "0.1.113"
-    "@expo/dev-tools" "0.13.157"
+    "@expo/dev-tools" "0.13.158"
     "@expo/json-file" "8.2.36"
     "@expo/osascript" "2.0.33"
     "@expo/package-manager" "0.0.55"
