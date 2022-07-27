@@ -56,7 +56,7 @@ npm i react-native-extended-stylesheet --save
 
 1. Define styles using `EStyleSheet.create()` instead of `StyleSheet.create()`:
 
-```js
+```tsx
 /* component.js */
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -91,7 +91,7 @@ class MyComponent extends React.Component {
 
 2. In app entry point call `EStyleSheet.build()` to actually calculate styles:
 
-```js
+```tsx
 /* app.js */
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -101,15 +101,13 @@ EStyleSheet.build({
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ## Features
 
 ### Global variables
 
 Global variables are passed to `EStyleSheet.build()` and available in all stylesheets.
 
-```js
+```tsx
 // app entry: set global variables and calc styles
 EStyleSheet.build({
     $textColor: '#0275d8',
@@ -132,14 +130,12 @@ const styles = EStyleSheet.create({
 </View>;
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### Local variables
 
 Local variables can be defined directly in sylesheet and have priority over global variables.
 To define local variable just start it with `$`:
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     $textColor: '#0275d8',
     text: {
@@ -152,7 +148,6 @@ const styles = EStyleSheet.create({
 ```
 
 Local variables are also available in result style: `styles.$textColor`.
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Theming
 
@@ -163,7 +158,7 @@ Changing app theme contains two steps:
 
 To re-build app styles you can call `EStyleSheet.build()` with new set of global variables:
 
-```js
+```tsx
 EStyleSheet.build({
     $theme: 'light', // required variable for caching!
     $bgColor: 'white',
@@ -175,7 +170,7 @@ EStyleSheet.build({
 Re-rendering whole component tree is currently a bit tricky in React.
 One option is to wrap app into component and re-mount it on theme change:
 
-```js
+```tsx
   toggleTheme() {
     const theme = EStyleSheet.value('$theme') === 'light' ? darkTheme : lightTheme;
     EStyleSheet.build(theme);
@@ -192,7 +187,6 @@ The approach is open for discusison, feel free to share your ideas in [#22](http
 [#47](https://github.com/vitalets/react-native-extended-stylesheet/issues/47).
 
 You can check out full theming code in [examples/theming](examples/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Media queries
 
@@ -217,7 +211,7 @@ You can use media queries on:
 
 Examples:
 
-```js
+```tsx
 // global level
 EStyleSheet.build({
     '@media ios': {
@@ -254,14 +248,13 @@ const styles = EStyleSheet.create({
 ```
 
 You can check out full example code in [examples/media-queries](examples/media-queries) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Math operations
 
 Any value can contain **one** of following math operations: `*`, `/`, `+`, `-`. Operands can be numbers, variables and percents.
 For example, to render circle you may create style:
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     $size: 20,
     circle: {
@@ -272,13 +265,11 @@ const styles = EStyleSheet.create({
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### REM units
 
 Similar to [CSS3 rem unit](http://snook.ca/archives/html_and_css/font-size-with-rem) it allows to define any integer value as relative to the root element. In our case root value is special `rem` global variable that can be set in `EStyleSheet.build()`. It makes easy to scale app depending on screen size and other conditions. Default rem is `16`.
 
-```js
+```tsx
 // component
 const styles = EStyleSheet.create({
     text: {
@@ -294,7 +285,6 @@ EStyleSheet.build({
 ```
 
 You can check out full example code in [examples/rem](examples/rem) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Percents
 
@@ -302,7 +292,7 @@ Percent values are supported natively since React Native 0.43.
 EStyleSheet passes them through to original StyleSheet except cases, when you use calculations with percents,
 e.g. `"100% - 20"`. Percents are calculated relative to **screen width/height** on application launch.
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     column: {
         width: '100% - 20',
@@ -314,7 +304,7 @@ const styles = EStyleSheet.create({
 If you need sub-component with percent operations relative to parent component - you can achieve that with variables.
 For example, to render 2 sub-columns with 30%/70% width of parent column:
 
-```js
+```tsx
 render() {
   return (
     <View style={styles.column}>
@@ -341,13 +331,11 @@ const styles = EStyleSheet.create({
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### Scaling
 
 You can apply scale to components by setting special `$scale` variable.
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     $scale: 1.5,
     button: {
@@ -360,7 +348,7 @@ const styles = EStyleSheet.create({
 
 This helps to create reusable components that could be scaled depending on prop:
 
-```js
+```tsx
 class Button extends React.Component {
     static propTypes = {
         scale: React.PropTypes.number,
@@ -384,7 +372,6 @@ let getStyle = function (scale = 1) {
 ```
 
 To cache calculated styles please have a look on [caching](#caching) section.
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Underscored styles
 
@@ -395,7 +382,7 @@ You can take this [awesome icon library](https://github.com/oblador/react-native
 and see that `<Icon>` component has `size` and `color` props.
 It would be convenient to define style for text and keep icon's size/color in sync.
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     text: {
         fontSize: '1rem',
@@ -406,7 +393,7 @@ const styles = EStyleSheet.create({
 
 In runtime `styles` created with original react's `StyleSheet` will look like:
 
-```js
+```tsx
 styles = {
     text: 0,
 };
@@ -414,7 +401,7 @@ styles = {
 
 But extended stylesheet saves calculated values under `_text` property:
 
-```js
+```tsx
 styles = {
     text: 0,
     _text: {
@@ -426,7 +413,7 @@ styles = {
 
 To render icon we just take styles from `_text`:
 
-```js
+```tsx
 return (
     <View>
         <Icon name="rocket" size={styles._text.fontSize} color={styles._text.color} />
@@ -435,15 +422,13 @@ return (
 );
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### Pseudo classes (:nth-child)
 
 Extended stylesheet supports 4 pseudo classes: `:first-child`, `:nth-child-even`, `:nth-child-odd`, `:last-child`. As well as in traditional CSS it allows to apply special styling for first/last items or render stripped rows.
 To get style for appropriate index you should use `EStyleSheet.child()` method.
 It's signature: `EStyleSheet.child(stylesObj, styleName, index, count)`.
 
-```js
+```tsx
 const styles = EStyleSheet.create({
   row: {
     fontSize: '1.5rem',
@@ -470,14 +455,12 @@ render() {
 }
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### Value as a function
 
 For the deepest customization you can specify any value as a function that will be executed on EStyleSheet build.
 For example, you may _darken_ or _lighten_ color of variable via [npm color package](https://www.npmjs.com/package/color):
 
-```js
+```tsx
 import Color from 'color';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -498,7 +481,7 @@ render() {
 
 The common pattern is to use [EStyleSheet.value()](#value) inside the function to get access to global variables:
 
-```js
+```tsx
 EStyleSheet.build({
     $prmaryColor: 'green',
 });
@@ -510,14 +493,12 @@ const styles = EStyleSheet.create({
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### Caching
 
 If you use dynamic styles depending on runtime prop or you are making reusable component with dynamic styling
 you may need stylesheet creation in every `render()` call. Let's take example from [scaling](#scaling) section:
 
-```js
+```tsx
 class Button extends React.Component {
     static propTypes = {
         scale: React.PropTypes.number,
@@ -544,7 +525,7 @@ To avoid creating styles on every render you can use [lodash.memoize](https://ww
 store result for particular parameters and returns it from cache when called with the same parameters.
 Updated example:
 
-```js
+```tsx
 import memoize from 'lodash.memoize';
 
 let getStyle = memoize(function (scale = 1) {
@@ -561,13 +542,12 @@ let getStyle = memoize(function (scale = 1) {
 
 Now if you call `getStyle(1.5)` 3 times actually style will be created on the first call
 and two other calls will get it from cache.
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Outline for debug
 
 It is possible to outline all components that are using EStyleSheet. For that set global `$outline` variable:
 
-```js
+```tsx
 EStyleSheet.build({ $outline: 1 });
 ```
 
@@ -576,7 +556,7 @@ EStyleSheet.build({ $outline: 1 });
 
 To outline particular component set local `$outline` variable:
 
-```js
+```tsx
 const styles = EStyleSheet.create({
   $outline: 1,
   column: {
@@ -586,8 +566,6 @@ const styles = EStyleSheet.create({
   ...
 });
 ```
-
-\[[top](#react-native-extended-stylesheet)\]
 
 ### Hot module reload
 
@@ -612,14 +590,14 @@ EStyleSheet supports HMR with the following options:
         });
         ```
     See full example of HMR [here](examples/hmr).
-    \[[top](#react-native-extended-stylesheet)\]
+
     ````
 
 ## EStyleSheet API
 
 ### .create()
 
-```js
+```tsx
 /**
  * Creates extended stylesheet object
  *
@@ -629,11 +607,9 @@ EStyleSheet supports HMR with the following options:
  create (source) {...}
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### .build()
 
-```js
+```tsx
 /**
  * Calculates all stylesheets
  *
@@ -642,11 +618,9 @@ EStyleSheet supports HMR with the following options:
  build (globalVars) {...}
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### .value()
 
-```js
+```tsx
 /**
  * Calculates particular expression.
  *
@@ -660,7 +634,7 @@ EStyleSheet supports HMR with the following options:
 
 **Please note** that in most cases `EStyleSheet.value()` should be used inside function, not directly:
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     button1: {
         width: () => EStyleSheet.value('$contentWidth') + 10, // <-- Correct!
@@ -671,11 +645,9 @@ const styles = EStyleSheet.create({
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### .child()
 
-```js
+```tsx
 /**
  * Returns styles with pseudo classes :first-child, :nth-child-even, :last-child according to index and count
  *
@@ -688,11 +660,9 @@ const styles = EStyleSheet.create({
  child (styles, styleName, index, count) {...}
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### .subscribe()
 
-```js
+```tsx
 /**
  * Subscribe to event. Currently only 'build' event is supported.
  *
@@ -708,7 +678,7 @@ As extended style is calculated after call of `EStyleSheet.build()`,
 it is not available instantly after creation so you should wrap pre-render
 info listener to `build` event:
 
-```js
+```tsx
 const styles = EStyleSheet.create({
     button: {
         width: '80%',
@@ -725,11 +695,9 @@ EStyleSheet.subscribe('build', () => {
 });
 ```
 
-\[[top](#react-native-extended-stylesheet)\]
-
 ### .unsubscribe()
 
-```js
+```tsx
 /**
  * Unsubscribe from event. Currently only 'build' event is supported.
  *
@@ -741,7 +709,6 @@ EStyleSheet.subscribe('build', () => {
 ```
 
 Unsubscribe from event.
-\[[top](#react-native-extended-stylesheet)\]
 
 ## Caveats
 
