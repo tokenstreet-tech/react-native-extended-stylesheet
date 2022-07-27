@@ -1,9 +1,7 @@
 # React Native Extended StyleSheet
 
-[![Build Status](https://travis-ci.org/vitalets/react-native-extended-stylesheet.svg?branch=master)](https://travis-ci.org/vitalets/react-native-extended-stylesheet)
-[![Coverage Status](https://coveralls.io/repos/github/vitalets/react-native-extended-stylesheet/badge.svg?branch=master)](https://coveralls.io/github/vitalets/react-native-extended-stylesheet?branch=master)
-[![npm version](https://img.shields.io/npm/v/react-native-extended-stylesheet.svg)](https://www.npmjs.com/package/react-native-extended-stylesheet)
-[![license](https://img.shields.io/npm/l/react-native-extended-stylesheet.svg)](https://www.npmjs.com/package/react-native-extended-stylesheet)
+[![npm version](https://img.shields.io/npm/v/@tokenstreet/react-native-extended-stylesheet.svg)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
+[![license](https://img.shields.io/npm/l/@tokenstreet/react-native-extended-stylesheet.svg)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
 
 Drop-in replacement of [React Native StyleSheet](https://facebook.github.io/react-native/docs/stylesheet.html) with media-queries, variables, dynamic themes,
 relative units, percents, math operations, scaling and other styling stuff.
@@ -49,7 +47,7 @@ right in the browser or in [Expo app](https://expo.io/tools#client).
 ## Installation
 
 ```
-npm i react-native-extended-stylesheet --save
+npm i @tokenstreet/react-native-extended-stylesheet --save
 ```
 
 ## Usage
@@ -58,7 +56,7 @@ npm i react-native-extended-stylesheet --save
 
 ```jsx
 /* component.js */
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 
 // define extended styles
 const styles = EStyleSheet.create({
@@ -93,7 +91,7 @@ class MyComponent extends React.Component {
 
 ```jsx
 /* app.js */
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 
 EStyleSheet.build({
     // always call EStyleSheet.build() even if you don't use global variables!
@@ -462,7 +460,7 @@ For example, you may _darken_ or _lighten_ color of variable via [npm color pack
 
 ```jsx
 import Color from 'color';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
   button: {
@@ -739,9 +737,8 @@ Please see [CHANGELOG.md](CHANGELOG.md)
 
 ## Feedback
 
-If you have any ideas or something goes wrong feel free to
-[open new issue](https://github.com/vitalets/react-native-extended-stylesheet/issues/new).
+If you have any ideas or something goes wrong feel free to [open new issue](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/issues/new).
 
 ## License
 
-[MIT](LICENSE.md) @ [Daniel Reichhart](https://github.com/reichhartd)
+[MIT](LICENSE.md)
