@@ -32,7 +32,7 @@
         "@types/react-test-renderer": "^18.0.0",
         "babel-plugin-module-resolver": "^4.0.0",
         "babel-preset-expo": "9.2.0",
-        "expo-cli": "^6.0.2",
+        "expo-cli": "^6.0.5",
         "react-test-renderer": "^18.2.0"
     }
 }
