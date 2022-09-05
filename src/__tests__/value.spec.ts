@@ -31,7 +31,7 @@ describe('value', () => {
         expect(new Value('$e', 'prop', varsArr).calc()).toEqual('abc');
         expect(new Value('$d', 'prop', varsArr).calc()).toEqual({ x: 1 });
         expect(new Value('$r', 'prop', varsArr).calc()).toEqual(32);
-        expect(() => new Value('$xxx', 'prop', varsArr).calc()).toThrowError('Unresolved variable: $xxx');
+        expect(() => new Value('$xxx', 'prop', varsArr).calc()).toThrow('Unresolved variable: $xxx');
         // Native percents supported since RN 34, see #32
         expect(new Value('$colWidth', 'prop', varsArr).calc()).toEqual('50%');
     });

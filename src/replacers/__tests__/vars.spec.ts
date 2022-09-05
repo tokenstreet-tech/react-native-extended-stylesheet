@@ -8,8 +8,8 @@ describe('vars', () => {
 
     it('should calc var', () => {
         expect(calc('$abc', [{ $abc: 1 }])).toBe(1);
-        expect(() => calc('$abc', [])).toThrowError('Unresolved variable: $abc');
-        expect(() => calc('abc', [{ $abc: 1 }])).toThrowError('Unresolved variable: abc');
+        expect(() => calc('$abc', [])).toThrow('Unresolved variable: $abc');
+        expect(() => calc('abc', [{ $abc: 1 }])).toThrow('Unresolved variable: abc');
     });
 
     it('should take first var from varsArr', () => {
@@ -34,7 +34,7 @@ describe('vars', () => {
     it('should get var', () => {
         expect(get('$abc', [{ $abc: 1 }, { $abc: 2 }])).toBe(1);
         expect(get('abc', [])).toBe(undefined);
-        expect(() => get('abc', undefined as unknown as Array<never>)).toThrowError(
+        expect(() => get('abc', undefined as unknown as Array<never>)).toThrow(
             'You should pass vars array to vars.get()'
         );
     });

@@ -17,7 +17,7 @@ describe('percent', () => {
     });
 
     it('should throw error for invalid prop', () => {
-        expect(() => calc('10%', 'abc')).toThrowError(
+        expect(() => calc('10%', 'abc')).toThrow(
             [
                 `Name of variable or property with percent value should contain `,
                 `(height,top,bottom,vertical,width,left,right,horizontal) to define base for percent calculation`,
