@@ -55,7 +55,7 @@ describe('style', () => {
             $a: '$b',
             $b: '$a',
         };
-        expect(() => new Style(source).calc()).toThrowError('Cyclic reference: $b -> $a -> $b');
+        expect(() => new Style(source).calc()).toThrow('Cyclic reference: $b -> $a -> $b');
     });
 
     it('should apply scale inlined', () => {

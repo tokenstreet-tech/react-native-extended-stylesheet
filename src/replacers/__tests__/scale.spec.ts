@@ -14,7 +14,7 @@ describe('scale', () => {
     });
 
     it('should throw errors for invalid input', () => {
-        expect(() => calc('abc' as unknown as number, 2)).toThrowError('Invalid value for scale: abc');
-        expect(() => calc(2, 'cde' as unknown as number)).toThrowError('Invalid scaleFactor for scale: cde');
+        expect(() => calc('abc' as unknown as number, 2)).toThrow('Invalid value for scale: abc');
+        expect(() => calc(2, 'cde' as unknown as number)).toThrow('Invalid scaleFactor for scale: cde');
     });
 });

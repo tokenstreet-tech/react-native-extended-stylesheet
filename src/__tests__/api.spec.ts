@@ -61,7 +61,7 @@ describe('EStyleSheet API', () => {
         it('should throw for incorrect global vars', () => {
             // @ts-expect-error Required for the test case
             const fn = (): void => api.build({ a: 1 });
-            expect(fn).toThrowError(
+            expect(fn).toThrow(
                 `EStyleSheet.build() params should contain global variables (start with $) ` +
                     `or media queries (start with @media). Got 'a'.`
             );
@@ -224,12 +224,12 @@ describe('EStyleSheet API', () => {
 
         it('should throw error when subscribe to incorrect event', () => {
             const fn = (): void => api.subscribe('abc' as any, () => {});
-            expect(fn).toThrowError("Only 'build' event is currently supported.");
+            expect(fn).toThrow("Only 'build' event is currently supported.");
         });
 
         it('should throw error when subscribe with non-function listener', () => {
             const fn = (): void => api.subscribe('build', null as any);
-            expect(fn).toThrowError('Listener should be a function.');
+            expect(fn).toThrow('Listener should be a function.');
         });
     });
 
@@ -244,7 +244,7 @@ describe('EStyleSheet API', () => {
 
         it('should throw error when unsubscribe with non-function listener', () => {
             const fn = (): void => api.unsubscribe('build', null as any);
-            expect(fn).toThrowError('Listener should be a function.');
+            expect(fn).toThrow('Listener should be a function.');
         });
     });
 

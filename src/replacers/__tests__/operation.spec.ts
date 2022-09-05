@@ -43,14 +43,14 @@ describe('operation', () => {
     });
 
     it('should throw on invalid data', () => {
-        expect(() => exec({ operator: 'a' as unknown as TMathOperator, v1: 10, v2: 0.5 })).toThrowError(
+        expect(() => exec({ operator: 'a' as unknown as TMathOperator, v1: 10, v2: 0.5 })).toThrow(
             'Unknown operator: a'
         );
-        expect(() => exec({ operator: '+', v1: '10' as unknown as number, v2: 0.5 })).toThrowError(
+        expect(() => exec({ operator: '+', v1: '10' as unknown as number, v2: 0.5 })).toThrow(
             'Operation value should be number, you try: 10'
         );
-        expect(() => exec({ operator: '/', v1: 10, v2: 0 })).toThrowError('Operation divisor should not be zero');
-        expect(() => exec({ operator: '+', v1: 10, v2: null as unknown as number })).toThrowError(
+        expect(() => exec({ operator: '/', v1: 10, v2: 0 })).toThrow('Operation divisor should not be zero');
+        expect(() => exec({ operator: '+', v1: 10, v2: null as unknown as number })).toThrow(
             'Operation value should be number, you try: null'
         );
     });

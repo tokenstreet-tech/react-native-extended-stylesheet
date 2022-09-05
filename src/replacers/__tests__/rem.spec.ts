@@ -12,6 +12,6 @@ describe('rem', () => {
     it('should throw error for invalid koef', () => {
         expect(() => {
             calc('abcrem', 10);
-        }).toThrowError('Invalid rem value: abcrem');
+        }).toThrow('Invalid rem value: abcrem');
     });
 });
