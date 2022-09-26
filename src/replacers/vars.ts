@@ -34,7 +34,7 @@ export const extract = (obj: any): any =>
     Object.keys(obj).reduce((res: any, key) => {
         let returnRes = res;
         if (isVar(key)) {
-            returnRes = returnRes || {};
+            returnRes ||= {};
             returnRes[key] = obj[key];
         }
         return returnRes;

@@ -94,7 +94,7 @@ export class EStyleSheet {
      */
     public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
-        this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT] || [];
+        this.listeners[EStyleSheet.BUILD_EVENT] ||= [];
         this.listeners[EStyleSheet.BUILD_EVENT].push(listener);
         if (this.builded) {
             listener();
