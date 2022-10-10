@@ -60,7 +60,7 @@
     "devDependencies": {
         "@commitlint/config-conventional": "^17.1.0",
         "@react-native-community/eslint-config": "^3.1.0",
-        "@release-it/conventional-changelog": "^5.1.0",
+        "@release-it/conventional-changelog": "^5.1.1",
         "@types/css-mediaquery": "^0.1.1",
         "@types/jest": "^29.1.1",
         "@types/react": "^17.0.45",
