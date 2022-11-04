@@ -5,15 +5,15 @@
     "private": true,
     "main": "index",
     "scripts": {
-        "android": "expo start --android",
-        "ios": "expo start --ios",
-        "web": "expo start --web",
         "start": "expo start",
+        "ios": "expo start --ios",
+        "android": "expo start --android",
+        "web": "expo start --web",
+        "prebuild": "export LC_ALL=en_US.UTF-8 && expo prebuild --clean",
         "test": "jest"
     },
     "dependencies": {
-        "@tokenstreet/react-native-extended-stylesheet": "file:..",
-        "expo": "^46.0.16",
+        "expo": "~46.0.16",
         "expo-splash-screen": "~0.16.1",
         "react": "18.0.0",
         "react-dom": "18.0.0",
