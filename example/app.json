@@ -9,7 +9,11 @@
         "version": "1.0.0",
         "platforms": ["ios", "android", "web"],
         "ios": {
+            "bundleIdentifier": "com.example.tokenstreetreactnativeextendedstylesheet",
             "supportsTablet": true
+        },
+        "android": {
+            "package": "com.example.tokenstreetreactnativeextendedstylesheet"
         },
         "assetBundlePatterns": ["**/*"]
     }
