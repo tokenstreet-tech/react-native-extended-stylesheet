@@ -14,17 +14,9 @@ updates:
       schedule:
           interval: 'weekly'
       ignore:
-          - dependency-name: '@babel/core'
-          - dependency-name: 'babel-preset-expo'
-          - dependency-name: 'expo-splash-screen'
           - dependency-name: 'react'
           - dependency-name: 'react-dom'
           - dependency-name: 'react-native'
-          - dependency-name: 'react-native-gesture-handler'
-          - dependency-name: 'react-native-reanimated'
-          - dependency-name: 'react-native-safe-area-context'
-          - dependency-name: 'react-native-screens'
-          - dependency-name: 'react-native-unimodules'
     - package-ecosystem: 'github-actions'
       directory: '/'
       schedule:
