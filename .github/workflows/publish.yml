@@ -9,12 +9,7 @@ on:
 
 jobs:
     publish:
-        runs-on: [self-hosted, linux]
-        container:
-            image: tokenstreet/github-actions-base-image:latest
-            credentials:
-                username: ${{ secrets.DOCKER_USER }}
-                password: ${{ secrets.DOCKER_PASSWORD }}
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
               with:
