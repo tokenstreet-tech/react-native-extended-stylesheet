@@ -1,4 +1,4 @@
-import type { FlexStyle, ImageStyle, Omit, TextStyle, ViewStyle } from 'react-native';
+import type { FlexStyle, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 import type { TMathOperator } from '../replacers/operation';
 import type { TMediaQueriesKeys } from './mediaQueries';
