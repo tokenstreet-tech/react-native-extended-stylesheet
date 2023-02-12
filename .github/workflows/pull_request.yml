@@ -12,12 +12,7 @@ on:
 jobs:
     yarn_script_validation:
         name: yarn script validation
-        runs-on: [self-hosted, linux]
-        container:
-            image: tokenstreet/github-actions-base-image:latest
-            credentials:
-                username: ${{ secrets.DOCKER_USER }}
-                password: ${{ secrets.DOCKER_PASSWORD }}
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 script: [typescript, lint, test]
