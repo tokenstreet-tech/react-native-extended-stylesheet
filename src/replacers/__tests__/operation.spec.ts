@@ -1,5 +1,4 @@
-import type { TMathOperator } from '../operation';
-import { exec, isOperation } from '../operation';
+import { exec, isOperation, type TMathOperator } from '../operation';
 
 describe('operation', () => {
     it('should detect *', () => {

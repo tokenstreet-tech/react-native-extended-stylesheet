@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native';
 import { EStyleSheet } from '../';
 
 describe('typeDefinition', () => {
+    // eslint-disable-next-line jest/expect-expect
     it('should not throw an error', () => {
         const eStyles = EStyleSheet.create({
             $var: 10,
