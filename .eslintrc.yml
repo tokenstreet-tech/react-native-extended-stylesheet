@@ -58,6 +58,7 @@ rules:
     consistent-return: 0
     func-names: 0
     id-length: 0
+    logical-assignment-operators: 0
     max-lines-per-function: 0
     max-params: 0
     max-statements: 0
