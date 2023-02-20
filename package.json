@@ -64,7 +64,6 @@
         "@types/css-mediaquery": "^0.1.1",
         "@types/jest": "^29.4.0",
         "@types/react": "^18.0.28",
-        "@types/react-native": "^0.71.3",
         "@typescript-eslint/eslint-plugin": "^5.51.0",
         "@typescript-eslint/parser": "^5.51.0",
         "commitlint": "^17.4.2",
