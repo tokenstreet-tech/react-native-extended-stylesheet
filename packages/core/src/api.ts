@@ -106,6 +106,28 @@ export class EStyleSheet {
      * Subscribe to event. Currently, only 'build' event is supported.
      * @param event
      * @param listener
+     *
+     * This method is useful when you want to pre-render some component on init.
+     * As extended style is calculated after call of `EStyleSheet.build()`,
+     * it is not available instantly after creation so you should wrap pre-render
+     * info listener to `build` event:
+     *
+     * ```jsx
+     * const styles = EStyleSheet.create({
+     *     button: {
+     *         width: '80%',
+     *     },
+     * });
+     *
+     * // this will NOT work as styles.button is not calculated yet
+     * let Button = <View style={styles.button}></View>;
+     *
+     * // but this will work
+     * let Button;
+     * EStyleSheet.subscribe('build', () => {
+     *     Button = <View style={styles.button}></View>;
+     * });
+     * ```
      */
     public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
