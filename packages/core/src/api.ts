@@ -2,13 +2,13 @@
  * Extended StyleSheet API
  */
 import { StyleSheet } from 'react-native';
-import type { TValueExpr } from './types/deperecatedCommon';
-import { child } from './child';
 
+import { child } from './child';
 import { isMediaQuery } from './replacers/media-queries';
 import { isVar } from './replacers/vars';
 import { Sheet } from './sheet';
 import { Style } from './style';
+import type { TValueExpr } from './types/deperecatedCommon';
 import type { TExtendedNamedStyles, TNamedStyles } from './types/extendedStyles';
 import type { TGlobalVariables } from './types/globalVariables';
 import { Value } from './value';
