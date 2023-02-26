@@ -53,7 +53,7 @@ export class EStyleSheet {
     }
 
     /**
-     * Creates extended stylesheet object that will be calculated after build
+     * Creates extended stylesheet object that will be calculated after build.
      * @param source Source style
      * @returns Extended stylesheet object
      */
@@ -68,7 +68,7 @@ export class EStyleSheet {
     }
 
     /**
-     * Calculates all stylesheets
+     * Calculates all stylesheets.
      * @param globalVars Global variables for all stylesheets
      */
     public build<TGlobalVariablesObject>(globalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
@@ -79,7 +79,7 @@ export class EStyleSheet {
     }
 
     /**
-     * Calculates particular expression. For some values you need to pass prop (e.g. percent)
+     * Calculates particular expression. For some values you need to pass prop (e.g. percent).
      * @param expr Value
      * @param prop Property for which value is calculated. For example, to calculate percent values the function should know is it 'width' or 'height' to use proper reference value.
      * @returns Calculated result
@@ -106,6 +106,7 @@ export class EStyleSheet {
      * Subscribe to event. Currently, only 'build' event is supported.
      * @param event
      * @param listener
+     * @returns void
      *
      * This method is useful when you want to pre-render some component on init.
      * As extended style is calculated after call of `EStyleSheet.build()`,

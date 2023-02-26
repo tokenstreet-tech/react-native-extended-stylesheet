@@ -30,7 +30,7 @@ type StyleSet<T = any> = {
 };
 
 /**
- * Returns styles with pseudo classes :first-child, :nth-child-even, :last-child according to index and count
+ * Returns styles with pseudo classes `:first-child`, `:nth-child-even`, `:last-child` according to index and count.
  * @param {Object} styles
  * @param {String} styleName
  * @param {Number} index Index of item for style
