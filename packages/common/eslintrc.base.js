@@ -55,6 +55,7 @@ module.exports = {
         'max-params': 0,
         'max-statements': 0,
         'no-continue': 0,
+        "no-duplicate-imports": 0,
         'no-magic-numbers': 0,
         'no-nested-ternary': 0,
         'no-ternary': 0,
