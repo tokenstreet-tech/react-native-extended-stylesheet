@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                key: [typecheck, lint, test]
+                key: [typecheck, lint, test, build]
                 include:
                     - key: typecheck
                       job_name: ʦ TypeScript
@@ -21,6 +21,10 @@ jobs:
                       job_name: 🤡 Jest
                       step_name: ✅ Test
                       script: test
+                    - key: build
+                      job_name: 🏗 Build
+                      step_name: 📦 Build package
+                      script: build
         steps:
             - name: 🛑 Cancel Previous Runs
               uses: styfle/cancel-workflow-action@0.11.0
