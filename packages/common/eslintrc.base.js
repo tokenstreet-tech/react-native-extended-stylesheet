@@ -1,11 +1,13 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: { project: ['./tsconfig.json'] },
-    plugins: ['@typescript-eslint', 'jest', 'simple-import-sort'],
+    plugins: ['@typescript-eslint', 'react', 'react-native', 'jest', 'simple-import-sort'],
     extends: [
         '@react-native-community',
         'eslint:all',
         'plugin:@typescript-eslint/all',
+        'plugin:react/all',
+        'plugin:react-native/all',
         'plugin:jest/recommended',
         'prettier',
     ],
