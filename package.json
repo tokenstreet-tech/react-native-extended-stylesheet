@@ -12,7 +12,7 @@
         "lint:fix": "yarn workspaces run lint:fix",
         "test": "yarn workspaces run test",
         "prettier": "prettier --write . --ignore-path=.gitignore",
-        "prepare": "husky install && yarn build"
+        "prepare": "husky install && yarn --cwd packages/core build"
     },
     "dependencies": {},
     "devDependencies": {
