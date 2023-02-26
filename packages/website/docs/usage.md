@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 ## Usage
 
 1. Define styles using `EStyleSheet.create()` instead of `StyleSheet.create()`:

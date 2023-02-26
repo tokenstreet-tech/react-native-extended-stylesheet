@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 ## Caveats
 
 1. **Dynamic theme change is possible only with loosing components local state**
