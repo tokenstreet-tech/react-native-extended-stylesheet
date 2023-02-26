@@ -1,16 +1,11 @@
-import clsx from 'clsx';
+import type { IFeatureItem } from '@site/src/components/HomepageFeatures/FeatureItem';
+import { FeatureItem } from '@site/src/components/HomepageFeatures/FeatureItem';
 import type { FC } from 'react';
 import React from 'react';
 
-import styles from './styles.module.css';
+import styles from './HomepageFeatures.module.css';
 
-interface FeatureItem {
-    title: string;
-    Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-    description: JSX.Element;
-}
-
-const FeatureList: Array<FeatureItem> = [
+const FeatureList: Array<IFeatureItem> = [
     {
         title: 'Easy to Use',
         Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
@@ -43,28 +38,14 @@ const FeatureList: Array<FeatureItem> = [
     },
 ];
 
-const Feature: FC<FeatureItem> = ({ title, Svg, description }) => (
-    <div className={clsx('col col--4')}>
-        <div className="text--center">
-            <Svg className={styles.featureSvg} role="img" />
-        </div>
-        <div className="text--center padding-horiz--md">
-            <h3>{title}</h3>
-            <p>{description}</p>
-        </div>
-    </div>
-);
-
-export default function HomepageFeatures(): JSX.Element {
-    return (
-        <section className={styles.features}>
-            <div className="container">
-                <div className="row">
-                    {FeatureList.map((props, idx) => (
-                        <Feature key={idx} {...props} />
-                    ))}
-                </div>
+export const HomepageFeatures: FC = () => (
+    <section className={styles.features}>
+        <div className="container">
+            <div className="row">
+                {FeatureList.map((props, idx) => (
+                    <FeatureItem key={idx} {...props} />
+                ))}
             </div>
-        </section>
-    );
-}
+        </div>
+    </section>
+);
