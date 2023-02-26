@@ -1,5 +1,5 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import HomepageFeatures from '@site/src/components/HomepageFeatures/HomepageFeatures';
+import { HomepageFeatures } from '@site/src/components/HomepageFeatures/HomepageFeatures';
 import { HomepageHeader } from '@site/src/components/HomepageHeader/HomepageHeader';
 import Layout from '@theme/Layout';
 import type { ReactElement } from 'react';
