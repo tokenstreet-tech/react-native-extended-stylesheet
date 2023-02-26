@@ -1,9 +1,5 @@
 # React Native Extended StyleSheet
 
-
-
-
-
 # @tokenstreet/react-native-extended-stylesheet
 
 React Native IDnow VideoIdent bindings for the [iOS](https://github.com/idnow/de.idnow.ios) and [Android](https://github.com/idnow/de.idnow.android) SDK.
@@ -19,11 +15,10 @@ relative units, percents, math operations, scaling and other styling stuff.
 
 <img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png">
 
-
 ## Features
 
-- Maintained
-- Latest dependencies - Secured by Dependabot
+-   Maintained
+-   Latest dependencies - Secured by Dependabot
 -   Works with Expo
 -   Published as CommonJS & ESmodules (react-native-builder-bob)
 -   Strong type declarations are included in this package (Converted codebase to TypeScript; IntelliSense)
@@ -39,5 +34,3 @@ See the [contributing guide](https://tokenstreet-tech.github.io/react-native-ext
 ## License
 
 MIT
-
-
