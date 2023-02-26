@@ -122,6 +122,23 @@ const config = {
                 darkTheme: darkCodeTheme,
             },
         }),
+    plugins: [
+        [
+            'docusaurus-plugin-typedoc',
+            {
+                // Plugin options
+                entryPoints: ['../core/src/index.ts'],
+                tsconfig: '../core/tsconfig.json',
+                sidebar: {
+                    position: 4,
+                },
+                entryDocument: 0,
+
+                // TypeDoc options
+                excludePrivate: true,
+            },
+        ],
+    ],
 };
 
 module.exports = config;

@@ -53,11 +53,12 @@ export class EStyleSheet {
     }
 
     /**
-     * Creates stylesheet that will be calculated after build
-     * @param styles
+     * Creates extended stylesheet object that will be calculated after build.
+     * @param source Source style
+     * @returns Extended stylesheet object
      */
-    public create<T>(styles: TExtendedNamedStyles<T>): TNamedStyles<T> {
-        const sheet = new Sheet(styles as any);
+    public create<T>(source: TExtendedNamedStyles<T>): TNamedStyles<T> {
+        const sheet = new Sheet(source as any);
         // TODO: add options param to allow create dynamic stylesheets that should not be stored
         this.sheets.push(sheet);
         if (this.builded) {
@@ -67,20 +68,34 @@ export class EStyleSheet {
     }
 
     /**
-     * Builds all created stylesheets with passed variables
-     * @param globalVariablesObject
+     * Calculates all stylesheets.
+     * @param globalVars Global variables for all stylesheets
      */
-    public build<TGlobalVariablesObject>(globalVariablesObject?: TGlobalVariables<TGlobalVariablesObject>): void {
+    public build<TGlobalVariablesObject>(globalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
         this.builded = true;
-        this.calcGlobalVars(globalVariablesObject);
+        this.calcGlobalVars(globalVars);
         this.calcSheets();
         this.callListeners(EStyleSheet.BUILD_EVENT);
     }
 
     /**
-     * Calculates particular value. For some values you need to pass prop (e.g. percent)
-     * @param expr
-     * @param prop
+     * Calculates particular expression. For some values you need to pass prop (e.g. percent).
+     * @param expr Value
+     * @param prop Property for which value is calculated. For example, to calculate percent values the function should know is it 'width' or 'height' to use proper reference value.
+     * @returns Calculated result
+     *
+     * **Please note** that in most cases `EStyleSheet.value()` should be used inside function, not directly:
+     *
+     * ```jsx
+     * const styles = EStyleSheet.create({
+     *     button1: {
+     *         width: () => EStyleSheet.value('$contentWidth') + 10, // <-- Correct!
+     *     },
+     *     button2: {
+     *         width: EStyleSheet.value('$contentWidth') + 10, // <-- Incorrect. Because EStyleSheet.build() may occur later and $contentWidth will be undefined at this moment.
+     *     },
+     * });
+     * ```
      */
     public value(expr: Readonly<TValueExpr>, prop?: string): any {
         const varsArr: any = this.globalVars ? [this.globalVars] : [];
@@ -91,6 +106,29 @@ export class EStyleSheet {
      * Subscribe to event. Currently, only 'build' event is supported.
      * @param event
      * @param listener
+     * @returns void
+     *
+     * This method is useful when you want to pre-render some component on init.
+     * As extended style is calculated after call of `EStyleSheet.build()`,
+     * it is not available instantly after creation so you should wrap pre-render
+     * info listener to `build` event:
+     *
+     * ```jsx
+     * const styles = EStyleSheet.create({
+     *     button: {
+     *         width: '80%',
+     *     },
+     * });
+     *
+     * // this will NOT work as styles.button is not calculated yet
+     * let Button = <View style={styles.button}></View>;
+     *
+     * // but this will work
+     * let Button;
+     * EStyleSheet.subscribe('build', () => {
+     *     Button = <View style={styles.button}></View>;
+     * });
+     * ```
      */
     public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
         EStyleSheet.assertSubscriptionParams(event, listener);
@@ -123,14 +161,12 @@ export class EStyleSheet {
     }
 
     // TODO: move global vars stuff to separate module
-    private calcGlobalVars<TGlobalVariablesObject>(
-        globalVariablesObject?: TGlobalVariables<TGlobalVariablesObject>
-    ): void {
-        if (globalVariablesObject) {
-            this.checkGlobalVars(globalVariablesObject);
+    private calcGlobalVars<TGlobalVariablesObject>(globalVars?: TGlobalVariables<TGlobalVariablesObject>): void {
+        if (globalVars) {
+            this.checkGlobalVars(globalVars);
             // $theme is system variable used for caching
-            (globalVariablesObject as any).$theme = (globalVariablesObject as any).$theme ?? 'default';
-            this.globalVars = new Style(globalVariablesObject as any, [globalVariablesObject]).calc().calculatedVars;
+            (globalVars as any).$theme = (globalVars as any).$theme ?? 'default';
+            this.globalVars = new Style(globalVars as any, [globalVars]).calc().calculatedVars;
         }
     }
 
