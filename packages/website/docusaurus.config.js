@@ -125,14 +125,17 @@ const config = {
     plugins: [
         [
             'docusaurus-plugin-typedoc',
-            // Plugin / TypeDoc options
             {
+                // Plugin options
                 entryPoints: ['../core/src/index.ts'],
                 tsconfig: '../core/tsconfig.json',
                 sidebar: {
-                    position: 9,
+                    position: 4,
                 },
                 entryDocument: 0,
+
+                // TypeDoc options
+                excludePrivate: true,
             },
         ],
     ],

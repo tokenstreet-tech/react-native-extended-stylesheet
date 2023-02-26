@@ -16,7 +16,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:38](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L38)
+[packages/core/src/api.ts:38](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L38)
 
 ## Properties
 
@@ -26,7 +26,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:27](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L27)
+[packages/core/src/api.ts:27](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L27)
 
 ---
 
@@ -36,17 +36,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:26](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L26)
-
----
-
-### builded
-
-• `Private` **builded**: `boolean`
-
-#### Defined in
-
-[packages/core/src/api.ts:30](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L30)
+[packages/core/src/api.ts:26](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L26)
 
 ---
 
@@ -81,7 +71,7 @@ Returns base style and style with child pseudo selector
 
 #### Defined in
 
-[packages/core/src/api.ts:29](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L29)
+[packages/core/src/api.ts:29](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L29)
 
 ---
 
@@ -119,7 +109,7 @@ PureComponent checks.
 
 #### Defined in
 
-[packages/core/src/api.ts:23](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L23)
+[packages/core/src/api.ts:23](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L23)
 
 ---
 
@@ -191,17 +181,7 @@ the alternative use.
 
 #### Defined in
 
-[packages/core/src/api.ts:22](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L22)
-
----
-
-### globalVars
-
-• `Private` **globalVars**: `any`
-
-#### Defined in
-
-[packages/core/src/api.ts:32](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L32)
+[packages/core/src/api.ts:22](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L22)
 
 ---
 
@@ -211,17 +191,7 @@ the alternative use.
 
 #### Defined in
 
-[packages/core/src/api.ts:25](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L25)
-
----
-
-### listeners
-
-• `Private` `Readonly` **listeners**: `Record`<`string`, `never`\> \| {}
-
-#### Defined in
-
-[packages/core/src/api.ts:33](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L33)
+[packages/core/src/api.ts:25](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L25)
 
 ---
 
@@ -254,27 +224,7 @@ unless you really know what you are doing and have exhausted other options.
 
 #### Defined in
 
-[packages/core/src/api.ts:24](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L24)
-
----
-
-### sheets
-
-• `Private` `Readonly` **sheets**: `Sheet`<`unknown`\>[]
-
-#### Defined in
-
-[packages/core/src/api.ts:31](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L31)
-
----
-
-### BUILD_EVENT
-
-▪ `Static` `Private` `Readonly` **BUILD_EVENT**: `string` = `'build'`
-
-#### Defined in
-
-[packages/core/src/api.ts:19](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L19)
+[packages/core/src/api.ts:24](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L24)
 
 ## Methods
 
@@ -302,93 +252,7 @@ Builds all created stylesheets with passed variables
 
 #### Defined in
 
-[packages/core/src/api.ts:73](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L73)
-
----
-
-### calcGlobalVars
-
-▸ `Private` **calcGlobalVars**<`TGlobalVariablesObject`\>(`globalVariablesObject?`): `void`
-
-#### Type parameters
-
-| Name                     |
-| :----------------------- |
-| `TGlobalVariablesObject` |
-
-#### Parameters
-
-| Name                     | Type                                          |
-| :----------------------- | :-------------------------------------------- |
-| `globalVariablesObject?` | `TGlobalVariables`<`TGlobalVariablesObject`\> |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/core/src/api.ts:126](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L126)
-
----
-
-### calcSheets
-
-▸ `Private` **calcSheets**(): `void`
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/core/src/api.ts:137](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L137)
-
----
-
-### callListeners
-
-▸ `Private` **callListeners**(`event`): `void`
-
-#### Parameters
-
-| Name    | Type     |
-| :------ | :------- |
-| `event` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/core/src/api.ts:141](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L141)
-
----
-
-### checkGlobalVars
-
-▸ `Private` **checkGlobalVars**<`TGlobalVariablesObject`\>(`globalVariablesObject`): `void`
-
-#### Type parameters
-
-| Name                     |
-| :----------------------- |
-| `TGlobalVariablesObject` |
-
-#### Parameters
-
-| Name                    | Type                                                       |
-| :---------------------- | :--------------------------------------------------------- |
-| `globalVariablesObject` | `Readonly`<`TGlobalVariables`<`TGlobalVariablesObject`\>\> |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/core/src/api.ts:147](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L147)
+[packages/core/src/api.ts:73](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L73)
 
 ---
 
@@ -404,7 +268,7 @@ Clears all cached styles.
 
 #### Defined in
 
-[packages/core/src/api.ts:121](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L121)
+[packages/core/src/api.ts:121](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L121)
 
 ---
 
@@ -432,7 +296,7 @@ Creates stylesheet that will be calculated after build
 
 #### Defined in
 
-[packages/core/src/api.ts:59](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L59)
+[packages/core/src/api.ts:59](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L59)
 
 ---
 
@@ -455,7 +319,7 @@ Subscribe to event. Currently, only 'build' event is supported.
 
 #### Defined in
 
-[packages/core/src/api.ts:95](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L95)
+[packages/core/src/api.ts:95](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L95)
 
 ---
 
@@ -478,7 +342,7 @@ Unsubscribe from event. Currently, only 'build' event is supported.
 
 #### Defined in
 
-[packages/core/src/api.ts:109](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L109)
+[packages/core/src/api.ts:109](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L109)
 
 ---
 
@@ -501,25 +365,4 @@ Calculates particular value. For some values you need to pass prop (e.g. percent
 
 #### Defined in
 
-[packages/core/src/api.ts:85](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L85)
-
----
-
-### assertSubscriptionParams
-
-▸ `Static` `Private` **assertSubscriptionParams**(`event`, `listener`): `void`
-
-#### Parameters
-
-| Name       | Type        |
-| :--------- | :---------- |
-| `event`    | `string`    |
-| `listener` | `TListener` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/core/src/api.ts:46](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/api.ts#L46)
+[packages/core/src/api.ts:85](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L85)

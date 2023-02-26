@@ -18,4 +18,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[packages/core/src/index.ts:4](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/ab6c8c8/packages/core/src/index.ts#L4)
+[packages/core/src/index.ts:4](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/index.ts#L4)
