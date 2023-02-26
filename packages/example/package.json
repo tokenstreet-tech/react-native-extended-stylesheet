@@ -10,7 +10,7 @@
         "android": "expo start --android",
         "web": "expo start --web",
         "build": "echo \"Not present\"",
-        "typecheck": "echo \"Not present\"",
+        "typecheck": "tsc",
         "lint": "yarn workspaces run lint",
         "lint:fix": "yarn workspaces run lint:fix",
         "test": "jest"
