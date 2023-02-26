@@ -29,6 +29,7 @@ module.exports = {
         ],
         'react/jsx-filename-extension': 0, // We use tsx files
         'react/jsx-no-literals': 0, // It is just more complicated to read
+        'react-native/no-raw-text': 0, // Error prone
 
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
@@ -75,5 +76,6 @@ module.exports = {
         'sort-keys': 0,
         'sort-vars': 0,
         'react-native/no-color-literals': 0,
+        'react/no-array-index-key': 0,
     },
 };
