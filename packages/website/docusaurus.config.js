@@ -122,6 +122,20 @@ const config = {
                 darkTheme: darkCodeTheme,
             },
         }),
+    plugins: [
+        [
+            'docusaurus-plugin-typedoc',
+            // Plugin / TypeDoc options
+            {
+                entryPoints: ['@tokenstreet/react-native-extended-stylesheet'],
+                tsconfig: '@tokenstreet/react-native-extended-stylesheet/tsconfig.json',
+                sidebar: {
+                    position: 4,
+                },
+                entryDocument: 0,
+            },
+        ],
+    ],
 };
 
 module.exports = config;
