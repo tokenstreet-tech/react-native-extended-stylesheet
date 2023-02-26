@@ -9,7 +9,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Extended StyleSheet',
-    tagline: 'Dinosaurs are cool',
+    tagline:
+        'Drop-in replacement of React Native StyleSheet with media-queries, variables, dynamic themes, relative units, percents, math operations, scaling and other styling stuff.',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
@@ -24,8 +25,8 @@ const config = {
      * GitHub pages deployment config.
      * If you aren't using GitHub pages, you don't need these.
      */
-    organizationName: 'facebook', // Usually your GitHub org/user name.
-    projectName: 'docusaurus', // Usually your repo name.
+    organizationName: 'tokenstreet-tech', // Usually your GitHub org/user name.
+    projectName: 'react-native-extended-stylesheet', // Usually your repo name.
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -52,7 +53,7 @@ const config = {
                      * Remove this to remove the "edit this page" links.
                      */
                     editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+                        'https://github.com/tokenstreet-tech/react-native-extended-stylesheet/tree/main/packages/website/',
                 },
                 blog: {
                     showReadingTime: true,
@@ -61,7 +62,7 @@ const config = {
                      * Remove this to remove the "edit this page" links.
                      */
                     editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+                        'https://github.com/tokenstreet-tech/react-native-extended-stylesheet/tree/main/packages/website/blog/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -76,11 +77,8 @@ const config = {
             // Replace with your project's social card
             image: 'img/docusaurus-social-card.jpg',
             navbar: {
-                title: 'My Site',
-                logo: {
-                    alt: 'My Site Logo',
-                    src: 'img/logo.svg',
-                },
+                title: 'React Native Extended StyleSheet',
+                logo: { alt: 'tokenstreet Logo', src: 'img/logo.svg', srcDark: 'img/logoDark.svg' },
                 items: [
                     {
                         type: 'doc',
@@ -139,7 +137,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} tokenstreet GmbH`,
             },
             prism: {
                 theme: lightCodeTheme,
