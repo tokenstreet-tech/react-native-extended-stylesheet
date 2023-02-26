@@ -1,6 +1,6 @@
 import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import type { FC } from 'react';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
 import { create } from 'react-test-renderer';
 
