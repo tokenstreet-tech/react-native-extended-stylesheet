@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                key: [typecheck, lint, test, website]
+                key: [typecheck, lint, test]
                 include:
                     - key: typecheck
                       job_name: ʦ TypeScript
