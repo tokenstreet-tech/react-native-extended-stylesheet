@@ -21,6 +21,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.20.12",
+        "@tokenstreet/react-native-extended-stylesheet-common": "*",
         "@types/react": "^18.0.28",
         "@types/react-test-renderer": "^18.0.0",
         "jest": "^29.4.3",
