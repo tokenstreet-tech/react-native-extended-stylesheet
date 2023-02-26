@@ -1,7 +1,6 @@
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React, { useCallback, useState } from 'react';
 import { Button, Text, View } from 'react-native';
-
-import { EStyleSheet } from '../../../core';
 
 /*
  * 1. Run app

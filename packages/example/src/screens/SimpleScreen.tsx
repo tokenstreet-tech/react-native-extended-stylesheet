@@ -1,7 +1,6 @@
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React from 'react';
 import { Text, View } from 'react-native';
-
-import { EStyleSheet } from '../../../core';
 
 // Calc styles
 EStyleSheet.build({
