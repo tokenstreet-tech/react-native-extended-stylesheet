@@ -32,5 +32,6 @@ jobs:
                   node-version: 18
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
+            - run: yarn build
             - name: ${{ matrix.step_name }}
               run: yarn ${{ matrix.script }}
