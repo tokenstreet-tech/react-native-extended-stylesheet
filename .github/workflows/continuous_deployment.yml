@@ -28,7 +28,6 @@ jobs:
                   registry-url: 'https://registry.npmjs.org'
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
-            - run: yarn build
             - run: yarn version --${{ github.event.inputs.version }}
             - run: git push --follow-tags
             - run: yarn publish
