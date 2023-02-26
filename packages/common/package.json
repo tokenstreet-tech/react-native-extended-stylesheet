@@ -4,6 +4,8 @@
     "private": true,
     "scripts": {
         "build": "echo \"Not present\"",
+        "lint": "echo \"Not present\"",
+        "lint:fix": "echo \"Not present\"",
         "typecheck": "echo \"Not present\"",
         "test": "echo \"Not present\""
     },

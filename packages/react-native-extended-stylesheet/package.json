@@ -22,17 +22,11 @@
         "!**/__mocks__"
     ],
     "scripts": {
-        "test": "jest",
+        "build": "bob build",
         "typecheck": "tsc --noEmit",
         "lint": "eslint .",
         "lint:fix": "yarn lint --fix",
-        "prettier": "prettier --write . --ignore-path ./.prettierignore",
-        "prettier:changed": "pretty-quick",
-        "build": "bob build",
-        "release": "release-it",
-        "example": "yarn --cwd example",
-        "bootstrap": "yarn && yarn build && yarn example",
-        "prepare": "husky install"
+        "test": "jest"
     },
     "keywords": [
         "react-native",

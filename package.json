@@ -8,15 +8,14 @@
     "scripts": {
         "build": "yarn workspaces run build",
         "typecheck": "yarn workspaces run typecheck",
-        "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-        "lint:fix": "yarn lint --fix",
+        "lint": "yarn workspaces run lint",
+        "lint:fix": "yarn workspaces run lint:fix",
         "test": "yarn workspaces run test",
         "prettier": "prettier --write . --ignore-path=.gitignore",
         "prepare": "husky install"
     },
     "lint-staged": {
-        "*": "prettier --ignore-unknown --write",
-        "*.(js|jsx|ts|tsx)": "eslint --fix"
+        "*": "prettier --ignore-unknown --write"
     },
     "dependencies": {},
     "devDependencies": {
