@@ -30,11 +30,12 @@ type StyleSet<T = any> = {
 };
 
 /**
- * Returns base style and style with child pseudo selector
+ * Returns styles with pseudo classes :first-child, :nth-child-even, :last-child according to index and count
  * @param {Object} styles
  * @param {String} styleName
- * @param {Number} index
- * @param {Number} count
+ * @param {Number} index Index of item for style
+ * @param {Number} count Total count of items
+ * @returns {Object|Array} styles
  */
 export const child = <T = StyleSet>(styles: T, styleName: string, index: number, count: number): AnyStyle => {
     if (!isNumber(index) || !isNumber(count)) {
