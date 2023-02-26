@@ -22,6 +22,12 @@ module.exports = {
         'prefer-object-has-own': 0, // https://github.com/microsoft/TypeScript/issues/44253
         'no-inline-comments': 0, // Worsens the structure
         'line-comment-position': 0, // Worsens the structure
+        'react/forbid-component-props': 0, // Not valid for React Native, because we want to use the style prop
+        'react/function-component-definition': [
+            2,
+            { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+        ],
+        'react/jsx-filename-extension': 0, // We use tsx files
 
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
@@ -67,5 +73,6 @@ module.exports = {
         'require-unicode-regexp': 0,
         'sort-keys': 0,
         'sort-vars': 0,
+        'react-native/no-color-literals': 0,
     },
 };
