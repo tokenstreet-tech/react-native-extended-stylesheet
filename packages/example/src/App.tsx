@@ -1,5 +1,5 @@
-import React from 'react';
 import { SafeAreaView } from 'react-native';
+import React from 'react';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-expect-error Import remains to be able to switch between screens more easily

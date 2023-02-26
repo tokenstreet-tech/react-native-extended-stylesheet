@@ -14,9 +14,6 @@
         "prettier": "prettier --write . --ignore-path=.gitignore",
         "prepare": "husky install"
     },
-    "lint-staged": {
-        "*": "prettier --ignore-unknown --write"
-    },
     "dependencies": {},
     "devDependencies": {
         "@commitlint/config-conventional": "^17.4.4",
