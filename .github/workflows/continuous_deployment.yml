@@ -1,5 +1,4 @@
-name: Publish
-
+name: 🚀 Continuous deployment
 on:
     workflow_dispatch:
         inputs:
@@ -8,21 +7,27 @@ on:
                 required: true
 
 jobs:
-    publish:
+    publish_package:
+        name: ⬆️ Publish package
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - name: 🛑 Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.11.0
+            - name: ⬇️ Checkout repo
+              uses: actions/checkout@v3
               with:
                   token: ${{ secrets.PERSONAL_ACCESS_TOKEN_TOOLS_TOKENSTREET }}
             - name: Set git credentials
               run: |
                   git config --global user.name "tokenstreet Tools"
                   git config --global user.email "tools@tokenstreet.com"
-            - uses: actions/setup-node@v3.6.0
+            - name: ⎔ Setup node
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   registry-url: 'https://registry.npmjs.org'
-            - run: yarn install --frozen-lockfile
+            - name: 📥 Download deps
+              uses: bahmutov/npm-install@v1
             - run: yarn build
             - run: yarn version --${{ github.event.inputs.version }}
             - run: git push --follow-tags
