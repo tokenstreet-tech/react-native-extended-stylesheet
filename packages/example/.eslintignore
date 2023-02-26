@@ -1,12 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependencies
-/node_modules
-
-# Build
-/lib
-.expo
-
 # Misc
-/coverage
-/tsconfig.json
+.eslintrc.js

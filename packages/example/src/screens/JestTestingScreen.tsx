@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
         backgroundColor: '$fontColor', // <-- EStyleSheet variable
     },
     welcome: {
-        fontSize: 20,
+        fontSize: '1rem',
         textAlign: 'center',
         margin: 10,
     },
