@@ -80,7 +80,7 @@ const config = {
                 title: 'React Native Extended StyleSheet',
                 logo: { alt: 'tokenstreet Logo', src: 'img/logo.svg', srcDark: 'img/logoDark.svg' },
                 items: [
-                    { type: 'doc', docId: 'demo', position: 'left', label: 'Docs' },
+                    { type: 'doc', docId: 'installation', position: 'left', label: 'Docs' },
                     { to: '/blog', label: 'Blog', position: 'left' },
                     {
                         href: 'https://github.com/tokenstreet-tech/react-native-extended-stylesheet',
