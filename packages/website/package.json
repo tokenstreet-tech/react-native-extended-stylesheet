@@ -13,8 +13,8 @@
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids",
         "typecheck": "tsc",
-        "lint": "echo \"Not present\"",
-        "lint:fix": "echo \"Not present\"",
+        "lint": "eslint .",
+        "lint:fix": "yarn lint --fix",
         "test": "echo \"Not present\""
     },
     "dependencies": {
