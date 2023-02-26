@@ -14,8 +14,8 @@ export const HomepageHeader: FC = () => {
                 <h1 className="hero__title">{siteConfig.title}</h1>
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
                 <div className={styles.buttons}>
-                    <Link className="button button--secondary button--lg" to="/docs/demo">
-                        Demo
+                    <Link className="button button--secondary button--lg" to="/docs/installation">
+                        Getting started
                     </Link>
                 </div>
             </div>
