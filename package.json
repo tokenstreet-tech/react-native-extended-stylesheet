@@ -18,34 +18,15 @@
     "devDependencies": {
         "@commitlint/config-conventional": "^17.4.4",
         "@react-native-community/eslint-config": "^3.2.0",
-        "@release-it/conventional-changelog": "^5.1.1",
         "commitlint": "^17.4.4",
         "husky": "^8.0.3",
         "lint-staged": "^13.1.2",
-        "prettier": "2.8.4",
-        "release-it": "^15.6.0"
+        "prettier": "2.8.4"
     },
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
         ]
-    },
-    "release-it": {
-        "git": {
-            "commitMessage": "chore: release ${version}",
-            "tagName": "v${version}"
-        },
-        "npm": {
-            "publish": true
-        },
-        "github": {
-            "release": true
-        },
-        "plugins": {
-            "@release-it/conventional-changelog": {
-                "preset": "angular"
-            }
-        }
     },
     "repository": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet/",
     "private": true
