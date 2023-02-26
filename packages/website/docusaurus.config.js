@@ -116,7 +116,7 @@ const config = {
                             { label: 'Medium', href: 'https://medium.com/tokenstreet-tech' },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/tokenstreet-tech/react-native-idnow-videoident',
+                                href: 'https://github.com/tokenstreet-tech/react-native-extended-stylesheet',
                             },
                         ],
                     },
