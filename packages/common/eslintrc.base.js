@@ -22,6 +22,7 @@ module.exports = {
         'prefer-object-has-own': 0, // https://github.com/microsoft/TypeScript/issues/44253
         'no-inline-comments': 0, // Worsens the structure
         'line-comment-position': 0, // Worsens the structure
+        'react-native/no-raw-text': 0, // Error prone
         'react/forbid-component-props': 0, // Not valid for React Native, because we want to use the style prop
         'react/function-component-definition': [
             2,
@@ -29,7 +30,6 @@ module.exports = {
         ],
         'react/jsx-filename-extension': 0, // We use tsx files
         'react/jsx-no-literals': 0, // It is just more complicated to read
-        'react-native/no-raw-text': 0, // Error prone
 
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
