@@ -17,6 +17,7 @@
     "dependencies": {},
     "devDependencies": {
         "@commitlint/config-conventional": "^17.4.4",
+        "@prettier/plugin-xml": "2.2.0",
         "@react-native-community/eslint-config": "^3.2.0",
         "commitlint": "^17.4.4",
         "husky": "^8.0.3",
