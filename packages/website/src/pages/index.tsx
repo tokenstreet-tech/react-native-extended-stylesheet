@@ -1,6 +1,6 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { HomepageFeatures } from '@site/src/components/HomepageFeatures/HomepageFeatures';
-import { HomepageHeader } from '@site/src/components/HomepageHeader/HomepageHeader';
+import { HomepageFeatures } from '@site/src/components/HomepageFeatures';
+import { HomepageHeader } from '@site/src/components/HomepageHeader';
 import Layout from '@theme/Layout';
 import type { FC } from 'react';
 import React from 'react';
