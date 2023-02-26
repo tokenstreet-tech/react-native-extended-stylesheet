@@ -1,5 +1,3 @@
-# React Native Extended StyleSheet
-
 # @tokenstreet/react-native-extended-stylesheet
 
 React Native IDnow VideoIdent bindings for the [iOS](https://github.com/idnow/de.idnow.ios) and [Android](https://github.com/idnow/de.idnow.android) SDK.
