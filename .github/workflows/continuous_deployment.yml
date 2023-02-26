@@ -62,6 +62,8 @@ jobs:
                   registry-url: ${{ env.REGISTRY_URL }}
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
+            - name: Copy README.md
+              run: cp README.md ./packages/core/README.md
             - run: yarn version --${{ github.event.inputs.version }}
               working-directory: ./packages/core
             - run: git push --follow-tags
