@@ -1,7 +1,6 @@
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 import React, { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
-
-import { EStyleSheet } from '../../../core';
 
 EStyleSheet.build({
     $fontColor: '#F5FCFF',
