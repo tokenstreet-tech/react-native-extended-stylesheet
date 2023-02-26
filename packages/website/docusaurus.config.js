@@ -99,45 +99,28 @@ const config = {
                 links: [
                     {
                         title: 'Docs',
-                        items: [
-                            {
-                                label: 'Tutorial',
-                                to: '/docs/intro',
-                            },
-                        ],
+                        items: [],
                     },
                     {
-                        title: 'Community',
+                        title: 'Company',
                         items: [
-                            {
-                                label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                            },
-                            {
-                                label: 'Discord',
-                                href: 'https://discordapp.com/invite/docusaurus',
-                            },
-                            {
-                                label: 'Twitter',
-                                href: 'https://twitter.com/docusaurus',
-                            },
+                            { label: 'Website', href: 'https://en.tokenstreet.com/' },
+                            { label: 'Career', href: 'https://en.tokenstreet.com/career' },
+                            { label: 'LinkedIn', href: 'https://www.linkedin.com/company/tokenstreet-com/' },
                         ],
                     },
                     {
                         title: 'More',
                         items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
+                            { label: 'Blog', to: '/blog' },
+                            { label: 'Medium', href: 'https://medium.com/tokenstreet-tech' },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/facebook/docusaurus',
+                                href: 'https://github.com/tokenstreet-tech/react-native-idnow-videoident',
                             },
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} tokenstreet GmbH`,
             },
             prism: {
                 theme: lightCodeTheme,
