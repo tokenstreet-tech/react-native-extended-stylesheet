@@ -1,46 +1,43 @@
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "compilerOptions": {
+        /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
-    /* Language and Environment */
-    "target": "esnext",
-    "lib": ["esnext"],
-    "jsx": "react",
+        /* Language and Environment */
+        "target": "esnext",
+        "lib": ["esnext"],
+        "jsx": "react",
 
-    /* Modules */
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "@tokenstreet/react-native-extended-stylesheet": ["./src/index"]
+        /* Modules */
+        "module": "esnext",
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "paths": {
+            "@tokenstreet/react-native-extended-stylesheet": ["./src/index"]
+        },
+        "resolveJsonModule": true,
+
+        /* Emit */
+        "importsNotUsedAsValues": "error",
+
+        /* Interop Constraints */
+        "esModuleInterop": true,
+
+        "forceConsistentCasingInFileNames": true,
+
+        /* Type Checking */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "allowUnusedLabels": false,
+        "allowUnreachableCode": false,
+        "noImplicitUseStrict": false,
+        "noStrictGenericChecks": false,
+
+        /* Completeness */
+        "skipLibCheck": true
     },
-    "resolveJsonModule": true,
-
-
-
-    /* Emit */
-    "importsNotUsedAsValues": "error",
-
-
-    /* Interop Constraints */
-    "esModuleInterop": true,
-
-    "forceConsistentCasingInFileNames": true,
-
-    /* Type Checking */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-
-    /* Completeness */
-    "skipLibCheck": true
-  },
-  "exclude": ["lib"]
+    "exclude": ["lib"]
 }
