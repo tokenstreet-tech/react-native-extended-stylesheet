@@ -55,7 +55,7 @@ export const get = (name: string, varsArr: Readonly<Array<any>>): any => {
         isSimpleVar = rootVar === name;
 
     for (const vars of varsArr) {
-        if (!vars || rootVar !== null || vars[rootVar] === undefined) {
+        if (!vars || !rootVar || vars[rootVar] === undefined) {
             continue;
         }
         if (isSimpleVar) {
