@@ -4,56 +4,6 @@ sidebar_position: 4
 
 # EStyleSheet API (Old)
 
-## .create()
-
-```jsx
-/**
- * Creates extended stylesheet object
- *
- * @param {Object} source style
- * @returns {Object} extended stylesheet object
- */
- create (source) {...}
-```
-
-## .build()
-
-```jsx
-/**
- * Calculates all stylesheets
- *
- * @param {Object} [globalVars] global variables for all stylesheets
- */
- build (globalVars) {...}
-```
-
-## .value()
-
-```jsx
-/**
- * Calculates particular expression.
- *
- * @param {*} value
- * @param {String} [prop] property for which value is calculated. For example, to calculate percent values
- * the function should know is it 'width' or 'height' to use proper reference value.
- * @returns {*} calculated result
- */
- value (value, prop) {...}
-```
-
-**Please note** that in most cases `EStyleSheet.value()` should be used inside function, not directly:
-
-```jsx
-const styles = EStyleSheet.create({
-    button1: {
-        width: () => EStyleSheet.value('$contentWidth') + 10, // <-- Correct!
-    },
-    button2: {
-        width: EStyleSheet.value('$contentWidth') + 10, // <-- Incorrect. Because EStyleSheet.build() may occur later and $contentWidth will be undefined at this moment.
-    },
-});
-```
-
 ## .child()
 
 ```jsx
