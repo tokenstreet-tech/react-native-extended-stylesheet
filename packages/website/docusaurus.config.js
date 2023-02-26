@@ -127,8 +127,8 @@ const config = {
             'docusaurus-plugin-typedoc',
             // Plugin / TypeDoc options
             {
-                entryPoints: ['@tokenstreet/react-native-extended-stylesheet'],
-                tsconfig: '@tokenstreet/react-native-extended-stylesheet/tsconfig.json',
+                entryPoints: ['../core/src/index'],
+                tsconfig: '../core/tsconfig.json',
                 sidebar: {
                     position: 4,
                 },
