@@ -29,7 +29,9 @@ jobs:
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
             - run: yarn version --${{ github.event.inputs.version }}
+              working-directory: ./packages/core
             - run: git push --follow-tags
             - run: yarn publish
+              working-directory: ./packages/core
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
