@@ -28,6 +28,7 @@ module.exports = {
             { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
         ],
         'react/jsx-filename-extension': 0, // We use tsx files
+        'react/jsx-no-literals': 0, // It is just more complicated to read
 
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
