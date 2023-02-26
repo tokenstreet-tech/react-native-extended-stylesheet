@@ -87,7 +87,7 @@ In the future it may be possible with `forceDeepUpdate()` method (see [facebook/
 The approach is open for discusison, feel free to share your ideas in [#22](https://github.com/vitalets/react-native-extended-stylesheet/issues/22),
 [#47](https://github.com/vitalets/react-native-extended-stylesheet/issues/47).
 
-You can check out full theming code in [examples/theming](examples/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).
+You can check out full theming code in [examples/theming](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/tree/main/packages/example/src/screens/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).
 
 ## Media queries
 
@@ -148,7 +148,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-You can check out full example code in [examples/media-queries](examples/media-queries) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).
+You can check out full example code in [examples/media-queries](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/main/packages/example/src/screens/MediaQueriesScreen.tsx) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).
 
 ## Math operations
 
@@ -185,7 +185,7 @@ EStyleSheet.build({
 });
 ```
 
-You can check out full example code in [examples/rem](examples/rem) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).
+You can check out full example code in [examples/rem](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/main/packages/example/src/screens/RemScreen.tsx) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).
 
 ## Percents
 
