@@ -1,7 +1,7 @@
-import { EStyleSheet } from '../../../../core';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, View } from 'react-native';
 
+import { EStyleSheet } from '../../../../core';
 import { ThemingComponent } from './ThemingComponent';
 
 const lightTheme = {

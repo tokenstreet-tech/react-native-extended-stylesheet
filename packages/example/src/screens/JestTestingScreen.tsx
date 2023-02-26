@@ -1,6 +1,7 @@
-import { EStyleSheet } from '../../../core';
 import React, { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
+
+import { EStyleSheet } from '../../../core';
 
 EStyleSheet.build({
     $fontColor: '#F5FCFF',

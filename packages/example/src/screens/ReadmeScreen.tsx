@@ -1,6 +1,7 @@
-import { EStyleSheet } from '../../../core';
 import React, { useMemo } from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
+
+import { EStyleSheet } from '../../../core';
 
 EStyleSheet.build({
     $textColor: 'black',

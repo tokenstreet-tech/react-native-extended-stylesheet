@@ -1,6 +1,7 @@
-import { EStyleSheet } from '../../../core';
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
+
+import { EStyleSheet } from '../../../core';
 
 // Define REM depending on screen width
 const { width } = Dimensions.get('window');

@@ -1,6 +1,7 @@
-import { EStyleSheet } from '../../../../core';
 import React from 'react';
 import { Text, View } from 'react-native';
+
+import { EStyleSheet } from '../../../../core';
 
 export const ThemingComponent: React.FC = () => (
     <View style={styles.container}>
