@@ -72,10 +72,10 @@ module.exports = {
         'no-undefined': 0,
         'no-underscore-dangle': 0,
         'no-warning-comments': 0,
+        'react-native/no-color-literals': 0,
+        'react/no-array-index-key': 0,
         'require-unicode-regexp': 0,
         'sort-keys': 0,
         'sort-vars': 0,
-        'react-native/no-color-literals': 0,
-        'react/no-array-index-key': 0,
     },
 };
