@@ -132,6 +132,7 @@ const config = {
                 sidebar: {
                     position: 9,
                 },
+                entryDocument: 0,
             },
         ],
     ],
