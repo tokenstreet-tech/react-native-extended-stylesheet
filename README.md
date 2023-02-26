@@ -19,11 +19,10 @@ This package is a fork of the [React Native Extended StyleSheet](https://github.
 ## Key differences between this fork and the original are:
 
 -   IntelliSense IDE integration ([CSS intellisense not working #118](https://github.com/vitalets/react-native-extended-stylesheet/issues/118))
--   IntelliSense Strong type declarations are included in this package
 -   Maintained ([Is this repo active? #154](https://github.com/vitalets/react-native-extended-stylesheet/issues/154))
 -   Latest dependencies - Secured by Dependabot
 -   Published as CommonJS & ESmodules (powered by [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob))
--   Entire codebase has been migrated to TypeScript
+-   Strong type declarations are included in this package ((Entire codebase has been migrated to TypeScript)[https://github.com/tokenstreet-tech/react-native-extended-stylesheet/releases/tag/v0.14.0])
 
 ## Website
 
