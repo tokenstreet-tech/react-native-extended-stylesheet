@@ -51,9 +51,5 @@
         }
     },
     "repository": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet/",
-    "private": true,
-    "engines": {
-        "node": ">=18.13.0"
-    },
-    "packageManager": "^yarn@1.22.19"
+    "private": true
 }
