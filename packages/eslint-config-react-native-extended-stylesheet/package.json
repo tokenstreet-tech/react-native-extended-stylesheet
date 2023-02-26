@@ -3,6 +3,13 @@
     "main": "index.js",
     "version": "1.0.0",
     "private": true,
+    "scripts": {
+        "build": "echo \"Not present\"",
+        "lint": "echo \"Not present\"",
+        "lint:fix": "echo \"Not present\"",
+        "typecheck": "echo \"Not present\"",
+        "test": "echo \"Not present\""
+    },
     "dependencies": {},
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^5.52.0",

@@ -11,8 +11,8 @@
         "web": "expo start --web",
         "build": "echo \"Not present\"",
         "typecheck": "tsc",
-        "lint": "yarn workspaces run lint",
-        "lint:fix": "yarn workspaces run lint:fix",
+        "lint": "eslint .",
+        "lint:fix": "yarn lint --fix",
         "test": "jest"
     },
     "dependencies": {
