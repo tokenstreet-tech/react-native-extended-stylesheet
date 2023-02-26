@@ -18,8 +18,9 @@ export const HomepageFeatures: FC = () => {
             Svg: typescript,
             description: (
                 <>
-                    Docusaurus was designed from the ground up to be easily installed and used to get your website up
-                    and running quickly.
+                    <a href="https://github.com/vitalets/react-native-extended-stylesheet/issues/118">
+                        CSS intellisense not working #118
+                    </a>
                 </>
             ),
             title: 'IntelliSense IDE integration',
@@ -28,20 +29,17 @@ export const HomepageFeatures: FC = () => {
             Svg: isDarkTheme ? maintenanceDark : maintenance,
             description: (
                 <>
-                    Latest dependencies of the IDnow <a href="https://github.com/idnow/de.idnow.ios">iOS</a> and{' '}
-                    <a href="https://github.com/idnow/de.idnow.android">Android</a> SDKs. Secured by Dependabot.
+                    <a href="https://github.com/vitalets/react-native-extended-stylesheet/issues/154">
+                        Is this repo active? #154
+                    </a>
                 </>
             ),
-            title: 'Always up to date',
+            title: 'Maintained',
         },
         {
             Svg: dependabot,
-            description: (
-                <>
-                    Strong type declarations are included in this package. There isn&apos;t a single <code>any</code>.
-                </>
-            ),
-            title: 'First class TypeScript support',
+            description: <>Latest dependencies - Secured by Dependabot</>,
+            title: 'Always up to date',
         },
     ];
 
