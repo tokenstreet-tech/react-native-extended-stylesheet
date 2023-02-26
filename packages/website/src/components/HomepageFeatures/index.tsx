@@ -1,14 +1,15 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
+
 import styles from './styles.module.css';
 
-type FeatureItem = {
+interface FeatureItem {
     title: string;
     Svg: React.ComponentType<React.ComponentProps<'svg'>>;
     description: JSX.Element;
-};
+}
 
-const FeatureList: FeatureItem[] = [
+const FeatureList: Array<FeatureItem> = [
     {
         title: 'Easy to Use',
         Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
