@@ -15,7 +15,7 @@ import { Value } from './value';
 
 type TListener = () => void;
 
-export class EStyleSheet {
+export class EStyleSheetClass {
     private static readonly BUILD_EVENT: string = 'build';
 
     // Proxy to original
@@ -30,7 +30,9 @@ export class EStyleSheet {
     private builded: boolean;
     private readonly sheets: Array<Sheet<unknown>>;
     private globalVars: any;
-    private readonly listeners: Record<string, never> | { [key in typeof EStyleSheet.BUILD_EVENT]: Array<TListener> };
+    private readonly listeners:
+        | Record<string, never>
+        | { [key in typeof EStyleSheetClass.BUILD_EVENT]: Array<TListener> };
 
     /**
      * Constructor
@@ -43,9 +45,9 @@ export class EStyleSheet {
         this.listeners = {};
     }
 
-    private static assertSubscriptionParams(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
-        if (event !== EStyleSheet.BUILD_EVENT) {
-            throw new Error(`Only '${EStyleSheet.BUILD_EVENT}' event is currently supported.`);
+    private static assertSubscriptionParams(event: typeof EStyleSheetClass.BUILD_EVENT, listener: TListener): void {
+        if (event !== EStyleSheetClass.BUILD_EVENT) {
+            throw new Error(`Only '${EStyleSheetClass.BUILD_EVENT}' event is currently supported.`);
         }
         if (typeof listener !== 'function') {
             throw new Error('Listener should be a function.');
@@ -74,7 +76,7 @@ export class EStyleSheet {
         this.builded = true;
         this.calcGlobalVars(globalVariablesObject);
         this.calcSheets();
-        this.callListeners(EStyleSheet.BUILD_EVENT);
+        this.callListeners(EStyleSheetClass.BUILD_EVENT);
     }
 
     /**
@@ -92,10 +94,10 @@ export class EStyleSheet {
      * @param event
      * @param listener
      */
-    public subscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
-        EStyleSheet.assertSubscriptionParams(event, listener);
-        this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT] || [];
-        this.listeners[EStyleSheet.BUILD_EVENT].push(listener);
+    public subscribe(event: typeof EStyleSheetClass.BUILD_EVENT, listener: TListener): void {
+        EStyleSheetClass.assertSubscriptionParams(event, listener);
+        this.listeners[EStyleSheetClass.BUILD_EVENT] = this.listeners[EStyleSheetClass.BUILD_EVENT] || [];
+        this.listeners[EStyleSheetClass.BUILD_EVENT].push(listener);
         if (this.builded) {
             listener();
         }
@@ -106,10 +108,10 @@ export class EStyleSheet {
      * @param event
      * @param listener
      */
-    public unsubscribe(event: typeof EStyleSheet.BUILD_EVENT, listener: TListener): void {
-        EStyleSheet.assertSubscriptionParams(event, listener);
-        if (this.listeners[EStyleSheet.BUILD_EVENT]) {
-            this.listeners[EStyleSheet.BUILD_EVENT] = this.listeners[EStyleSheet.BUILD_EVENT].filter(
+    public unsubscribe(event: typeof EStyleSheetClass.BUILD_EVENT, listener: TListener): void {
+        EStyleSheetClass.assertSubscriptionParams(event, listener);
+        if (this.listeners[EStyleSheetClass.BUILD_EVENT]) {
+            this.listeners[EStyleSheetClass.BUILD_EVENT] = this.listeners[EStyleSheetClass.BUILD_EVENT].filter(
                 (item) => item !== listener
             );
         }
@@ -138,7 +140,7 @@ export class EStyleSheet {
         this.sheets.forEach((sheet: Readonly<Sheet<unknown>>) => sheet.calc(this.globalVars));
     }
 
-    private callListeners(event: typeof EStyleSheet.BUILD_EVENT): void {
+    private callListeners(event: typeof EStyleSheetClass.BUILD_EVENT): void {
         if (Array.isArray(this.listeners[event])) {
             this.listeners[event].forEach((listener) => listener());
         }
@@ -150,7 +152,7 @@ export class EStyleSheet {
         Object.keys(globalVariablesObject).forEach((key) => {
             if (!isVar(key) && !isMediaQuery(key)) {
                 throw new Error(
-                    `EStyleSheet.build() params should contain global variables (start with $) ` +
+                    `EStyleSheetClass.build() params should contain global variables (start with $) ` +
                         `or media queries (start with @media). Got '${key}'.`
                 );
             }
