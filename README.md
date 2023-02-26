@@ -14,7 +14,7 @@ This package is a fork of the [React Native Extended StyleSheet](https://github.
 
 <img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png">
 
-## Key differences between this fork and the original are:
+## Key differences of this fork are:
 
 -   IntelliSense IDE integration ([CSS intellisense not working #118](https://github.com/vitalets/react-native-extended-stylesheet/issues/118))
 -   Maintained ([Is this repo active? #154](https://github.com/vitalets/react-native-extended-stylesheet/issues/154))
