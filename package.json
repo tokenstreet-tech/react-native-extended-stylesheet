@@ -15,8 +15,7 @@
         "prepare": "husky install"
     },
     "lint-staged": {
-        "*": "prettier --ignore-unknown --write",
-        "*.(js|jsx|ts|tsx)": "yarn workspaces run lint:fix"
+        "*": "prettier --ignore-unknown --write"
     },
     "dependencies": {},
     "devDependencies": {
