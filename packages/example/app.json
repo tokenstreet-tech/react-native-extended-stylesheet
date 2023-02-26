@@ -1,6 +1,4 @@
 {
-    "name": "@tokenstreet/react-native-extended-stylesheet-example",
-    "displayName": "ReactNativeExtendedStylesheet Example",
     "expo": {
         "name": "@tokenstreet/react-native-extended-stylesheet-example",
         "slug": "tokenstreet-react-native-extended-stylesheet-example",

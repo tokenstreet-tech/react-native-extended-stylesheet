@@ -67,3 +67,6 @@ lib/
 # Examples
 example/ios
 example/android
+
+# Misc
+/coverage
