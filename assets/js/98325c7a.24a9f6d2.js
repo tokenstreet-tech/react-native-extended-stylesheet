@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_tokenstreet_react_native_extended_stylesheet_website=self.webpackChunk_tokenstreet_react_native_extended_stylesheet_website||[]).push([[2532],{4398:e=>{e.exports=JSON.parse('{"permalink":"/react-native-extended-stylesheet/blog/tags/hola","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
