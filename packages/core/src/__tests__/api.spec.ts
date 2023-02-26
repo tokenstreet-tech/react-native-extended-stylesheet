@@ -1,10 +1,10 @@
-import { EStyleSheetClass } from '../api';
+import { EStyleSheet } from '../api';
 
-describe('EStyleSheetClass API', () => {
-    let api: EStyleSheetClass;
+describe('EStyleSheet API', () => {
+    let api: EStyleSheet;
 
     beforeEach(() => {
-        api = new EStyleSheetClass();
+        api = new EStyleSheet();
     });
 
     describe('build', () => {
@@ -62,7 +62,7 @@ describe('EStyleSheetClass API', () => {
             // @ts-expect-error Required for the test case
             const fn = (): void => api.build({ a: 1 });
             expect(fn).toThrow(
-                `EStyleSheetClass.build() params should contain global variables (start with $) ` +
+                `EStyleSheet.build() params should contain global variables (start with $) ` +
                     `or media queries (start with @media). Got 'a'.`
             );
         });
