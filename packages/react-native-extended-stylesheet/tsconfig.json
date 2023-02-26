@@ -21,14 +21,12 @@
 
         /* Interop Constraints */
         "esModuleInterop": true,
-
         "forceConsistentCasingInFileNames": true,
 
         /* Type Checking */
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "allowUnusedLabels": false,
