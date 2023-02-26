@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_tokenstreet_react_native_extended_stylesheet_website=self.webpackChunk_tokenstreet_react_native_extended_stylesheet_website||[]).push([[6790],{7414:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/react-native-extended-stylesheet/blog/tags/hola","allTagsPath":"/react-native-extended-stylesheet/blog/tags","count":1}')}}]);
