@@ -11,15 +11,16 @@ module.exports = {
     ],
     rules: {
         '@typescript-eslint/array-type': [2, { default: 'generic' }],
-        '@typescript-eslint/lines-between-class-members': 0,
+        '@typescript-eslint/lines-between-class-members': 0, // Worsens the structure
         '@typescript-eslint/no-confusing-void-expression': [2, { ignoreArrowShorthand: true }],
-        'one-var': 0,
-        'simple-import-sort/exports': 2,
-        'simple-import-sort/imports': 2,
-        'sort-imports': 0,
-        'prefer-object-has-own': 0,
-        'no-inline-comments': 0,
-        'line-comment-position': 0,
+        'one-var': 0, // Worsens the structure
+        'simple-import-sort/exports': 2, // Enabling the plugin simple-import-sort
+        'simple-import-sort/imports': 2, // Enabling the plugin simple-import-sort
+        'sort-imports': 0, // We already use the simple-import-sort plugin
+        'prefer-object-has-own': 0, // https://github.com/microsoft/TypeScript/issues/44253
+        'no-inline-comments': 0, // Worsens the structure
+        'line-comment-position': 0, // Worsens the structure
+
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
         '@typescript-eslint/naming-convention': 0,
