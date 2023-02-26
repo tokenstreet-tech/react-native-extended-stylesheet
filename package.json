@@ -1,6 +1,6 @@
 {
     "name": "@tokenstreet/react-native-extended-stylesheet-packages",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "",
     "workspaces": [
         "packages/*"
