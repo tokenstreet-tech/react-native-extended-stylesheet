@@ -5,8 +5,8 @@
     "scripts": {
         "build": "echo \"Not present\"",
         "typecheck": "echo \"Not present\"",
-        "lint": "echo \"Not present\"",
-        "lint:fix": "echo \"Not present\"",
+        "lint": "eslint .",
+        "lint:fix": "yarn lint --fix",
         "test": "echo \"Not present\""
     },
     "dependencies": {},
