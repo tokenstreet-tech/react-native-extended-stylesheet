@@ -5,8 +5,6 @@ import { SafeAreaView } from 'react-native';
 // @ts-expect-error Import remains to be able to switch between screens more easily
 import { HotModuleReloadScreen } from './screens/HotModuleReloadScreen';
 // @ts-expect-error Same description as above
-import { JestTestingScreen } from './screens/JestTestingScreen';
-// @ts-expect-error Same description as above
 import { MediaQueriesScreen } from './screens/MediaQueriesScreen';
 // @ts-expect-error Same description as above
 import { ReadmeScreen } from './screens/ReadmeScreen';
@@ -26,7 +24,6 @@ import { ThemingScreen } from './screens/theming/ThemingScreen';
 export const App: React.FC = () => (
     <SafeAreaView>
         {/* <HotModuleReloadScreen />*/}
-        {/* <JestTestingScreen />*/}
         {/* <MediaQueriesScreen />*/}
         {/* <ReadmeScreen />*/}
         {/* <RemScreen />*/}
