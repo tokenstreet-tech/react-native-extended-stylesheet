@@ -1,11 +1,13 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: { project: ['./tsconfig.json'] },
-    plugins: ['@typescript-eslint', 'jest', 'simple-import-sort'],
+    plugins: ['@typescript-eslint', 'react', 'react-native', 'jest', 'simple-import-sort'],
     extends: [
         '@react-native-community',
         'eslint:all',
         'plugin:@typescript-eslint/all',
+        'plugin:react/all',
+        'plugin:react-native/all',
         'plugin:jest/recommended',
         'prettier',
     ],
@@ -20,6 +22,15 @@ module.exports = {
         'prefer-object-has-own': 0, // https://github.com/microsoft/TypeScript/issues/44253
         'no-inline-comments': 0, // Worsens the structure
         'line-comment-position': 0, // Worsens the structure
+        'react-native/no-raw-text': 0, // Error prone
+        'react/forbid-component-props': 0, // Not valid for React Native, because we want to use the style prop
+        'react/function-component-definition': [
+            2,
+            { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+        ],
+        'react/jsx-filename-extension': 0, // We use tsx files
+        'react/jsx-max-depth': 0, // As long as the file remains uncluttered, this limitation only encourages more complex structures
+        'react/jsx-no-literals': 0, // It is just more complicated to read
 
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/init-declarations': 0,
@@ -62,6 +73,9 @@ module.exports = {
         'no-undefined': 0,
         'no-underscore-dangle': 0,
         'no-warning-comments': 0,
+        'react-native/no-color-literals': 0,
+        'react/jsx-props-no-spreading': 0,
+        'react/no-array-index-key': 0,
         'require-unicode-regexp': 0,
         'sort-keys': 0,
         'sort-vars': 0,

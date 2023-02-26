@@ -39,7 +39,7 @@ export const ThemingScreen: React.FC = () => {
         return (
             <View style={styles.container}>
                 <ThemingComponent />
-                <Button title={buttonTitle} onPress={toggleTheme} />
+                <Button onPress={toggleTheme} title={buttonTitle} />
             </View>
         );
     }

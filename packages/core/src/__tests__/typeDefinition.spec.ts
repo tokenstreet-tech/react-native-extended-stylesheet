@@ -39,8 +39,8 @@ describe('typeDefinition', () => {
                 color: 'red',
             },
             button2: {
-                color: 'blue',
                 borderBottomWidth: EStyleSheet.hairlineWidth,
+                color: 'blue',
             },
         });
 

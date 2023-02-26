@@ -43,7 +43,7 @@
     "bugs": {
         "url": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet/issues"
     },
-    "homepage": "https://github.com/tokenstreet-tech/react-native-extended-stylesheet/#readme",
+    "homepage": "https://tokenstreet-tech.github.io/react-native-extended-stylesheet/",
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
     },
@@ -62,9 +62,9 @@
         "react": "18.2.0",
         "react-native": "0.71.3",
         "react-native-builder-bob": "^0.20.4",
-        "react-test-renderer": "^18.2.0",
+        "react-test-renderer": "18.2.0",
         "ts-node": "^10.9.1",
-        "typescript": "~4.7.4",
+        "typescript": "~4.8.4",
         "utility-types": "^3.10.0"
     },
     "peerDependencies": {

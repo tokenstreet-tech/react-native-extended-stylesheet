@@ -1,6 +1,6 @@
 import { useColorMode } from '@docusaurus/theme-common';
-import type { IFeatureItem } from '@site/src/components/HomepageFeatures/FeatureItem';
-import { FeatureItem } from '@site/src/components/HomepageFeatures/FeatureItem';
+import type { IFeatureItem } from '@site/src/components/FeatureItem';
+import { FeatureItem } from '@site/src/components/FeatureItem';
 import dependabot from '@site/static/img/dependabot.svg';
 import maintenance from '@site/static/img/maintenance.svg';
 import maintenanceDark from '@site/static/img/maintenanceDark.svg';
