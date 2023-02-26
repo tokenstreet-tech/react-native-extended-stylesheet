@@ -127,10 +127,10 @@ const config = {
             'docusaurus-plugin-typedoc',
             // Plugin / TypeDoc options
             {
-                entryPoints: ['../core/src/index'],
+                entryPoints: ['../core/src/index.ts'],
                 tsconfig: '../core/tsconfig.json',
                 sidebar: {
-                    position: 4,
+                    position: 9,
                 },
                 entryDocument: 0,
             },
