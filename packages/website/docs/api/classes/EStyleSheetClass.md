@@ -16,7 +16,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:38](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L38)
+[packages/core/src/api.ts:38](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L38)
 
 ## Properties
 
@@ -26,7 +26,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:27](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L27)
+[packages/core/src/api.ts:27](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L27)
 
 ---
 
@@ -36,7 +36,7 @@ Constructor
 
 #### Defined in
 
-[packages/core/src/api.ts:26](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L26)
+[packages/core/src/api.ts:26](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L26)
 
 ---
 
@@ -48,7 +48,7 @@ Constructor
 
 ▸ <`T`\>(`styles`, `styleName`, `index`, `count`): `AnyStyle`
 
-Returns base style and style with child pseudo selector
+Returns styles with pseudo classes :first-child, :nth-child-even, :last-child according to index and count
 
 ##### Type parameters
 
@@ -58,20 +58,22 @@ Returns base style and style with child pseudo selector
 
 ##### Parameters
 
-| Name        | Type     |
-| :---------- | :------- |
-| `styles`    | `T`      |
-| `styleName` | `string` |
-| `index`     | `number` |
-| `count`     | `number` |
+| Name        | Type     | Description             |
+| :---------- | :------- | :---------------------- |
+| `styles`    | `T`      |                         |
+| `styleName` | `string` |                         |
+| `index`     | `number` | Index of item for style |
+| `count`     | `number` | Total count of items    |
 
 ##### Returns
 
 `AnyStyle`
 
+styles
+
 #### Defined in
 
-[packages/core/src/api.ts:29](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L29)
+[packages/core/src/api.ts:29](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L29)
 
 ---
 
@@ -109,7 +111,7 @@ PureComponent checks.
 
 #### Defined in
 
-[packages/core/src/api.ts:23](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L23)
+[packages/core/src/api.ts:23](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L23)
 
 ---
 
@@ -181,7 +183,7 @@ the alternative use.
 
 #### Defined in
 
-[packages/core/src/api.ts:22](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L22)
+[packages/core/src/api.ts:22](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L22)
 
 ---
 
@@ -191,7 +193,7 @@ the alternative use.
 
 #### Defined in
 
-[packages/core/src/api.ts:25](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L25)
+[packages/core/src/api.ts:25](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L25)
 
 ---
 
@@ -224,15 +226,15 @@ unless you really know what you are doing and have exhausted other options.
 
 #### Defined in
 
-[packages/core/src/api.ts:24](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L24)
+[packages/core/src/api.ts:24](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L24)
 
 ## Methods
 
 ### build
 
-▸ **build**<`TGlobalVariablesObject`\>(`globalVariablesObject?`): `void`
+▸ **build**<`TGlobalVariablesObject`\>(`globalVars?`): `void`
 
-Builds all created stylesheets with passed variables
+Calculates all stylesheets
 
 #### Type parameters
 
@@ -242,9 +244,9 @@ Builds all created stylesheets with passed variables
 
 #### Parameters
 
-| Name                     | Type                                          |
-| :----------------------- | :-------------------------------------------- |
-| `globalVariablesObject?` | `TGlobalVariables`<`TGlobalVariablesObject`\> |
+| Name          | Type                                          | Description                          |
+| :------------ | :-------------------------------------------- | :----------------------------------- |
+| `globalVars?` | `TGlobalVariables`<`TGlobalVariablesObject`\> | Global variables for all stylesheets |
 
 #### Returns
 
@@ -252,7 +254,7 @@ Builds all created stylesheets with passed variables
 
 #### Defined in
 
-[packages/core/src/api.ts:73](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L73)
+[packages/core/src/api.ts:74](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L74)
 
 ---
 
@@ -268,15 +270,15 @@ Clears all cached styles.
 
 #### Defined in
 
-[packages/core/src/api.ts:121](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L121)
+[packages/core/src/api.ts:158](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L158)
 
 ---
 
 ### create
 
-▸ **create**<`T`\>(`styles`): `TNamedStyles`<`T`\>
+▸ **create**<`T`\>(`source`): `TNamedStyles`<`T`\>
 
-Creates stylesheet that will be calculated after build
+Creates extended stylesheet object that will be calculated after build
 
 #### Type parameters
 
@@ -286,17 +288,19 @@ Creates stylesheet that will be calculated after build
 
 #### Parameters
 
-| Name     | Type                         |
-| :------- | :--------------------------- |
-| `styles` | `TExtendedNamedStyles`<`T`\> |
+| Name     | Type                         | Description  |
+| :------- | :--------------------------- | :----------- |
+| `source` | `TExtendedNamedStyles`<`T`\> | Source style |
 
 #### Returns
 
 `TNamedStyles`<`T`\>
 
+Extended stylesheet object
+
 #### Defined in
 
-[packages/core/src/api.ts:59](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L59)
+[packages/core/src/api.ts:60](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L60)
 
 ---
 
@@ -308,10 +312,10 @@ Subscribe to event. Currently, only 'build' event is supported.
 
 #### Parameters
 
-| Name       | Type        |
-| :--------- | :---------- |
-| `event`    | `string`    |
-| `listener` | `TListener` |
+| Name       | Type        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `string`    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `listener` | `TListener` | This method is useful when you want to pre-render some component on init. As extended style is calculated after call of `EStyleSheet.build()`, it is not available instantly after creation so you should wrap pre-render info listener to `build` event: `jsx const styles = EStyleSheet.create({ button: { width: '80%', }, }); // this will NOT work as styles.button is not calculated yet let Button = <View style={styles.button}></View>; // but this will work let Button; EStyleSheet.subscribe('build', () => { Button = <View style={styles.button}></View>; }); ` |
 
 #### Returns
 
@@ -319,7 +323,7 @@ Subscribe to event. Currently, only 'build' event is supported.
 
 #### Defined in
 
-[packages/core/src/api.ts:95](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L95)
+[packages/core/src/api.ts:132](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L132)
 
 ---
 
@@ -342,7 +346,7 @@ Unsubscribe from event. Currently, only 'build' event is supported.
 
 #### Defined in
 
-[packages/core/src/api.ts:109](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L109)
+[packages/core/src/api.ts:146](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L146)
 
 ---
 
@@ -350,19 +354,34 @@ Unsubscribe from event. Currently, only 'build' event is supported.
 
 ▸ **value**(`expr`, `prop?`): `any`
 
-Calculates particular value. For some values you need to pass prop (e.g. percent)
+Calculates particular expression. For some values you need to pass prop (e.g. percent)
 
 #### Parameters
 
-| Name    | Type                      |
-| :------ | :------------------------ |
-| `expr`  | `Readonly`<`TValueExpr`\> |
-| `prop?` | `string`                  |
+| Name    | Type                      | Description                                                                                                                                                        |
+| :------ | :------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `expr`  | `Readonly`<`TValueExpr`\> | Value                                                                                                                                                              |
+| `prop?` | `string`                  | Property for which value is calculated. For example, to calculate percent values the function should know is it 'width' or 'height' to use proper reference value. |
 
 #### Returns
 
 `any`
 
+Calculated result
+
+**Please note** that in most cases `EStyleSheet.value()` should be used inside function, not directly:
+
+```jsx
+const styles = EStyleSheet.create({
+    button1: {
+        width: () => EStyleSheet.value('$contentWidth') + 10, // <-- Correct!
+    },
+    button2: {
+        width: EStyleSheet.value('$contentWidth') + 10, // <-- Incorrect. Because EStyleSheet.build() may occur later and $contentWidth will be undefined at this moment.
+    },
+});
+```
+
 #### Defined in
 
-[packages/core/src/api.ts:85](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/4a00b96/packages/core/src/api.ts#L85)
+[packages/core/src/api.ts:100](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/blob/28e65ee/packages/core/src/api.ts#L100)
