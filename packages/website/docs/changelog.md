@@ -1,3 +1,9 @@
+---
+sidebar_position: 8
+---
+
+# Changelog
+
 ## 0.15.0 (Apr 25, 2022)
 
 -   Improved type system: Foundation laid for the future ([#19])
