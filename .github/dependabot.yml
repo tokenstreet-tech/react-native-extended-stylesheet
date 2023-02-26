@@ -9,14 +9,6 @@ updates:
       directory: '/'
       schedule:
           interval: 'weekly'
-    - package-ecosystem: 'npm'
-      directory: 'example/'
-      schedule:
-          interval: 'weekly'
-      ignore:
-          - dependency-name: 'react'
-          - dependency-name: 'react-dom'
-          - dependency-name: 'react-native'
     - package-ecosystem: 'github-actions'
       directory: '/'
       schedule:
