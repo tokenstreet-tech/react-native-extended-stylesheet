@@ -116,6 +116,7 @@ const config = {
                         ],
                     },
                 ],
+                copyright: `Copyright © ${new Date().getFullYear()} tokenstreet GmbH`,
             },
             prism: {
                 theme: lightCodeTheme,
