@@ -1,7 +1,8 @@
 import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
-import React, { useMemo } from 'react';
+import type { FC } from 'react';
+import { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
-import renderer from 'react-test-renderer';
+import { create } from 'react-test-renderer';
 
 describe('Snapshot', () => {
     it('should render correctly', () => {
@@ -30,7 +31,7 @@ describe('Snapshot', () => {
             },
         });
 
-        const JestTestingScreen: React.FC = () => {
+        const JestTestingScreen: FC = () => {
             const instructions = useMemo(
                 () =>
                     Platform.select({
@@ -50,7 +51,7 @@ describe('Snapshot', () => {
         };
 
         // Act
-        const tree = renderer.create(<JestTestingScreen />).toJSON();
+        const tree = create(<JestTestingScreen />).toJSON();
 
         // Assert
         expect(tree).toMatchSnapshot();
