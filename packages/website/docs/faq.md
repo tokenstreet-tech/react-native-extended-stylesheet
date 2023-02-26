@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-## FAQ
+# FAQ
 
 1. **I'm getting error: `"Unresolved variable: ..."`**
     - Ensure that you call `EStyleSheet.build()` in entry point of your app.

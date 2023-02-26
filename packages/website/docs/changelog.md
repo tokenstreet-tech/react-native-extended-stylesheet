@@ -2,6 +2,6 @@
 sidebar_position: 8
 ---
 
-## Changelog
+# Changelog
 
 Please see [CHANGELOG.md](CHANGELOG.md)

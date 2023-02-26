@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-## Installation
+# Installation
 
 ```
 npm i @tokenstreet/react-native-extended-stylesheet --save

@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-## Caveats
+# Caveats
 
 1. **Dynamic theme change is possible only with loosing components local state**
    When theme styles are re-calculated - all components should be re-rendered.

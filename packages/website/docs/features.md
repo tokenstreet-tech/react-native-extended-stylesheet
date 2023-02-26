@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-## Features
+# Features
 
-### Global variables
+## Global variables
 
 Global variables are passed to `EStyleSheet.build()` and available in all stylesheets.
 
@@ -31,7 +31,7 @@ const styles = EStyleSheet.create({
 </View>;
 ```
 
-### Local variables
+## Local variables
 
 Local variables can be defined directly in sylesheet and have priority over global variables.
 To define local variable just start it with `$`:
@@ -50,7 +50,7 @@ const styles = EStyleSheet.create({
 
 Local variables are also available in result style: `styles.$textColor`.
 
-### Theming
+## Theming
 
 Changing app theme contains two steps:
 
@@ -89,7 +89,7 @@ The approach is open for discusison, feel free to share your ideas in [#22](http
 
 You can check out full theming code in [examples/theming](examples/theming) or in [Expo snack](https://snack.expo.io/@vitalets/dynamic-themes-with-extended-stylesheets).
 
-### Media queries
+## Media queries
 
 Media queries allows to have different styles for different screens, platform, direction and orientation.
 They are supported as properties with `@media` prefix (thanks for idea to [@grabbou](https://github.com/grabbou),
@@ -150,7 +150,7 @@ const styles = EStyleSheet.create({
 
 You can check out full example code in [examples/media-queries](examples/media-queries) or in [Expo snack](https://snack.expo.io/@gbhasha/media-queries-using-extended-stylesheets).
 
-### Math operations
+## Math operations
 
 Any value can contain **one** of following math operations: `*`, `/`, `+`, `-`. Operands can be numbers, variables and percents.
 For example, to render circle you may create style:
@@ -166,7 +166,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-### REM units
+## REM units
 
 Similar to [CSS3 rem unit](http://snook.ca/archives/html_and_css/font-size-with-rem) it allows to define any integer value as relative to the root element. In our case root value is special `rem` global variable that can be set in `EStyleSheet.build()`. It makes easy to scale app depending on screen size and other conditions. Default rem is `16`.
 
@@ -187,7 +187,7 @@ EStyleSheet.build({
 
 You can check out full example code in [examples/rem](examples/rem) or in [Expo snack](https://snack.expo.io/@gbhasha/using-rem-units-with-extended-stylesheet).
 
-### Percents
+## Percents
 
 Percent values are supported natively since React Native 0.43.
 EStyleSheet passes them through to original StyleSheet except cases, when you use calculations with percents,
@@ -232,7 +232,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-### Scaling
+## Scaling
 
 You can apply scale to components by setting special `$scale` variable.
 
@@ -274,7 +274,7 @@ let getStyle = function (scale = 1) {
 
 To cache calculated styles please have a look on [caching](#caching) section.
 
-### Underscored styles
+## Underscored styles
 
 Original react-native stylesheets are calculated to integer numbers and original values are unavailable.
 But sometimes they are needed. Let's take an example:
@@ -323,7 +323,7 @@ return (
 );
 ```
 
-### Pseudo classes (:nth-child)
+## Pseudo classes (:nth-child)
 
 Extended stylesheet supports 4 pseudo classes: `:first-child`, `:nth-child-even`, `:nth-child-odd`, `:last-child`. As well as in traditional CSS it allows to apply special styling for first/last items or render stripped rows.
 To get style for appropriate index you should use `EStyleSheet.child()` method.
@@ -356,7 +356,7 @@ render() {
 }
 ```
 
-### Value as a function
+## Value as a function
 
 For the deepest customization you can specify any value as a function that will be executed on EStyleSheet build.
 For example, you may _darken_ or _lighten_ color of variable via [npm color package](https://www.npmjs.com/package/color):
@@ -394,7 +394,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-### Caching
+## Caching
 
 If you use dynamic styles depending on runtime prop or you are making reusable component with dynamic styling
 you may need stylesheet creation in every `render()` call. Let's take example from [scaling](#scaling) section:
@@ -444,7 +444,7 @@ let getStyle = memoize(function (scale = 1) {
 Now if you call `getStyle(1.5)` 3 times actually style will be created on the first call
 and two other calls will get it from cache.
 
-### Outline for debug
+## Outline for debug
 
 It is possible to outline all components that are using EStyleSheet. For that set global `$outline` variable:
 
@@ -468,7 +468,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-### Hot module reload
+## Hot module reload
 
 [Hot module reload (HMR)](https://facebook.github.io/react-native/blog/2016/03/24/introducing-hot-reloading.html)
 allows you to change code and see live updates without loosing app state. It is very handy for tuning styles.

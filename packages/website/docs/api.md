@@ -2,9 +2,9 @@
 sidebar_position: 5
 ---
 
-## EStyleSheet API
+# EStyleSheet API
 
-### .create()
+## .create()
 
 ```jsx
 /**
@@ -16,7 +16,7 @@ sidebar_position: 5
  create (source) {...}
 ```
 
-### .build()
+## .build()
 
 ```jsx
 /**
@@ -27,7 +27,7 @@ sidebar_position: 5
  build (globalVars) {...}
 ```
 
-### .value()
+## .value()
 
 ```jsx
 /**
@@ -54,7 +54,7 @@ const styles = EStyleSheet.create({
 });
 ```
 
-### .child()
+## .child()
 
 ```jsx
 /**
@@ -69,7 +69,7 @@ const styles = EStyleSheet.create({
  child (styles, styleName, index, count) {...}
 ```
 
-### .subscribe()
+## .subscribe()
 
 ```jsx
 /**
@@ -104,7 +104,7 @@ EStyleSheet.subscribe('build', () => {
 });
 ```
 
-### .unsubscribe()
+## .unsubscribe()
 
 ```jsx
 /**
