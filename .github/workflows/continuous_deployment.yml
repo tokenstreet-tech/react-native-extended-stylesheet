@@ -32,6 +32,7 @@ jobs:
                   registry-url: ${{ env.REGISTRY_URL }}
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
+            - run: yarn --cwd packages/website build
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
