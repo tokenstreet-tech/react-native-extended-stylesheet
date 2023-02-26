@@ -1,15 +1,48 @@
 name: 🚀 Continuous deployment
 on:
+    push:
+        branches:
+            - main
     workflow_dispatch:
         inputs:
             version:
                 description: "Version ['patch', 'minor', 'major']"
                 required: true
 
+env:
+    NODE_VERSION: 18
+    REGISTRY_URL: 'https://registry.npmjs.org'
+    GIT_USER_NAME: tokenstreet-tools
+    GIT_USER_EMAIL: tools@tokenstreet.com
+
 jobs:
+    deploy_website:
+        name: 🌐 Deploy website
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push'
+        steps:
+            - name: 🛑 Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.11.0
+            - name: ⬇️ Checkout repo
+              uses: actions/checkout@v3
+            - name: ⎔ Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  registry-url: ${{ env.REGISTRY_URL }}
+            - name: 📥 Download deps
+              uses: bahmutov/npm-install@v1
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./packages/website/build
+                  user_name: ${{ env.GIT_USER_NAME }}
+                  user_email: ${{ env.GIT_USER_EMAIL }}
     publish_package:
         name: ⬆️ Publish package
         runs-on: ubuntu-latest
+        if: github.event_name == 'workflow_dispatch'
         steps:
             - name: 🛑 Cancel Previous Runs
               uses: styfle/cancel-workflow-action@0.11.0
@@ -19,13 +52,13 @@ jobs:
                   token: ${{ secrets.PERSONAL_ACCESS_TOKEN_TOOLS_TOKENSTREET }}
             - name: Set git credentials
               run: |
-                  git config --global user.name "tokenstreet Tools"
-                  git config --global user.email "tools@tokenstreet.com"
+                  git config --global user.name "${{ env.GIT_USER_NAME }}"
+                  git config --global user.email "${{ env.GIT_USER_EMAIL }}"
             - name: ⎔ Setup node
               uses: actions/setup-node@v3
               with:
-                  node-version: 18
-                  registry-url: 'https://registry.npmjs.org'
+                  node-version: ${{ env.NODE_VERSION }}
+                  registry-url: ${{ env.REGISTRY_URL }}
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
             - run: yarn version --${{ github.event.inputs.version }}
