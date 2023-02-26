@@ -10,7 +10,7 @@ React Native IDnow VideoIdent bindings for the [iOS](https://github.com/idnow/de
 
 This package is a fork of the [React Native Extended StyleSheet](https://github.com/vitalets/react-native-extended-stylesheet) by [Vitaliy Potapov](https://github.com/vitalets). He describes the package as follows:
 
-> Drop-in replacement of [React Native StyleSheet](https://facebook.github.io/react-native/docs/stylesheet.html) with media-queries, variables, dynamic themes, relative units, percents, math operations, scaling and other styling stuff.
+> Drop-in replacement of [React Native StyleSheet](https://reactnative.dev/docs/stylesheet.html) with media-queries, variables, dynamic themes, relative units, percents, math operations, scaling and other styling stuff.
 
 <img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png">
 
