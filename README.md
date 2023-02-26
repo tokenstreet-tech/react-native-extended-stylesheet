@@ -20,7 +20,7 @@ This package is a fork of the [React Native Extended StyleSheet](https://github.
 -   Maintained ([Is this repo active? #154](https://github.com/vitalets/react-native-extended-stylesheet/issues/154))
 -   Latest dependencies - Secured by Dependabot
 -   Published as CommonJS & ESmodules (powered by [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob))
--   Strong type declarations are included in this package ((Entire codebase has been migrated to TypeScript)[https://github.com/tokenstreet-tech/react-native-extended-stylesheet/releases/tag/v0.14.0])
+-   Strong type declarations are included in this package ([Entire codebase has been migrated to TypeScript](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/releases/tag/v0.14.0))
 
 ## Website
 
