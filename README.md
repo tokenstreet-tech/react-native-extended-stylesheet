@@ -10,18 +10,20 @@ React Native IDnow VideoIdent bindings for the [iOS](https://github.com/idnow/de
 [![minzipped size](https://badgen.net/bundlephobia/minzip/@tokenstreet/react-native-extended-stylesheet)](https://bundlephobia.com/result?p=@tokenstreet/react-native-extended-stylesheet@latest)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tokenstreet-tech/react-native-extended-stylesheet/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-Drop-in replacement of [React Native StyleSheet](https://facebook.github.io/react-native/docs/stylesheet.html) with media-queries, variables, dynamic themes,
-relative units, percents, math operations, scaling and other styling stuff.
+This package is a fork of the [React Native Extended StyleSheet](https://github.com/vitalets/react-native-extended-stylesheet) by [Vitaliy Potapov](https://github.com/vitalets). He describes the package as follows:
+
+> Drop-in replacement of [React Native StyleSheet](https://facebook.github.io/react-native/docs/stylesheet.html) with media-queries, variables, dynamic themes, relative units, percents, math operations, scaling and other styling stuff.
 
 <img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png">
 
-## Features
+## Key differences between this fork and the original are:
 
--   Maintained
+-   IntelliSense IDE integration ([CSS intellisense not working #118](https://github.com/vitalets/react-native-extended-stylesheet/issues/118))
+-   IntelliSense Strong type declarations are included in this package
+-   Maintained ([Is this repo active? #154](https://github.com/vitalets/react-native-extended-stylesheet/issues/154))
 -   Latest dependencies - Secured by Dependabot
--   Works with Expo
--   Published as CommonJS & ESmodules (react-native-builder-bob)
--   Strong type declarations are included in this package (Converted codebase to TypeScript; IntelliSense)
+-   Published as CommonJS & ESmodules (powered by [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob))
+-   Entire codebase has been migrated to TypeScript
 
 ## Website
 
