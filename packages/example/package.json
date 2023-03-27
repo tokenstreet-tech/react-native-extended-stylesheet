@@ -22,7 +22,7 @@
         "react-native": "0.71.3"
     },
     "devDependencies": {
-        "@babel/core": "^7.21.0",
+        "@babel/core": "^7.21.3",
         "@tokenstreet/react-native-extended-stylesheet-common": "*",
         "@types/react": "^18.0.28",
         "typescript": "~4.9.5"
