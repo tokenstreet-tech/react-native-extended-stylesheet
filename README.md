@@ -1,7 +1,5 @@
 # @tokenstreet/react-native-extended-stylesheet
 
-React Native IDnow VideoIdent bindings for the [iOS](https://github.com/idnow/de.idnow.ios) and [Android](https://github.com/idnow/de.idnow.android) SDK.
-
 [![npm version](https://badgen.net/npm/v/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
 [![downloads](https://badgen.net/npm/dm/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
 [![types](https://badgen.net/npm/types/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
