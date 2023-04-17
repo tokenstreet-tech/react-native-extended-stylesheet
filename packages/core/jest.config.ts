@@ -6,4 +6,4 @@ const config: Config.InitialOptions = {
     reporters: ['default', 'github-actions'],
 };
 
-export default config;
+module.exports = config;
