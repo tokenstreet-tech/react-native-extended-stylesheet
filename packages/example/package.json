@@ -24,7 +24,7 @@
     "devDependencies": {
         "@babel/core": "^7.21.4",
         "@tokenstreet/react-native-extended-stylesheet-common": "*",
-        "@types/react": "^18.0.28",
+        "@types/react": "^18.0.35",
         "typescript": "~5.0.4"
     }
 }
