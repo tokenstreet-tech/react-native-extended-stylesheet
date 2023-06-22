@@ -49,6 +49,7 @@ type TFlexStyleSizeKeys = Pick<
     | 'start'
     | 'top'
     | 'width'
+    | "bottom"
 >;
 type TOmittedFlexStyle = Omit<FlexStyle, keyof TFlexStyleSizeKeys>;
 type TFlexStyleSize = Partial<Record<keyof TFlexStyleSizeKeys, TExtendedSizeValues>>;
