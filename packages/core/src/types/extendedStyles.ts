@@ -21,6 +21,7 @@ type TFlexStyleSizeKeys = Pick<
     | 'borderStartWidth'
     | 'borderTopWidth'
     | 'borderWidth'
+    | 'bottom'
     | 'height'
     | 'left'
     | 'margin'
