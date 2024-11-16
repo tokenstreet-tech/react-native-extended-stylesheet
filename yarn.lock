@@ -7395,10 +7395,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus-plugin-typedoc@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/docusaurus-plugin-typedoc/-/docusaurus-plugin-typedoc-0.19.0.tgz#c681366d0d51a6df6df74e564cbf6050c12cbf6a"
-  integrity sha512-3R2BWFEHQhsuwm3u2ppEj3skl+dnV3cKK7vTzSg+oqhmfFj7rA7XTUjQsrjDZuaBR92Fd97g6BrNKVWCb8a81A==
+docusaurus-plugin-typedoc@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/docusaurus-plugin-typedoc/-/docusaurus-plugin-typedoc-1.0.5.tgz#cc04de58201ac327861c4c9fb0e2af58244373ea"
+  integrity sha512-mv8LBJYilGOOPLqaIM3vbYc34m4qwOCpb4WfP24DOPFNj2uiTerw8sg9MGvN6Jx2+J8rq9/WMnjcyz3UMqoIIQ==
 
 dom-converter@^0.2.0:
   version "0.2.0"
