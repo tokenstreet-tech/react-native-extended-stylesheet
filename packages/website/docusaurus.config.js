@@ -7,18 +7,29 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const injectTypeDocSidebar = (items) =>
-    items.map((item) => {
+const injectTypeDocSidebar = (items) => {
+    const modifiedItems = [];
+    let apiItem;
+
+    items.forEach((item) => {
         if (item.link?.id === 'api/index') {
-            return {
+            apiItem = {
                 ...item,
                 label: 'API',
                 items: require('./docs/api/typedoc-sidebar.cjs'),
             };
+        } else {
+            modifiedItems.push(item);
         }
-        return item;
     });
 
+    // Insert the modified 'api/index' item in the fourth position
+    if (apiItem) {
+        modifiedItems.splice(3, 0, apiItem);
+    }
+
+    return modifiedItems;
+};
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Extended StyleSheet',
