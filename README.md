@@ -1,5 +1,11 @@
 # @tokenstreet/react-native-extended-stylesheet
 
+> ### :warning: Deprecation notice
+>
+> **Important:** Due to the transition from `react-native-extended-stylesheet` to an alternative styling library, we are no longer able to test or maintain the `react-native-extended-stylesheet` library. Consequently, this library is now **deprecated** and will no longer receive updates or support.
+>
+> Please consider migrating to alternative solutions to ensure ongoing functionality and support.
+
 [![npm version](https://badgen.net/npm/v/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
 [![downloads](https://badgen.net/npm/dm/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
 [![types](https://badgen.net/npm/types/@tokenstreet/react-native-extended-stylesheet)](https://www.npmjs.com/package/@tokenstreet/react-native-extended-stylesheet)
