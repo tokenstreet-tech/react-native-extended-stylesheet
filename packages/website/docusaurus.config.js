@@ -12,6 +12,7 @@ const injectTypeDocSidebar = (items) =>
         if (item.link?.id === 'api/index') {
             return {
                 ...item,
+                label: 'API',
                 items: require('./docs/api/typedoc-sidebar.cjs'),
             };
         }
