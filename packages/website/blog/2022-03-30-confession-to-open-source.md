@@ -1,11 +1,7 @@
 ---
 slug: confession-to-open-source
 title: Confession to Open Source
-authors:
-    name: Daniel Reichhart
-    title: Frontend Lead @ tokenstreet
-    url: https://github.com/reichhartd
-    image_url: https://github.com/reichhartd.png
+authors: reichhartd
 tags: [opensource, reactnative]
 ---
 
