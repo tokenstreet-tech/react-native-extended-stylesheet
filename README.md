@@ -2,7 +2,7 @@
 
 > ### :warning: Deprecation notice
 >
-> **Important:** Due to the discontinuation of our use of the IDnow Video Ident service, we are no longer able to test or maintain the `react-native-idnow-videoident` library. Consequently, this library is now **deprecated** and will no longer receive updates or support.
+> **Important:** Due to the transition from `react-native-extended-stylesheet` to an alternative styling library, we are no longer able to test or maintain the `react-native-extended-stylesheet` library. Consequently, this library is now **deprecated** and will no longer receive updates or support.
 >
 > Please consider migrating to alternative solutions to ensure ongoing functionality and support.
 
