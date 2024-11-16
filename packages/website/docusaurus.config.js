@@ -157,13 +157,10 @@ const config = {
                 // Plugin options
                 entryPoints: ['../core/src/index.ts'],
                 tsconfig: '../core/tsconfig.json',
-                sidebar: {
-                    position: 4,
-                },
-                entryFileName: 'index',
 
                 // TypeDoc options
                 excludePrivate: true,
+                readme: 'none',
             },
         ],
     ],
