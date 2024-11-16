@@ -8,6 +8,8 @@ tags: [opensource, reactnative]
 A few weeks ago, [Coinpanion](https://en.coinpanion.com/) approached us with a request that accelerated the process of releasing our first open-source package.
 I described this journey and our open-source strategy as part of [our new tech blog](https://medium.com/tokenstreet-tech).
 
+<!-- truncate -->
+
 I'm excited to currently have the opportunity to shape the developer culture at tokenstreet.
 Cheers to the open-source community and good cooperation!
 
