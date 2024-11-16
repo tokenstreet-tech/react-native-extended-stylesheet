@@ -8,8 +8,8 @@
     "scripts": {
         "build": "yarn workspaces run build",
         "typecheck": "yarn workspaces run typecheck",
-        "lint": "ESLINT_USE_FLAT_CONFIG=false yarn workspaces run lint",
-        "lint:fix": "ESLINT_USE_FLAT_CONFIG=false yarn workspaces run lint:fix",
+        "lint": "yarn workspaces run lint",
+        "lint:fix": "yarn workspaces run lint:fix",
         "test": "yarn workspaces run test",
         "prettier": "prettier --write . --ignore-path=.gitignore",
         "prepare": "husky && yarn --cwd packages/core build"
