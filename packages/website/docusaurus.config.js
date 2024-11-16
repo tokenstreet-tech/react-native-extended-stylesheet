@@ -6,6 +6,30 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const injectTypeDocSidebar = (items) => {
+    const modifiedItems = [];
+    let apiItem;
+
+    items.forEach((item) => {
+        if (item.link?.id === 'api/index') {
+            apiItem = {
+                ...item,
+                label: 'API',
+                items: require('./docs/api/typedoc-sidebar.cjs'),
+            };
+        } else {
+            modifiedItems.push(item);
+        }
+    });
+
+    // Insert the modified 'api/index' item in the fourth position
+    if (apiItem) {
+        modifiedItems.splice(3, 0, apiItem);
+    }
+
+    return modifiedItems;
+};
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Extended StyleSheet',
@@ -54,6 +78,9 @@ const config = {
                      */
                     editUrl:
                         'https://github.com/tokenstreet-tech/react-native-extended-stylesheet/tree/main/packages/website/',
+                    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+                    sidebarItemsGenerator: async ({ defaultSidebarItemsGenerator, ...args }) =>
+                        injectTypeDocSidebar(await defaultSidebarItemsGenerator(args)),
                 },
                 blog: {
                     showReadingTime: true,
@@ -130,13 +157,10 @@ const config = {
                 // Plugin options
                 entryPoints: ['../core/src/index.ts'],
                 tsconfig: '../core/tsconfig.json',
-                sidebar: {
-                    position: 4,
-                },
-                entryDocument: 0,
 
                 // TypeDoc options
                 excludePrivate: true,
+                readme: 'none',
             },
         ],
     ],
