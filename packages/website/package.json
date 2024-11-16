@@ -27,7 +27,7 @@
         "react-dom": "18.3.1"
     },
     "devDependencies": {
-        "@docusaurus/module-type-aliases": "2.4.0",
+        "@docusaurus/module-type-aliases": "3.6.1",
         "@tokenstreet/react-native-extended-stylesheet-common": "*",
         "@tsconfig/docusaurus": "^2.0.3",
         "docusaurus-plugin-typedoc": "^0.19.0",
