@@ -133,7 +133,7 @@ const config = {
                 sidebar: {
                     position: 4,
                 },
-                entryDocument: 0,
+                entryFileName: 0,
 
                 // TypeDoc options
                 excludePrivate: true,
