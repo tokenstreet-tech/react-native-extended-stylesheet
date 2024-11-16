@@ -1,6 +1,6 @@
 {
     "name": "@tokenstreet/react-native-extended-stylesheet",
-    "version": "0.16.4",
+    "version": "0.17.0",
     "description": "Extended StyleSheets for React Native",
     "main": "lib/commonjs/index",
     "module": "lib/module/index",
