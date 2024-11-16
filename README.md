@@ -10,7 +10,7 @@ This package is a fork of the [React Native Extended StyleSheet](https://github.
 
 > Drop-in replacement of [React Native StyleSheet](https://reactnative.dev/docs/stylesheet.html) with media-queries, variables, dynamic themes, relative units, percents, math operations, scaling and other styling stuff.
 
-<img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png">
+<img align="right" src="https://cloud.githubusercontent.com/assets/1473072/26778748/49c190be-49eb-11e7-83a1-b06372df8d85.png" />
 
 ## Key differences of this fork are:
 
