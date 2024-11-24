@@ -363,7 +363,7 @@ For example, you may _darken_ or _lighten_ color of variable via [npm color pack
 
 ```jsx
 import Color from 'color';
-import EStyleSheet from '@tokenstreet/react-native-extended-stylesheet';
+import { EStyleSheet } from '@tokenstreet/react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
   button: {
