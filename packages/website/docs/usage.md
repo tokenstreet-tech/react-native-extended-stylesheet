@@ -13,18 +13,18 @@ import { View } from 'react-native';
 
 // define extended styles
 const styles = EStyleSheet.create({
-    '@media (min-width: 350) and (max-width: 500)': {
-        // media queries
-        text: {
-            fontSize: '2rem',
-        },
-    },
     column: {
         width: '80%', // 80% of screen width
     },
     text: {
         color: '$textColor', // global variable $textColor
         fontSize: '1.5rem', // relative REM unit
+    },
+    '@media (min-width: 350) and (max-width: 500)': {
+        // media queries
+        text: {
+            fontSize: '2rem',
+        },
     },
 });
 
